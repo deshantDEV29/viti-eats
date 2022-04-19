@@ -40,7 +40,7 @@
     padding-bottom: 30px;
     padding-right: 50px;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     width: 100%;
     height: auto;
     margin: 0% auto;
@@ -68,7 +68,11 @@
 }
 
 .footer_optionLineOne {
-    font-size: 15px;
+    font-size: 11px;
     color: rgb(245, 244, 241);
     font-weight: 600;
+}
+
+.footer_optionLineOne:hover{
+    color: rgb(193, 187, 187);
 }

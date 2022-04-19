@@ -12,13 +12,13 @@ function Footer() {
                         <div className='footer__column'>
                                     
                                     
-                                    <h2>Location</h2>
+                                    <h3>Location</h3>
                                     <p>Some Where In Fiji</p>
                                 </div>
                     
                         <div className='footer__column'>
                             
-                            <h2>Around the Web</h2>
+                            <h3>Around the Web</h3>
                             <a >
                                 <LinkedInIcon className = "footer__icon" /> 
                             </a>
@@ -36,7 +36,7 @@ function Footer() {
                         </div>
                         <div className='footer__column'>
                            
-                            <h2>About</h2>
+                            <h3>About</h3>
                             <p>Fiji Eats is a business that aims to provide the best service to its customers by 
                               providing them with a variety of options to choose from</p>
                         
