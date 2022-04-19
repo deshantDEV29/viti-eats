@@ -1,0 +1,15 @@
+
+
+.restaurant_section{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.rescomp{
+    border-radius: 20px;
+}
+
+.rescomp:hover{
+    background-color: rgb(224, 221, 221);
+}
