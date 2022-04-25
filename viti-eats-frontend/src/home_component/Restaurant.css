@@ -1,9 +1,10 @@
-.restaurant{
+.restaurant {
     padding: 20px;
+    color: black;
 
 }
 
-.restaurant_image{
+.restaurant_image {
     height: 70px;
     width: 70px;
 }

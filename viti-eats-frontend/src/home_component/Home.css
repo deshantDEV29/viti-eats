@@ -1,15 +1,18 @@
-
-
-.restaurant_section{
+.home__container{
+    background-color: white;
+    margin: 100px;
+    border-radius: 20px;
+}
+.restaurant_section {
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.rescomp{
+.rescomp {
     border-radius: 20px;
 }
 
-.rescomp:hover{
-    background-color: rgb(224, 221, 221);
+.rescomp:hover {
+    background-color: rgb(244, 240, 240);
 }

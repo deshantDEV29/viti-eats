@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,14 @@ Route::post('login', [UserController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
+});
+
+
+Route::prefix('admin')->group(function () {
+    Route::post('register', [AdminController::class, 'register']);
+    Route::post('login', [AdminController::class, 'login']);
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('logout', [AdminController::class, 'logout']);
+    });
 });
