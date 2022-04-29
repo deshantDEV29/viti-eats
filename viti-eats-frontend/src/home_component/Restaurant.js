@@ -1,12 +1,12 @@
 import React from 'react'
-import './Restaurant.css'
+
 
 function Restaurant({id, restaurant_name, image, rating}) {
   return (
-    <div className='restaurant'>
-        <h1>{restaurant_name}</h1>
-        <img className='restaurant_image'  src={image} alt= ''/>
-        <h4>Rating {rating} ⭐</h4>
+    <div className='p-1 text-body'>
+        <h4>{restaurant_name}</h4>
+        <img className='h-25 w-25'  src={image} alt= ''/>
+        <h5>Rating {rating} ⭐</h5>
     </div>
   )
 }

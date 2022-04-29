@@ -3,7 +3,7 @@ import React from 'react'
 function Checkout() {
   return (
     <div>
-        <h1>Checkout Page</h1>
+        <h1 className='text-danger'>Checkout Page</h1>
     </div>
   )
 }

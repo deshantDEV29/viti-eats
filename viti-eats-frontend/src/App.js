@@ -5,6 +5,7 @@ import Footer from './footer_component/Footer'
 import Login from './login_component/Login';
 import Signup from './signup_component/Signup';
 import Home from './home_component/Home';
+import Menu from './home_component/Menu';
 import About from './about_component/About';
 import Checkout from './checkout_component/Checkout';
 import Transactions from './transactions_component/Transactions';
@@ -15,9 +16,10 @@ function App() {
       <BrowserRouter>
         <div className="app">
             <Routes>
-                <Route path="/Home" element={<HomePage />}></Route>
+                <Route path="/" element={<HomePage />}></Route>
+                <Route path="/menu" element={<MenuPage />}></Route>
                 <Route path="/signup" element={<SignupPage />}></Route>
-                <Route path="/" element={<LoginPage />}></Route>
+                <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/transactions" element={<TransactionsPage />}></Route>
                 <Route path="/about" element={<AboutPage />}></Route>
                 <Route path="/checkout" element={<CheckoutPage />}></Route>
@@ -36,6 +38,22 @@ function HomePage(){
         </div>
         <div className='app__center'>
              <Home/>
+          </div> 
+        <div className='app__bottom'>
+             <Footer/>
+        </div> 
+    </div>
+  );
+}
+
+function MenuPage(){
+  return(
+    <div className='app__container'>
+        <div className='app__top'>
+            <Header/>
+        </div>
+        <div className='app__center'>
+             <Menu/>
           </div> 
         <div className='app__bottom'>
              <Footer/>

@@ -8,22 +8,22 @@ import {Link} from "react-router-dom";
 
 function Header() {
   return (
-    <div className = 'header'>  
-        <Link to='/home' style={{ textDecoration: 'none' }}>
+    <div className = 'h-2 d-flex align-items-center bg-danger position-sticky top-0'>  
+        <Link to='/' style={{ textDecoration: 'none' }}>
           <div>
-              <img className='header__image' src ={logo}
+              <img className='pr-1' style={{ height: '100px' }} src ={logo}
                       alt=""></img>
           </div>
         </Link>
-          <div className = "header_search">
+          <div className = "d-flex align-items-center rounded">
               <input className = "header_searchInput" type = "text"></input>  
-              <SearchIcon className = "header_searchIcon"/>
+              <SearchIcon className = "p-1  bg-white"/>
           </div>
-          <div className = "header_nav">
+          <div className = "d-flex justify-content-evenly">
                 
                 <div className = 'header_option'>
                     <span className = 'header_optionLineOne'>
-                      <p>Hello User</p> 
+                      <p>login</p> 
                       <p><ArrowDropDownIcon/></p>
                     
                     </span> 
