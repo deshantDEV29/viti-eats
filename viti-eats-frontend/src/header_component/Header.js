@@ -16,10 +16,10 @@ function Header() {
           </div>
         </Link>
           <div className = "d-flex align-items-center rounded">
-              <input className = "header_searchInput" type = "text"></input>  
+              <input className = "h-1 p-1 border-0 w-100" type = "text"></input>  
               <SearchIcon className = "p-1  bg-white"/>
           </div>
-          <div className = "d-flex justify-content-evenly">
+          <div className = "d-flex justify-content-evenly  ">
                 
                 <div className = 'header_option'>
                     <span className = 'header_optionLineOne'>
