@@ -29,10 +29,10 @@ function Header() {
                       
                   </div>
                 </Link>
-                <Link to='/transactions' style={{ textDecoration: 'none' }}>
+                <Link to='/orders' style={{ textDecoration: 'none' }}>
                     <div className = 'd-flex flex-column mx-4 text-white'>
                       <span className = 'd-flex'>
-                            <p>Transactions</p>  
+                            <p>Orders</p>  
                           </span> 
                         
                     </div>

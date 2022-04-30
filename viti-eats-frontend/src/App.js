@@ -8,7 +8,7 @@ import Home from './home_component/Home';
 import Menu from './home_component/Menu';
 import About from './about_component/About';
 import Checkout from './checkout_component/Checkout';
-import Transactions from './transactions_component/Transactions';
+import Orders from './orders_component/Orders';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/menu" element={<MenuPage />}></Route>
                 <Route path="/signup" element={<SignupPage />}></Route>
                 <Route path="/login" element={<LoginPage />}></Route>
-                <Route path="/transactions" element={<TransactionsPage />}></Route>
+                <Route path="/orders" element={<OrdersPage />}></Route>
                 <Route path="/about" element={<AboutPage />}></Route>
                 <Route path="/checkout" element={<CheckoutPage />}></Route>
               </Routes>
@@ -78,14 +78,14 @@ function AboutPage(){
   );
 }
 
-function TransactionsPage(){
+function OrdersPage(){
   return(
     <div className='app__container'>
         <div className='app__top'>
             <Header/>
         </div>
         <div className='app__center'>
-             <Transactions/>
+             <Orders/>
           </div> 
         <div className='app__bottom'>
              <Footer/>
