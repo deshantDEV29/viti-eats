@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\FoodCategoryController;
+use App\Http\Controllers\Admin\FoodItemController;
+use App\Http\Controllers\API\RestaurantAPIController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +23,16 @@ use App\Http\Controllers\Admin\AdminController;
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+Route::get('displayrestaurant', [RestaurantAPIController::class, 'displayrestaurant']);
+Route::get('displaylistrestaurant', [RestaurantAPIController::class, 'displaylistrestaurant']);
+Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodcategory']);
+Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);
+
+Route::post('addrestaurant', [RestaurantController::class, 'addrestaurant']);
+Route::post('add_foodcategory', [FoodCategoryController::class, 'add_foodcategory']);
+Route::post('add_fooditem', [FoodItemController::class, 'add_fooditem']);
+Route::get('getrestaurant', [FoodItemController::class, 'getrestaurant']);
+Route::get('getfoodcategory', [FoodItemController::class, 'getfoodcategory']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
@@ -27,6 +42,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::prefix('admin')->group(function () {
     Route::post('register', [AdminController::class, 'register']);
     Route::post('login', [AdminController::class, 'login']);
+  
 
     Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('logout', [AdminController::class, 'logout']);

@@ -16,9 +16,12 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-             $table->binary('image');
+            $table->string('shortimage');
+            $table->string('longimage');
             $table->timestamps();
         });
+
+            DB::statement("ALTER TABLE restaurants MODIFY COLUMN shortimage MEDIUMTEXT, MODIFY COLUMN longimage MEDIUMTEXT");
     }
 
     /**

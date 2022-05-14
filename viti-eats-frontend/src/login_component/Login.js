@@ -32,7 +32,7 @@ function Login() {
               <input type="password"  placeholder='Password'  className="userinput" />
               
             </div>
-            <Link to='/' style={{ textDecoration: 'none' }}>
+            <Link to='/admin/' style={{ textDecoration: 'none' }}>
               <div>
                 <button  className='login__btn'>Login</button>
               </div> 

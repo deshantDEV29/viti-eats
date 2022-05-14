@@ -1,0 +1,26 @@
+.navigator {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.navigator__row {
+    color: white;
+    font-size: 20px;
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav__box {
+    align-items: center;
+}
+
+.navigator__row p {
+    padding-left: 5px;
+}
+
+.navigator__row:hover {
+    background-color: black;
+}
