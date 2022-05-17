@@ -5,6 +5,7 @@ function Restaurant() {
   const [name, setName] = useState("");
   const [shortimage, setShortimage] = useState("");
   const [longimage, setLongimage] = useState("");
+  const [id, setId] = useState("");
   const [data, setData] = useState([]);
   let navigate = useNavigate();
 
@@ -22,6 +23,32 @@ function Restaurant() {
      fetchdata();
    }, []);
 
+    async function deleterow(e){
+    e.preventDefault();
+    
+    let restaurant_id = {id};
+
+    console.log(restaurant_id);
+    let result = await fetch("http://localhost:8000/api/removerestaurant", {
+      method: "POST",
+      body: JSON.stringify(id),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    if (result) {
+      console.log(result);
+      localStorage.setItem("user-info", JSON.stringify(result));
+      navigate("/admin/restaurant");
+      window.location.reload(false);
+    } else {
+      console.log("restaurant add unsuccessful");
+    }
+    e.target.reset();
+  }
+
   const DisplayData = data.map((restaurant) => {
     //  const toComponentMenu = () => {
     //    navigate("/menu", { state: { id: restaurant.id } });
@@ -36,11 +63,19 @@ function Restaurant() {
           <button>Edit</button>
         </td>
         <td className="pr-3">
-          <button>Delete</button>
+          <button
+            value={restaurant.id}
+            onClick={deleterow}
+            onChange={(e) => setId(e.target.value)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
     );
   });
+
+
 
   function shortimageUploaded() {
     var file = document.querySelector("input[type=file]")["files"][0];

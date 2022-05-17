@@ -23,6 +23,8 @@ return new class extends Migration
             $table->double('price');
             $table->timestamps();
         });
+
+        DB::statement("ALTER TABLE food_items  MODIFY COLUMN long_description MEDIUMTEXT,MODIFY COLUMN image MEDIUMTEXT");
     }
 
     /**

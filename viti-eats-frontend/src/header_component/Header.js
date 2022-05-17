@@ -23,7 +23,7 @@ function Header() {
                   <div className = 'd-flex flex-column mx-4 text-white'>
                         <span className = 'd-flex'>
                         <p>login</p> 
-                        <p><ArrowDropDownIcon/></p>
+                        {/* <p><ArrowDropDownIcon/></p> */}
                       
                       </span> 
                       
@@ -37,14 +37,7 @@ function Header() {
                         
                     </div>
                 </Link>
-                <Link to='/addrestaurant' style={{ textDecoration: 'none' }}>
-                    <div className = 'd-flex flex-column mx-4 text-white'>
-                      <span className = 'd-flex'>
-                            <p>Add Restaurant</p>  
-                          </span> 
-                        
-                    </div>
-                </Link>
+                
                 <Link to='/about' style={{ textDecoration: 'none' }}>
                     <div className = 'd-flex flex-column mx-4 text-white'>
                       <span className = 'd-flex'>

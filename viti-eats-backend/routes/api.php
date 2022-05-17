@@ -29,8 +29,14 @@ Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodc
 Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);
 
 Route::post('addrestaurant', [RestaurantController::class, 'addrestaurant']);
+Route::post('removerestaurant', [RestaurantController::class, 'removerestaurant']);
+
 Route::post('add_foodcategory', [FoodCategoryController::class, 'add_foodcategory']);
+Route::post('remove_foodcategory', [FoodCategoryController::class, 'remove_foodcategory']);
+
 Route::post('add_fooditem', [FoodItemController::class, 'add_fooditem']);
+Route::post('remove_fooditem', [FoodItemController::class, 'remove_fooditem']);
+
 Route::get('getrestaurant', [FoodItemController::class, 'getrestaurant']);
 Route::get('getfoodcategory', [FoodItemController::class, 'getfoodcategory']);
 

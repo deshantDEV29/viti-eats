@@ -70,7 +70,7 @@ function FoodCategory() {
             value={category_description}
             id="name"
             onChange={(e) => setCategorydescription(e.target.value)}
-            placeholder="Restaurant Name"
+            placeholder="Category Description"
             className="text-center bg-light border-0.1 rounded"
           />
         </div>

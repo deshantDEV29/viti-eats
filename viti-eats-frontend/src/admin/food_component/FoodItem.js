@@ -21,13 +21,16 @@ function FoodItem() {
       result = await result.json();
       setData(result);
 
-      let result1 = await fetch("http://localhost:8000/api/displayfooditem");
+      let result1 = await fetch("http://localhost:8000/api/getrestaurant");
       result1 = await result1.json();
       setRestaurant_list(result1);
 
-      let result2 = await fetch("http://localhost:8000/api/displayfooditem");
+      let result2 = await fetch("http://localhost:8000/api/getfoodcategory");
       result2 = await result2.json();
+      console.log(result2);
       setCategory_list(result2);
+      console.log("category_list");
+      console.log(category_list);
     }
     fetchdata();
   }, []);
@@ -41,12 +44,9 @@ function FoodItem() {
         <td className="pr-3">{restaurant.id}</td>
         <td className="pr-3">{restaurant.name}</td>
         <td className="pr-3">{restaurant.long_description}</td>
-        <td className="pr-3">{restaurant.image}</td>
-        <td className="pr-3">{restaurant.foodcategory_id}</td>
-        <td className="pr-3">{restaurant.restaurants_id}</td>
         <td className="pr-3">{restaurant.price}</td>
         <td className="pr-3">{restaurant.created_at}</td>
-        <td className="pr-3">{restaurant.updated_at}</td>
+
         <td className="pr-3">
           <button>Edit</button>
         </td>
@@ -57,18 +57,34 @@ function FoodItem() {
     );
   });
 
-  function shortimageUploaded() {
+  function imageUploaded() {
     var file = document.querySelector("input[type=file]")["files"][0];
     var reader = new FileReader();
 
     reader.onload = function () {
       base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
       console.log(base64String);
-      setShortimage(base64String);
-      console.log(shortimage);
+      setImage(base64String);
+      console.log(image);
     };
     reader.readAsDataURL(file);
   }
+
+  const DisplayFoodCategory = category_list.map((category) => {
+    return (
+      <option className="select__option" value={category.id}>
+        {category.category_description}
+      </option>
+    );
+  });
+
+  const DisplayRestaurant = restaurant_list.map((restaurant) => {
+    return (
+      <option className="select__option" value={restaurant.id}>
+        {restaurant.name}
+      </option>
+    );
+  });
 
   async function add_food_item(e) {
     e.preventDefault();
@@ -111,29 +127,79 @@ function FoodItem() {
             value={name}
             id="name"
             onChange={(e) => setName(e.target.value)}
-            placeholder="Restaurant Name"
+            placeholder="Food Item"
             className="text-center bg-light border-0.1 rounded"
+            required="required"
+          />
+        </div>
+        <div className="pb-3">
+          <input
+            type="text"
+            value={long_description}
+            id="name"
+            onChange={(e) => setLong_description(e.target.value)}
+            placeholder="Description"
+            className="text-center bg-light border-0.1 rounded"
+            required="required"
           />
         </div>
 
         <div className="pb-3 ">
-          <label className="form-label">Select a Short Image</label>
+          <label className="form-label">Select Image for Food Item</label>
           <input
             type="file"
             id="shortimage"
-            onChange={shortimageUploaded}
-            className="form-control w-25 m-auto"
+            onChange={imageUploaded}
+            className="form-control w-50 m-auto p-1 border-0"
+            required="required"
           />
         </div>
 
-        <div className="pb-3">
-          <label className="form-label">Select a Long Image</label>
+        <div className="pb-3 ">
+          <select
+            type="text"
+            value={foodcategory_id}
+            onChange={(e) => setFoodcategory_id(e.target.value)}
+            className="w-50 h-25 rounded border-0 bg-light"
+            style={{ zindex: "100" }}
+            placeholder="Select "
+            required="required"
+          >
+            <option value="" disabled selected>
+              Select the Food Category
+            </option>
+            {DisplayFoodCategory}
+          </select>
+        </div>
+        <div className="pb-3 ">
+          <select
+            type="text"
+            value={restaurants_id}
+            onChange={(e) => setRestaurants_id(e.target.value)}
+            className="w-50 h-25 rounded border-0 bg-light"
+            style={{ zindex: "100" }}
+            required="required"
+          >
+            <option value="" disabled selected>
+              Select the Restaurant
+            </option>
+            {DisplayRestaurant}
+          </select>
+        </div>
+
+        <div>
           <input
-            type="file"
-            id="longimage"
-            onChange={longimageUploaded}
-            className="form-control w-25 m-auto"
-          />
+            type="number"
+            min="0"
+            max="50"
+            step="1"
+            name="Broker_Fees"
+            id="broker_fees"
+            required="required"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            className="text-center bg-light border-0.1 rounded"
+          ></input>
         </div>
 
         <div className="pb-3">
@@ -151,11 +217,10 @@ function FoodItem() {
           <thead>
             <tr>
               <th className="pr-3">ID</th>
-              <th className="pr-3">Restaurant Name</th>
+              <th className="pr-3">Food Item</th>
+              <th className="pr-3">Description</th>
+              <th className="pr-3">Price</th>
               <th className="pr-3">Date Created</th>
-              <th className="pr-3">Date Updated</th>
-              <th className="pr-3"></th>
-              <th className="pr-3"></th>
             </tr>
           </thead>
           <tbody>{DisplayData}</tbody>
