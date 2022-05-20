@@ -15,6 +15,33 @@ function FoodCategory() {
     fetchdata();
   }, []);
 
+  async function deleterow(e) {
+    e.preventDefault();
+
+    let id = e.target.value;
+    let foodcategory_id = { id };
+
+    console.log(foodcategory_id);
+    let result = await fetch("http://localhost:8000/api/remove_foodcategory", {
+      method: "POST",
+      body: JSON.stringify(foodcategory_id),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    if (result) {
+      console.log(result);
+      localStorage.setItem("user-info", JSON.stringify(result));
+      navigate("/admin/foodcategory");
+      window.location.reload(false);
+    } else {
+      console.log("Food Item successfully removed");
+    }
+    e.target.reset();
+  }
+
   const DisplayData = data.map((category) => {
     //  const toComponentMenu = () => {
     //    navigate("/menu", { state: { id: restaurant.id } });
@@ -25,17 +52,18 @@ function FoodCategory() {
         <td className="pr-3">{category.category_description}</td>
         <td className="pr-3">{category.created_at}</td>
         <td className="pr-3">{category.updated_at}</td>
-        <td className="pr-3">
+        {/* <td className="pr-3">
           <button>Edit</button>
-        </td>
+        </td> */}
         <td className="pr-3">
-          <button>Delete</button>
+          <button value={category.id} onClick={deleterow}>
+            Delete
+          </button>
         </td>
       </tr>
     );
   });
 
-  
   async function addrestaurantk(e) {
     e.preventDefault();
     let foodcategory = { category_description };
@@ -84,7 +112,7 @@ function FoodCategory() {
           </button>
         </div>
       </form>
-      <h1 className="pb-3">Restaurant Details </h1>
+      <h1 className="pb-3">Category Details </h1>
       <div className="row justify-content-center">
         <table className="text-center">
           <thead>

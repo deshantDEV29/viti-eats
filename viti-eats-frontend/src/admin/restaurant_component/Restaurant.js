@@ -1,37 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactSpinner from "../ReactSpinner";
 
 function Restaurant() {
   const [name, setName] = useState("");
   const [shortimage, setShortimage] = useState("");
   const [longimage, setLongimage] = useState("");
   const [id, setId] = useState("");
+  const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   let navigate = useNavigate();
 
   let base64String = "";
   let base64String2 = "";
 
-   useEffect(() => {
-     async function fetchdata() {
-       let result = await fetch(
-         "http://localhost:8000/api/displaylistrestaurant"
-       );
-       result = await result.json();
-       setData(result);
-     }
-     fetchdata();
-   }, []);
+  useEffect(() => {
+    async function fetchdata() {
+      let result = await fetch(
+        "http://localhost:8000/api/displaylistrestaurant"
+      );
+      result = await result.json();
+      setData(result);
+      setLoading(false);
+    }
+    fetchdata();
+  }, []);
 
-    async function deleterow(e){
+  async function deleterow(e) {
     e.preventDefault();
-    
-    let restaurant_id = {id};
 
+    let id = e.target.value;
+    let restaurant_id = {id};
+   
     console.log(restaurant_id);
     let result = await fetch("http://localhost:8000/api/removerestaurant", {
       method: "POST",
-      body: JSON.stringify(id),
+      body: JSON.stringify(restaurant_id),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -50,32 +54,24 @@ function Restaurant() {
   }
 
   const DisplayData = data.map((restaurant) => {
-    //  const toComponentMenu = () => {
-    //    navigate("/menu", { state: { id: restaurant.id } });
-    //  };
+
     return (
-      <tr>
+      <tr key={restaurant.id}>
         <td className="pr-3">{restaurant.id}</td>
         <td className="pr-3">{restaurant.name}</td>
         <td className="pr-3">{restaurant.created_at}</td>
         <td className="pr-3">{restaurant.updated_at}</td>
-        <td className="pr-3">
+        {/* <td className="pr-3">
           <button>Edit</button>
-        </td>
+        </td> */}
         <td className="pr-3">
-          <button
-            value={restaurant.id}
-            onClick={deleterow}
-            onChange={(e) => setId(e.target.value)}
-          >
+          <button value={restaurant.id} onClick={deleterow}>
             Delete
           </button>
         </td>
       </tr>
     );
   });
-
-
 
   function shortimageUploaded() {
     var file = document.querySelector("input[type=file]")["files"][0];
@@ -138,7 +134,7 @@ function Restaurant() {
             id="name"
             onChange={(e) => setName(e.target.value)}
             placeholder="Restaurant Name"
-            className="text-center bg-light border-0.1 rounded"
+            className="text-center bg-light border-1 rounded"
           />
         </div>
 
@@ -148,7 +144,7 @@ function Restaurant() {
             type="file"
             id="shortimage"
             onChange={shortimageUploaded}
-            className="form-control w-25 m-auto"
+            className="form-control w-25 m-auto w-50 h-25 rounded border-0 bg-light"
           />
         </div>
 
@@ -158,7 +154,7 @@ function Restaurant() {
             type="file"
             id="longimage"
             onChange={longimageUploaded}
-            className="form-control w-25 m-auto"
+            className="form-control w-25 m-auto w-50 h-25 rounded border-0 bg-light"
           />
         </div>
 
@@ -184,7 +180,7 @@ function Restaurant() {
               <th className="pr-3"></th>
             </tr>
           </thead>
-          <tbody>{DisplayData}</tbody>
+          <tbody>{!isLoading ? DisplayData : <ReactSpinner />}</tbody>
         </table>
       </div>
     </div>

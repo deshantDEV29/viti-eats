@@ -1,12 +1,14 @@
 import React from "react";
-import Restaurant from "../home_component/Restaurant";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function Orders() {
-  return (
-    <div>
-      <h1>Orders Page</h1>
-    </div>
-  );
+ return (
+   <div className="App d-flex flex-column">
+     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
+       <BeatLoader color={"orange"} margin={"10px"} />
+     </div>
+   </div>
+ );
 }
 
 export default Orders;

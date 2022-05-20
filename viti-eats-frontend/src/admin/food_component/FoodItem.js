@@ -11,6 +11,7 @@ function FoodItem() {
   const [data, setData] = useState([]);
   const [restaurant_list, setRestaurant_list] = useState([]);
   const [category_list, setCategory_list] = useState([]);
+  const [id, setId] = useState("");
   let navigate = useNavigate();
 
   let base64String = "";
@@ -35,27 +36,62 @@ function FoodItem() {
     fetchdata();
   }, []);
 
-  const DisplayData = data.map((restaurant) => {
+  async function deleterow(e) {
+    e.preventDefault();
+
+    let id = e.target.value;
+    let fooditem_id = { id };
+
+    console.log(fooditem_id);
+    let result = await fetch("http://localhost:8000/api/remove_fooditem", {
+      method: "POST",
+      body: JSON.stringify(fooditem_id),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    if (result) {
+      console.log(result);
+      localStorage.setItem("user-info", JSON.stringify(result));
+      navigate("/admin/fooditem");
+      window.location.reload(false);
+    } else {
+      console.log("Food Item successfully removed");
+    }
+    e.target.reset();
+  }
+
+  const DisplayData = data.map((fooditem) => {
     //  const toComponentMenu = () => {
     //    navigate("/menu", { state: { id: restaurant.id } });
     //  };
     return (
       <tr>
-        <td className="pr-3">{restaurant.id}</td>
-        <td className="pr-3">{restaurant.name}</td>
-        <td className="pr-3">{restaurant.long_description}</td>
-        <td className="pr-3">{restaurant.price}</td>
-        <td className="pr-3">{restaurant.created_at}</td>
+        <td className="pr-3">{fooditem.id}</td>
+        <td className="pr-3">{fooditem.name}</td>
+        <td className="pr-3">{fooditem.long_description}</td>
+        <td className="pr-3">{fooditem.price}</td>
+        <td className="pr-3">{fooditem.created_at}</td>
 
-        <td className="pr-3">
+        {/* <td className="pr-3">
           <button>Edit</button>
-        </td>
+        </td> */}
         <td className="pr-3">
-          <button>Delete</button>
+          <button
+            value={fooditem.id}
+            onClick={deleterow}
+            
+          >
+            Delete
+          </button>
         </td>
       </tr>
     );
   });
+
+
 
   function imageUploaded() {
     var file = document.querySelector("input[type=file]")["files"][0];
@@ -187,7 +223,7 @@ function FoodItem() {
           </select>
         </div>
 
-        <div>
+        <div className="pb-3">
           <input
             type="number"
             min="0"
@@ -211,7 +247,7 @@ function FoodItem() {
           </button>
         </div>
       </form>
-      <h1 className="pb-3">Restaurant Details </h1>
+      <h1 className="pb-3">Food Item Details </h1>
       <div className="row justify-content-center">
         <table className="text-center">
           <thead>

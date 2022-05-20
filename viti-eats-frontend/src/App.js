@@ -149,13 +149,17 @@ function LoginPage() {
 function AdminDasboardPage() {
   return (
     <div>
-      <AdminHeader />
-      <div className="admincontainer">
-        <div className="app__left">
-          <Navigator />
-        </div>
-        <div className="app__right">
-          <Dashboard />
+      <div className="app__top">
+        <AdminHeader />
+      </div>
+      <div className="appadmin_center">
+        <div className="admincontainer">
+          <div className="app__left">
+            <Navigator />
+          </div>
+          <div className="app__right">
+            <Dashboard />
+          </div>
         </div>
       </div>
     </div>
@@ -165,13 +169,17 @@ function AdminDasboardPage() {
 function AdminRestaurantPage() {
   return (
     <div>
-      <AdminHeader />
-      <div className="admincontainer">
-        <div className="app__left">
-          <Navigator />
-        </div>
-        <div className="app__right">
-          <Restaurant />
+      <div className="app__top">
+        <AdminHeader />
+      </div>
+      <div className="appadmin_center">
+        <div className="admincontainer">
+          <div className="app__left">
+            <Navigator />
+          </div>
+          <div className="app__right">
+            <Restaurant />
+          </div>
         </div>
       </div>
     </div>
@@ -181,13 +189,19 @@ function AdminRestaurantPage() {
 function AdminFoodCategoryPage() {
   return (
     <div>
-      <AdminHeader />
-      <div className="admincontainer">
-        <div className="app__left">
-          <Navigator />
+      <div className="app__container">
+        <div className="app__top">
+          <AdminHeader />
         </div>
-        <div className="app__right">
-          <FoodCategory />
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="app__left">
+              <Navigator />
+            </div>
+            <div className="app__right">
+              <FoodCategory />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -197,13 +211,19 @@ function AdminFoodCategoryPage() {
 function AdminFoodItemPage() {
   return (
     <div>
-      <AdminHeader />
-      <div className="admincontainer">
-        <div className="app__left">
-          <Navigator />
+      <div className="app__container">
+        <div className="app__top">
+          <AdminHeader />
         </div>
-        <div className="app__right">
-          <FoodItem />
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="app__left">
+              <Navigator />
+            </div>
+            <div className="app__right">
+              <FoodItem />
+            </div>
+          </div>
         </div>
       </div>
     </div>

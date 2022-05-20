@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Restaurant from "./Restaurant";
 import "./Home.css";
+import ReactSpinner from "../ReactSpinner";
 import { Link, useNavigate } from "react-router-dom";
+
 
 function Home() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchdata() {
       let result = await fetch("http://localhost:8000/api/displayrestaurant");
       result = await result.json();
       setData(result);
+      setLoading(false);
       console.log(result);
       console.log("test", data);
     }
@@ -23,7 +27,7 @@ function Home() {
       navigate("/menu", { state: { id: restaurant.id } });
     };
     return (
-      <div className="d-sm-flex justify-content-center p-2">
+      <div className="d-sm-flex justify-content-center p-2 col">
         <div
           className="rounded-lg"
           onClick={() => {
@@ -36,12 +40,17 @@ function Home() {
             image={restaurant.shortimage}
           />
         </div>
+        
       </div>
     );
   });
   return (
     <div>
-      <div className="bg-white m-5 rounded">{DisplayData}</div>
+      <div className="container">
+        <div className="bg-white m-5 rounded row">
+          {!isLoading ? DisplayData : <ReactSpinner />}
+        </div>
+      </div>
     </div>
   );
 }

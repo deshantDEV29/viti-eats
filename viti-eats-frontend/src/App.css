@@ -5,16 +5,20 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-.app__top{
+.app__top {
   position: fixed;
   top: 0;
   width: 100%;
-  
+  z-index: 100;
 }
-.app__center{
+.app__center {
   padding-top: 150px;
   width: 100%;
-  
+}
+
+.appadmin_center {
+  padding-top: 80px;
+  width: 100%;
 }
 
 .admincontainer {
@@ -22,7 +26,7 @@
 }
 
 .app__left {
-  width: 250px;
+  width: 220px;
   background-color: rgb(94, 92, 92);
   height: 100%;
   position: fixed;
@@ -31,18 +35,17 @@
   left: 0;
   overflow-x: hidden;
   padding-top: 100px;
-
 }
 
 .app__right {
-  margin-left: 250px;
+  margin-left: 230px;
   padding-right: 10px;
-  padding-left: 10px;
+  padding-left: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
   height: 100%;
   width: 100%;
   z-index: 1;
   overflow-x: hidden;
-
+  flex: 1;
 }
