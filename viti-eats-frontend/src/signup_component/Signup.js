@@ -33,12 +33,12 @@ function Signup() {
             <div className="input__container">           
               <input type="password"  placeholder='Password'  className="usersignup" />              
             </div>
-            <Link to='/home' style={{ textDecoration: 'none' }}>
+            <Link to='/' style={{ textDecoration: 'none' }}>
               <div>
                 <button  className='signup__btn'>Signup</button>
               </div> 
             </Link>
-            <Link to='/' style={{ textDecoration: 'none' }}>
+            <Link to='/login' style={{ textDecoration: 'none' }}>
               <div className='login__link' >
                 <p  >Click to Login</p>
               </div>
