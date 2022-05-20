@@ -1,8 +1,13 @@
 import React from 'react'
+import Item from './Item'
+
 
 function Menu() {
   return (
-    <div>Menu</div>
+    <div>
+     <Item/>
+
+    </div>
   )
 }
 

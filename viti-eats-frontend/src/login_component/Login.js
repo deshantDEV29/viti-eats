@@ -12,7 +12,7 @@ function Login() {
           <h2>Welcome to Viti Eats</h2>
           <h4>Deliver Food Instantly</h4>
           <div>
-            <p>2022.Viti Eats Inc.</p>
+            <p> {(new Date().getFullYear())}2022.Viti Eats Inc.</p>
 
           </div>
         </div>

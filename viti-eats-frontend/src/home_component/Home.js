@@ -13,9 +13,12 @@ function Home() {
                 <Restaurant restaurant_name={'McDonalds'} image={'https://www.businesster.com/images/uploads/post/BS_mcdonalds-mcvalue-lunch-dinner-deals-start-from-rm795-only-available-from-1-april-2019.jpg'} rating={4.1}/>
               </div>
             </Link>
-              <div className='rounded-lg'>
-                <Restaurant restaurant_name={'Burger King'} image={'https://cphimageprocessor.azurewebsites.net/merchants/merchant-86985568-a0e0-48af-8de0-e248956e5e59.jpg'} rating={4.0}/>
-              </div>
+            <Link to='/menu' style={{ textDecoration: 'none' }}>
+                <div className='rounded-lg'>
+                    <Restaurant restaurant_name={'Burger King'} image={'https://cphimageprocessor.azurewebsites.net/merchants/merchant-86985568-a0e0-48af-8de0-e248956e5e59.jpg'} rating={4.0}/>
+                </div>
+            </Link>
+             
               <div className='rounded-lg'>
                 <Restaurant restaurant_name={'Swagat'} image={'https://www.yourphnompenh.com/order/wp-content/uploads/2014/07/Swagat-in-yourphnompenh-online-ordering-food-n-delivery-service-1.jpg'} rating={4.1}/>
               </div>
