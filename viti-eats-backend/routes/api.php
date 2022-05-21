@@ -24,6 +24,8 @@ use App\Http\Controllers\API\RestaurantAPIController;
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('displayrestaurant', [RestaurantAPIController::class, 'displayrestaurant']);
+Route::post('getrestaurantdetails', [RestaurantAPIController::class, 'getrestaurantdetails']);
+Route::post('getrestaurantfood', [RestaurantAPIController::class, 'getrestaurantfood']);
 Route::get('displaylistrestaurant', [RestaurantAPIController::class, 'displaylistrestaurant']);
 Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodcategory']);
 Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);

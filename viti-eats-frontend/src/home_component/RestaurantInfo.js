@@ -1,24 +1,41 @@
-import React from 'react'
-import mcdonalpic from '../assets/mcdonalds.png'
+import React from "react";
 
-
-function RestaurantInfo({Id, Restaurant_Name, Restaurant_Address,Restaurant_Rating, Restaurant_Review, Restaurant_Email}) {
+function RestaurantInfo({ id, name, address, rating, review, email, image }) {
+  image = "data:image/png;base64," + image;
   return (
     <div>
-        
-        <div className='text-left'>
-                <img className='rounded img-fluid' src={mcdonalpic} alt='' />
-                <div style={{ height: "5px" }}></div>
-                <div>
-                    <span className='text-left bolder' style={{ fontFamily: 'Gilroy', fontSize: "32px", fontWeight: "bold" }}>{Restaurant_Name}</span>
-                    <button type="button" class="btn btn-success float-right">{Restaurant_Rating}</button>
-                </div>
-                <span className='float-left'>{Restaurant_Address}</span> <span className='float-right'>{Restaurant_Review} Reviews</span><br></br>
-                <p>Email: {Restaurant_Email}</p>
-            </div>
-           
+      <div className="text-left">
+        <img
+          className="rounded img-fluid"
+          src={image}
+          style={{ height: "100%", width: "200%" }}
+          alt=""
+        />
+        <div style={{ height: "5px" }}></div>
+        <div>
+          <span
+            className="text-left bolder"
+            style={{
+              fontFamily: "Gilroy",
+              fontSize: "32px",
+              fontWeight: "bold",
+            }}
+          >
+            {name}
+          </span>
+          <button type="button" class="btn btn-success float-right">
+            6.8
+          </button>
+        </div>
+        <span className="float-left">
+          Corner of Enamanu Road &, Queens Rd, Nadi, Fiji
+        </span>{" "}
+        <span className="float-right">{60} Reviews</span>
+        <br></br>
+        <p>Email: marketing@mcdonalds.com.fj</p>
+      </div>
     </div>
-  )
+  );
 }
 
-export default RestaurantInfo
+export default RestaurantInfo;

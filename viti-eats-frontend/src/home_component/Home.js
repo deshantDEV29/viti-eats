@@ -17,9 +17,11 @@ function Home() {
       setData(result);
       setLoading(false);
       console.log(result);
-      console.log("test", data);
+      console.log(data);
     }
     fetchdata();
+
+
   }, []);
 
   const DisplayData = data.map((restaurant) => {

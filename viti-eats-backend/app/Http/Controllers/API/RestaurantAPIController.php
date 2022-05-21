@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\FoodCategory;
 use App\Models\FoodItem;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantAPIController extends Controller
 {
@@ -19,6 +20,27 @@ class RestaurantAPIController extends Controller
         // }
         
         return response($restaurantList, 200);
+    }
+
+    public function getrestaurantdetails(Request $request){
+
+         $response =  Restaurant::where('id', $request['id'])->get(['id','name','longimage']);
+        
+        return response($response, 200);
+    }
+
+     public function getrestaurantfood(Request $request){
+
+        $response = DB::table('food_items')
+                        ->join('food_categories', 'food_items.foodcategory_id','=', 'food_categories.id')
+                        ->join('restaurants', 'food_items.restaurants_id','=', 'restaurants.id')
+                        ->where('food_items.restaurants_id','=',$request['id'])
+                        ->select('food_items.foodcategory_id', 'food_items.name','food_items.long_description','food_items.image','food_categories.category_description','food_items.price')
+                        ->orderBy('food_categories.category_description','desc')
+                        ->get();
+         
+        
+        return response($response, 200);
     }
 
      public function displaylistrestaurant(){

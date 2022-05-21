@@ -1,3 +1,4 @@
+import { ConfirmationNumberSharp } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactSpinner from "../ReactSpinner";
@@ -79,11 +80,11 @@ function Restaurant() {
 
     reader.onload = function () {
       base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-      console.log(base64String);
       setShortimage(base64String);
-      console.log(shortimage);
+      console.log(base64String);
     };
     reader.readAsDataURL(file);
+    console.log(shortimage)
   }
 
   function longimageUploaded() {
@@ -92,11 +93,11 @@ function Restaurant() {
 
     reader.onload = function () {
       base64String2 = reader.result.replace("data:", "").replace(/^.+,/, "");
-      console.log(base64String2);
       setLongimage(base64String2);
-      console.log(longimage);
+      console.log(base64String2);
     };
     reader.readAsDataURL(file);
+    console.log(longimage);
   }
 
   async function addrestaurantk(e) {
