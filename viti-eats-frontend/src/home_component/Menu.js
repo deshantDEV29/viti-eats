@@ -77,15 +77,15 @@ function Menu() {
   let groupedfooddata = groupBy(fooddata, "category_description");
   console.log(groupedfooddata);
 
-  let foodItem = Object.keys(groupedfooddata).map((key => {
+  let foodItem = Object.keys(groupedfooddata).map((key) => {
     return (
       <div key={key}>
         <h1>
           <Category Category_Name={key} />
-          
         </h1>
         {groupedfooddata[key].map((fooditem) => (
           <RestaurantCategories
+            id={fooditem.id}
             name={fooditem.name}
             long_description={fooditem.long_description}
             item_price={fooditem.price}
@@ -95,13 +95,13 @@ function Menu() {
         ))}
       </div>
     );
-  }));
+  });
+
 
   return (
     <div>
       <div className="container mt-0 ">
         <div className="d-sm-flex justify-content-center p-2 col">
-          {id}
           <div>{!isLoading ? DisplayData : <ReactSpinner />}</div>
         </div>
         <div>{foodItem}</div>

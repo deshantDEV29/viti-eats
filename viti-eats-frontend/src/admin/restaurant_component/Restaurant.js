@@ -7,7 +7,6 @@ function Restaurant() {
   const [name, setName] = useState("");
   const [shortimage, setShortimage] = useState("");
   const [longimage, setLongimage] = useState("");
-  const [id, setId] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   let navigate = useNavigate();
@@ -78,26 +77,28 @@ function Restaurant() {
     var file = document.querySelector("input[type=file]")["files"][0];
     var reader = new FileReader();
 
+
     reader.onload = function () {
       base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
       setShortimage(base64String);
-      console.log(base64String);
+      // console.log(base64String);
     };
     reader.readAsDataURL(file);
-    console.log(shortimage)
+    // console.log(shortimage)
   }
 
-  function longimageUploaded() {
-    var file = document.querySelector("input[type=file]")["files"][0];
+  const longimageUploaded=(e)=> {
+    e.preventDefault();
+    var file = e.target.files[0];
     var reader = new FileReader();
 
     reader.onload = function () {
       base64String2 = reader.result.replace("data:", "").replace(/^.+,/, "");
       setLongimage(base64String2);
-      console.log(base64String2);
+      // console.log(base64String2);
     };
     reader.readAsDataURL(file);
-    console.log(longimage);
+    // console.log(longimage);
   }
 
   async function addrestaurantk(e) {
@@ -149,7 +150,7 @@ function Restaurant() {
           />
         </div>
 
-        <div className="pb-3">
+        <div className="pb-3 ">
           <label className="form-label">Select a Long Image</label>
           <input
             type="file"

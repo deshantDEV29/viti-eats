@@ -35,8 +35,8 @@ class RestaurantAPIController extends Controller
                         ->join('food_categories', 'food_items.foodcategory_id','=', 'food_categories.id')
                         ->join('restaurants', 'food_items.restaurants_id','=', 'restaurants.id')
                         ->where('food_items.restaurants_id','=',$request['id'])
-                        ->select('food_items.foodcategory_id', 'food_items.name','food_items.long_description','food_items.image','food_categories.category_description','food_items.price')
-                        ->orderBy('food_categories.category_description','desc')
+                        ->select('food_items.id','food_items.foodcategory_id', 'food_items.name','food_items.long_description','food_items.image','food_categories.category_description','food_items.price')
+                        ->orderBy('food_categories.category_description','asc')
                         ->get();
          
         

@@ -4,8 +4,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import logo from "../assets/logo_transparent.png";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
 
 function Header() {
+
+  const [{ basket }] = useStateValue();
+
   return (
     <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0">
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -66,7 +70,7 @@ function Header() {
                 <p className="pr-1">
                   <ShoppingCartIcon />
                 </p>
-                <p>0</p>
+                <p>{basket.length}</p>
               </span>
             </div>
           </Link>
