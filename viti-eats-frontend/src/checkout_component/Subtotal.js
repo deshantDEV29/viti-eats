@@ -7,7 +7,7 @@ import CurrencyFormat from "react-currency-format";
 function Subtotal() {
   const [{ basket }, dispatch] = useStateValue();
   return (
-    <div className="d-flex flex-column justify-content-between p-3 bg-light border border-secondary rounded ">
+    <div className="d-flex flex-column justify-content-between p-3 bg-light border border-secondary rounded mb-1">
       <CurrencyFormat
         renderText={(value) => (
           <>
@@ -22,9 +22,6 @@ function Subtotal() {
         thousandSeperator={true}
         prefix={"$"}
       />
-      <button className="rounded w-100 h-25 border-0 mt-1 bg-success text-white p-1">
-        Proceed to Checkout
-      </button>
     </div>
   );
 }
