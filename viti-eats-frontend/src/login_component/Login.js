@@ -46,6 +46,11 @@ function Login() {
               <p>Go to Home Page</p>
             </div>
           </Link>
+          <Link to="/vendor/" style={{ textDecoration: "none" }}>
+            <div className="signup">
+              <p>Go to Vendor Page</p>
+            </div>
+          </Link>
         </form>
       </div>
     </div>

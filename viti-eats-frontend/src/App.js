@@ -15,6 +15,10 @@ import AdminHeader from "./admin/dashboard_component/AdminHeader";
 import Restaurant from "./admin/restaurant_component/Restaurant";
 import FoodCategory from "./admin/food_component/FoodCategory";
 import FoodItem from "./admin/food_component/FoodItem";
+import VendorNavigator from "./order_retrieval/VendorNavigator";
+import ProcessOrder from "./order_retrieval/ProcessOrder";
+import VendorHome from "./order_retrieval/VendorHome";
+import VendorHeader from "./order_retrieval/VendorHeader";
 
 function App() {
   return (
@@ -43,6 +47,9 @@ function App() {
               path="/admin/fooditem"
               element={<AdminFoodItemPage />}
             ></Route>
+
+            <Route path="/vendor/" element={<VendorHomePage />}></Route>
+            <Route path="/vendor/order" element={<VendorOrderPage />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
@@ -229,5 +236,51 @@ function AdminFoodItemPage() {
     </div>
   );
 }
+
+function VendorHomePage() {
+  return (
+    <div>
+      <div className="app__container">
+        <div className="app__top">
+          <VendorHeader />
+        </div>
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="app__left">
+              <VendorNavigator />
+            </div>
+            <div className="app__right">
+              <VendorHome />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VendorOrderPage() {
+  return (
+    <div>
+      <div className="app__container">
+        <div className="app__top">
+          <VendorHeader />
+        </div>
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="app__left">
+              <VendorNavigator />
+            </div>
+            <div className="app__right">
+              <ProcessOrder />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 
 export default App;
