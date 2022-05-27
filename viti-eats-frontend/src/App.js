@@ -9,6 +9,7 @@ import Menu from "./home_component/Menu";
 import About from "./about_component/About";
 import Checkout from "./checkout_component/Checkout";
 import Orders from "./orders_component/Orders";
+import OrderTrack from "./orders_component/OrderTrack";
 import Navigator from "./admin/dashboard_component/Navigator";
 import Dashboard from "./admin/dashboard_component/Dashboard";
 import AdminHeader from "./admin/dashboard_component/AdminHeader";
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/logout" element={<LoginPage />}></Route>
             <Route path="/orders" element={<OrdersPage />}></Route>
+            <Route path="/ordertrack" element={<OrderTrackingPage />}></Route>
             <Route path="/about" element={<AboutPage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
@@ -113,6 +115,22 @@ function OrdersPage() {
       </div>
       <div className="app__center">
         <Orders />
+      </div>
+      <div className="app__bottom">
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
+function OrderTrackingPage() {
+  return (
+    <div className="app__container">
+      <div className="app__top">
+        <Header />
+      </div>
+      <div className="app__center">
+        <OrderTrack />
       </div>
       <div className="app__bottom">
         <Footer />

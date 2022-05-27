@@ -1,6 +1,7 @@
 import React from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import './Order.css'
+import { Link } from "react-router-dom";
 
 function Orders() {
  return (
@@ -54,27 +55,33 @@ function Orders() {
            <td>19</td>
            <td>MPAISA</td>
            <td>DELIVERED</td>
-           <td>
-             <button className="button button2">track order</button>
-           </td>
+           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
+             <td>
+               <button className="button button2">track order</button>
+             </td>
+           </Link>
          </tr>
          <tr>
            <td>2</td>
            <td>1</td>
            <td>CASH</td>
            <td>IN PROGRESS</td>
-           <td>
-             <button className="button button2">track order</button>
-           </td>
+           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
+             <td>
+               <button className="button button2">track order</button>
+             </td>
+           </Link>
          </tr>
          <tr>
            <td>3</td>
            <td>5</td>
            <td>CASH</td>
            <td>IN PROGRESS</td>
-           <td>
-             <button className="button button2">track order</button>
-           </td>
+           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
+             <td>
+               <button className="button button2">track order</button>
+             </td>
+           </Link>
          </tr>
        </table>
      </div>

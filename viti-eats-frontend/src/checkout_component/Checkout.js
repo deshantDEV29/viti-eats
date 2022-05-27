@@ -1,13 +1,28 @@
-import React from "react";
 import CheckoutProduct from "./CheckoutProduct";
 import { useStateValue } from "../StateProvider";
 import Subtotal from "./Subtotal";
 import DeliveryMethod from "./DeliveryMethod";
 import AddressDetails from "./AddressDetails";
 import PaymentMethod from "./PaymentMethod";
+import React, { useState, useEffect } from "react";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
+
+  const add_address = () => {
+    setName(name);
+    setAddress(address);
+    setContact(contact);
+    console.log(name);
+    console.log(address);
+    console.log(contact);
+
+  };
+
+  
 
   return (
     <div className="row justify-content-around">
@@ -28,7 +43,12 @@ function Checkout() {
       <div className="column w-25">
         <Subtotal />
         <DeliveryMethod />
-        <AddressDetails />
+        <AddressDetails
+          onClick={add_address}
+          name={name}
+          address={address}
+          contact={contact}
+        />
         <PaymentMethod />
         <button className="rounded p-3 border-0 mt-1 mb-2 bg-success text-white p-1">
           PLACE ORDER

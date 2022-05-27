@@ -26,13 +26,20 @@ class UserController extends Controller
    
         $token = $user->createToken('fundaProjectToken')->plainTextToken;
        
-        $response = [
-            'user'=> $user,
+       if($user){
+            $response = [
+            'username'=> $user['name'],
+            'useremail'=>$user['email'],
             'token'=>$token, 
                 
         ];
+        return response( $response, 200);
+       }
+       else{
+            return response(['message'=>'user not created'],401);
+       }
 
-        return response( $response, 201);
+        
     }
 
     public function login(Request $request){

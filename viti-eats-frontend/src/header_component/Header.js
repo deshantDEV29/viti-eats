@@ -32,14 +32,14 @@ function Header() {
       </div>
       <nav className="d-flex justify-content-end w-100 navbar navbar-expand-sm navbar-dark">
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#collapsibleNavbar"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <Link to="/login" style={{ textDecoration: "none" }}>
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">

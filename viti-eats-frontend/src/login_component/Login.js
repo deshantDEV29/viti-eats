@@ -1,7 +1,7 @@
-import React from 'react'
-import logo from '../assets/logo_tab.png'
-import './Login.css'
-import {Link} from "react-router-dom";
+import logo from "../assets/logo_tab.png";
+import "./Login.css";
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function Login() {
   return (
@@ -29,16 +29,23 @@ function Login() {
               type="password"
               placeholder="Password"
               className="userinput"
+              
             />
           </div>
-          <Link to="/admin/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <div>
               <button className="login__btn">Login</button>
             </div>
           </Link>
+
           <Link to="/signup" style={{ textDecoration: "none" }}>
             <div className="signup">
               <p>Click to Signup</p>
+            </div>
+          </Link>
+          <Link to="/admin/" style={{ textDecoration: "none" }}>
+            <div className="signup">
+              <p>Go to Admin Panel</p>
             </div>
           </Link>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -57,4 +64,4 @@ function Login() {
   );
 }
 
-export default Login
+export default Login;
