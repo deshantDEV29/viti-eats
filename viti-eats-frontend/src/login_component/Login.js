@@ -43,7 +43,7 @@ function Login() {
       navigate("/");
       window.location.reload(false);
     } else {
-      console.log("User create unsuccessful");
+      console.log("login");
     }
     e.target.reset();
   }
