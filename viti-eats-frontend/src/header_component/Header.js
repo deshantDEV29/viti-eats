@@ -1,14 +1,30 @@
-import React from "react";
+
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import logo from "../assets/logo_transparent.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
+import { display } from "@mui/system";
+import React, { useState, useEffect } from "react";
 
 function Header() {
 
   const [{ basket }] = useStateValue();
+  const [isLoading, setLoading] = useState(true);
+
+  let name =localStorage.getItem('username');
+  name = name.replaceAll('"','');
+  
+  let username = 'Welcome ' + name
+  useEffect(() => {
+   if (!name == "") {
+     setLoading(false);
+   }
+  }, []);
+  
+  
+
 
   return (
     <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0">
@@ -43,8 +59,7 @@ function Header() {
           <Link to="/login" style={{ textDecoration: "none" }}>
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">
-                <p>login</p>
-                {/* <p><ArrowDropDownIcon/></p> */}
+                <p>{!isLoading ? username : "Login"}</p>
               </span>
             </div>
           </Link>
@@ -52,6 +67,14 @@ function Header() {
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">
                 <p>Orders</p>
+              </span>
+            </div>
+          </Link>
+
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <div className="d-flex flex-column mx-4 text-white">
+              <span className="d-flex">
+                <p>Profile</p>
               </span>
             </div>
           </Link>

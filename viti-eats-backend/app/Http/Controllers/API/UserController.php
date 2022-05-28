@@ -22,14 +22,17 @@ class UserController extends Controller
             'email' =>$data['email'],
             'phone' =>$data['phone'],
             'password' =>Hash::make($data['password']),
+            'role' =>'customer',
         ]);
    
         $token = $user->createToken('fundaProjectToken')->plainTextToken;
        
        if($user){
             $response = [
+            'userid'=>$user['id'],
             'username'=> $user['name'],
             'useremail'=>$user['email'],
+            'userrole'=>$user['role'],
             'token'=>$token, 
                 
         ];
@@ -58,7 +61,10 @@ class UserController extends Controller
         else{
             $token = $user->createToken('fundaProjectTokenLogin')->plainTextToken;
             $response = [
-            'user'=> $user,
+            'userid'=>$user['id'],
+            'username'=> $user['name'],
+            'useremail'=>$user['email'],
+            'userrole'=>$user['role'],
             'token'=>$token, 
             ];
 

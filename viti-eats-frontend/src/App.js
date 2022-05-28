@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./header_component/Header";
+import Profile from "./Profile";
 import Footer from "./footer_component/Footer";
 import Login from "./login_component/Login";
 import Signup from "./signup_component/Signup";
@@ -35,6 +36,7 @@ function App() {
             <Route path="/orders" element={<OrdersPage />}></Route>
             <Route path="/ordertrack" element={<OrderTrackingPage />}></Route>
             <Route path="/about" element={<AboutPage />}></Route>
+            <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
             <Route
@@ -99,6 +101,22 @@ function AboutPage() {
       </div>
       <div className="app__center">
         <About />
+      </div>
+      <div className="app__bottom">
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
+function ProfilePage() {
+  return (
+    <div className="app__container">
+      <div className="app__top">
+        <Header />
+      </div>
+      <div className="app__center">
+        <Profile />
       </div>
       <div className="app__bottom">
         <Footer />

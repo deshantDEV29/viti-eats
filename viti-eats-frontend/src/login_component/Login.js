@@ -2,8 +2,52 @@ import logo from "../assets/logo_tab.png";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+
+  async function loginUser(e) {
+    e.preventDefault();
+    let user = {
+      email,
+      password,
+    };
+
+    let result = await fetch("http://localhost:8000/api/login", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    console.log("userid", result["userid"]);
+    console.log("email", result["useremail"]);
+    console.log("token", result["token"]);
+    if (result["token"]) {
+      console.log("user created");
+      localStorage.setItem("userid", JSON.stringify(result['userid']));
+      localStorage.setItem("username", JSON.stringify(result['username']));
+      localStorage.setItem("useremail", JSON.stringify(result['useremail']));
+      localStorage.setItem("userrole", JSON.stringify(result['userrole']));
+      localStorage.setItem("token", JSON.stringify(result['token']));
+       console.log("username local storage", localStorage.getItem("userid"));
+      console.log("username local storage", localStorage.getItem("username"));
+      console.log("useremail local storage", localStorage.getItem("useremail"));
+      console.log("userrole local storage", localStorage.getItem("userrole"));
+      console.log("token  local storage", localStorage.getItem("token"));
+      navigate("/");
+      window.location.reload(false);
+    } else {
+      console.log("User create unsuccessful");
+    }
+    e.target.reset();
+  }
+
   return (
     <div className="login">
       <div className="login__left">
@@ -22,21 +66,33 @@ function Login() {
             </p>
           </div>
           <div className="input__container">
-            <input type="text" placeholder="Email" className="userinput" />
+            <input
+              type="text"
+              placeholder="Email"
+              className="userinput"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="input__container">
             <input
               type="password"
               placeholder="Password"
               className="userinput"
-              
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Link to="/" style={{ textDecoration: "none" }}>
+          {/* <Link to="/" style={{ textDecoration: "none" }}>
             <div>
               <button className="login__btn">Login</button>
             </div>
-          </Link>
+          </Link> */}
+          <div>
+            <button className="login__btn" onClick={loginUser}>
+              Login
+            </button>
+          </div>
 
           <Link to="/signup" style={{ textDecoration: "none" }}>
             <div className="signup">

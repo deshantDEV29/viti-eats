@@ -19,7 +19,6 @@ function Signup() {
       phone,
       password,
     };
-    
 
     let result = await fetch("http://localhost:8000/api/register", {
       method: "POST",
@@ -30,19 +29,27 @@ function Signup() {
       },
     });
     result = await result.json();
-    console.log("username", result["username"]);
-    console.log("email", result["useremail"]);
-    console.log('token',result['token'])
-    if (result['token']) {
-      console.log('user created');
-      localStorage.setItem("user-info", JSON.stringify(result));
-      console.log('user',localStorage.getItem('user-info'))
-      // navigate("/");
-      // window.location.reload(false);
+    console.log("userid", result["userid"]);
+    // console.log("email", result["useremail"]);
+    // console.log("token", result["token"]);
+    if (result["token"]) {
+      console.log("user created");
+      localStorage.setItem("userid", JSON.stringify(result['userid']));
+      localStorage.setItem("username", JSON.stringify(result['username']));
+      localStorage.setItem("useremail", JSON.stringify(result['useremail']));
+      localStorage.setItem("userrole", JSON.stringify(result['userrole']));
+      localStorage.setItem("token", JSON.stringify(result['token']));
+      //  console.log("username local storage", localStorage.getItem("userid"));
+      // console.log("username local storage", localStorage.getItem("username"));
+      // console.log("useremail local storage", localStorage.getItem("useremail"));
+      // console.log("userrole local storage", localStorage.getItem("userrole"));
+      // console.log("token  local storage", localStorage.getItem("token"));
+      navigate("/");
+      window.location.reload(false);
     } else {
       console.log("User create unsuccessful");
     }
-    // e.target.reset();
+    e.target.reset();
   }
 
   return (
