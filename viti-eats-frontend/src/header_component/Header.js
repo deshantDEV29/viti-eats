@@ -13,13 +13,15 @@ function Header() {
   const [{ basket }] = useStateValue();
   const [isLoading, setLoading] = useState(true);
 
-  let name =localStorage.getItem('username');
-  name = name.replaceAll('"','');
+  let name = localStorage.getItem("username")
   
-  let username = 'Welcome ' + name
+  
+  
+  let username = "Welcome " + name;
   useEffect(() => {
    if (!name == "") {
      setLoading(false);
+     
    }
   }, []);
   
