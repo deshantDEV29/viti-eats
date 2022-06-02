@@ -130,8 +130,8 @@ function Header() {
         <input
           className="h-1 p-1 border-0 w-100 rounded"
           type="text"
-          placeholder="search"
-          style={{ textAlign: "center" }}
+          placeholder="Search &#128269;"
+          style={{ textAlign: "right" }}
         ></input>
       </div>
       <nav className="d-flex justify-content-end w-100 navbar navbar-expand-sm navbar-dark">

@@ -13,7 +13,7 @@ function CheckoutProduct({ id, name, price, image }) {
   return (
     <div>
       <div className="d-flex mt-2 mb-2">
-        <img className="w-50 h-50" src={image} alt="" />
+        <img className="" src={image} alt="" />
 
         <div className="pl-2">
           <p style={{ fontsize: "x-large" }}>{name}</p>

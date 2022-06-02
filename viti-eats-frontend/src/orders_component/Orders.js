@@ -1,12 +1,26 @@
-import React from "react";
-import BeatLoader from "react-spinners/BeatLoader";
-import './Order.css'
+import React from 'react';
 import { Link } from "react-router-dom";
 
-function Orders() {
- return (
-   <>
-     <h1>Orders</h1>
+import './Order.css'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery';
+
+class App extends React.Component {
+  componentDidMount() {
+
+    $(document).ready(function () {
+      $('#example').DataTable();
+    });
+  }
+  render() {
+    return (
+      <div className="MainDiv">
+          <h1>Orders</h1>
      <div className="float-left">
        {" "}
        <br />
@@ -18,75 +32,63 @@ function Orders() {
 
      <br />
 
-     <div class="row">
-       <div class="col-md-auto">
-         <text className="Text1"> Type:</text>
-         <text class="format">Order</text>
-       </div>
+        <div className="container">
 
-       <div class="col">
-         <form>
-           <label className="Text2">
-             {" "}
-             Order Number: {""}
-             <input type="text" name="name" />
-           </label>
-           <input type="submit" value="Submit" />
-         </form>
+          <table id="example" class="display">
+            <thead>
+              <tr>
+                <th>ORDER NUMBER</th>
+                <th>TOTAL</th>
+                <th>PAYMENT METHOD</th>
+                <th>STATUS</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>19</td>
+                <td>MPAISA</td>
+                <td>DELIVERED</td>
 
-         <br />
-         <br />
-       </div>
-     </div>
-     <br></br>
-     <br></br>
+                <td>
+                  <a className='btn btn-success' href="/ordertrack">Track Order</a>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>1</td>
+                <td>CASH</td>
+                <td>IN PROGRESS</td>
+                <td>
+                <a className='btn btn-success' href="/ordertrack">Track Order</a>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>5</td>
+                <td>CASH</td>
+                <td>IN PROGRESS</td>
+                <td>
+                <a className='btn btn-success' href="/ordertrack">Track Order</a>
+                </td>
+              </tr>
 
-     <div>
-       <table className="table">
-         <tr>
-           <th>ORDER NUMBER</th>
-           <th>TOTAL</th>
-           <th>PAYMENT METHOD</th>
-           <th>STATUS</th>
-           <th></th>
-         </tr>
-         <tr>
-           <td>1</td>
-           <td>19</td>
-           <td>MPAISA</td>
-           <td>DELIVERED</td>
-           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
-             <td>
-               <button className="button button2">track order</button>
-             </td>
-           </Link>
-         </tr>
-         <tr>
-           <td>2</td>
-           <td>1</td>
-           <td>CASH</td>
-           <td>IN PROGRESS</td>
-           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
-             <td>
-               <button className="button button2">track order</button>
-             </td>
-           </Link>
-         </tr>
-         <tr>
-           <td>3</td>
-           <td>5</td>
-           <td>CASH</td>
-           <td>IN PROGRESS</td>
-           <Link to="/ordertrack" style={{ textDecoration: "none" }}>
-             <td>
-               <button className="button button2">track order</button>
-             </td>
-           </Link>
-         </tr>
-       </table>
-     </div>
-   </>
- );
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>ORDER NUMBER</th>
+                <th>TOTAL</th>
+                <th>PAYMENT METHOD</th>
+                <th>STATUS</th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+
+        </div>
+      </div>
+    );
+  }
 }
-
-export default Orders;
+export default App;

@@ -28,7 +28,7 @@
 
 .app__left {
   width: 220px;
-  background-color: rgb(94, 92, 92);
+  background:white;
   height: 100%;
   position: fixed;
   z-index: 1;

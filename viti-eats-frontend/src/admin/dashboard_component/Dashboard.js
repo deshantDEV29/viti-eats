@@ -7,7 +7,7 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 function Dashboard() {
   return (
     <div className="container-fluid">
-      <div className="row">
+      {/* <div className="row">
         <div className="col-sm-4" style={{ background: "#3366ff" }}>
           <span>
             <h4>Total Products</h4>
@@ -16,7 +16,7 @@ function Dashboard() {
           <CategoryIcon />
         </div>
         <div className="col-sm-4" style={{ background: "#33cccc" }}>
-          <span>
+          <span>  
             <h4>Total Suppliers</h4>
             <p>supplier_total</p>
           </span>
@@ -30,7 +30,7 @@ function Dashboard() {
           </span>
           <PointOfSaleIcon />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

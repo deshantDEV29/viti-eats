@@ -3,7 +3,20 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactSpinner from "../ReactSpinner";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery';
+function componentDidMount() {
+
+    $(document).ready(function () {
+      $('#example').DataTable();
+    });
+  }
 function Restaurant() {
+  
   const [name, setName] = useState("");
   const [shortimage, setShortimage] = useState("");
   const [longimage, setLongimage] = useState("");
@@ -127,36 +140,40 @@ function Restaurant() {
   }
 
   return (
+    
     <div>
       <form>
         <div className="pb-3">
+       <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Restaurant Name :<span className="mx-3"></span></label>
           <input
+          style={{width:"400px"}}
             type="text"
             value={name}
             id="name"
             onChange={(e) => setName(e.target.value)}
-            placeholder="Restaurant Name"
-            className="text-center bg-light border-1 rounded"
+            className="form-control"
           />
         </div>
 
         <div className="pb-3 ">
-          <label className="form-label">Select a Short Image</label>
+          <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Select a Short Image:</label>
           <input
+           style={{width:"400px"}}
             type="file"
             id="shortimage"
             onChange={shortimageUploaded}
-            className="form-control w-25 m-auto w-50 h-25 rounded border-0 bg-light"
+            className="form-control"
           />
         </div>
 
         <div className="pb-3 ">
-          <label className="form-label">Select a Long Image</label>
+          <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Select a Long Image: <span className="mx-1"></span></label>
           <input
+           style={{width:"400px"}}
             type="file"
             id="longimage"
             onChange={longimageUploaded}
-            className="form-control w-25 m-auto w-50 h-25 rounded border-0 bg-light"
+            className="form-control"
           />
         </div>
 
@@ -171,7 +188,8 @@ function Restaurant() {
       </form>
       <h1 className="pb-3">Restaurant Details </h1>
       <div className="row justify-content-center">
-        <table className="text-center">
+        
+        <table className="text-center" class="display">
           <thead>
             <tr>
               <th className="pr-3">ID</th>

@@ -40,6 +40,7 @@ function Home() {
             id={restaurant.id}
             restaurant_name={restaurant.name}
             image={restaurant.shortimage}
+            rating={restaurant.rating}
           />
         </div>
         

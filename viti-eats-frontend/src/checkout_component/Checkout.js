@@ -25,9 +25,9 @@ function Checkout() {
   
 
   return (
-    <div className="row justify-content-around">
-      <div className="column p-3 ml-3 ">
-        <h2 className="pb-2">Your Shopping Basket</h2>
+    <div className="row justify-content-around ">
+      <div className="col-md-8 container">
+        {/* <h2 className="pb-2">Your Shopping Basket</h2> */}
 
         <div>
           {basket.map((item) => (
@@ -40,7 +40,7 @@ function Checkout() {
           ))}
         </div>
       </div>
-      <div className="column w-25">
+      <div className="col-md-4">
         <Subtotal />
         <DeliveryMethod />
         <AddressDetails
@@ -50,11 +50,15 @@ function Checkout() {
           contact={contact}
         />
         <PaymentMethod />
-        <button className="rounded p-3 border-0 mt-1 mb-2 bg-success text-white p-1">
+        <button className="rounded p-3 border-0 mt-1 mb-2 bg-success text-white p-1 ">
           PLACE ORDER
         </button>
       </div>
+      <div class="row">
+ 
+</div>
     </div>
+    
   );
 }
 
