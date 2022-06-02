@@ -3,10 +3,13 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   let navigate = useNavigate();
 
   async function loginUser(e) {
@@ -30,12 +33,12 @@ function Login() {
     console.log("token", result["token"]);
     if (result["token"]) {
       console.log("user created");
-      localStorage.setItem("userid", JSON.stringify(result['userid']));
-      localStorage.setItem("username", JSON.stringify(result['username']));
-      localStorage.setItem("useremail", JSON.stringify(result['useremail']));
-      localStorage.setItem("userrole", JSON.stringify(result['userrole']));
-      localStorage.setItem("token", JSON.stringify(result['token']));
-       console.log("username local storage", localStorage.getItem("userid"));
+      localStorage.setItem("userid", JSON.stringify(result["userid"]));
+      localStorage.setItem("username", JSON.stringify(result["username"]));
+      localStorage.setItem("useremail", JSON.stringify(result["useremail"]));
+      localStorage.setItem("userrole", JSON.stringify(result["userrole"]));
+      localStorage.setItem("token", JSON.stringify(result["token"]));
+      console.log("username local storage", localStorage.getItem("userid"));
       console.log("username local storage", localStorage.getItem("username"));
       console.log("useremail local storage", localStorage.getItem("useremail"));
       console.log("userrole local storage", localStorage.getItem("userrole"));
@@ -43,7 +46,7 @@ function Login() {
       navigate("/");
       window.location.reload(false);
     } else {
-      console.log("login");
+      setErrorMessage('Login Unuccessful !!')
     }
     e.target.reset();
   }
@@ -83,15 +86,14 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {/* <Link to="/" style={{ textDecoration: "none" }}>
-            <div>
-              <button className="login__btn">Login</button>
-            </div>
-          </Link> */}
-          <div>
+
+          <div> 
             <button className="login__btn" onClick={loginUser}>
               Login
             </button>
+            {errorMessage && (
+              <div className="text-warning" style={{fontSize:'20px'}}> {errorMessage} </div>
+            )}
           </div>
 
           <Link to="/signup" style={{ textDecoration: "none" }}>

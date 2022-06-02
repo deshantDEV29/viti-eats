@@ -9,6 +9,7 @@ import Home from "./home_component/Home";
 import Menu from "./home_component/Menu";
 import About from "./about_component/About";
 import Checkout from "./checkout_component/Checkout";
+import Mpaisa from "./checkout_component/Mpaisa";
 import Orders from "./orders_component/Orders";
 import OrderTrack from "./orders_component/OrderTrack";
 import Navigator from "./admin/dashboard_component/Navigator";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/about" element={<AboutPage />}></Route>
             <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
+            <Route path="/mpaisa" element={<Mpaisa />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
             <Route
               path="/admin/restaurant"

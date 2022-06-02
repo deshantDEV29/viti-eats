@@ -16,6 +16,7 @@ function Header() {
 
   let name = localStorage.getItem("username");
   let userid = localStorage.getItem("userid");
+  let token = localStorage.getItem("token");
 
   console.log(isLoading);
 
@@ -28,21 +29,25 @@ function Header() {
   }, []);
 
   async function logout(e) {
+    token = token.replaceAll('"', "");
     e.preventDefault();
 
     let id = userid;
     let user_id = { id };
 
+    console.log(token)
+
     console.log(user_id);
     let result = await fetch("http://localhost:8000/api/logout", {
       method: "POST",
-      body: JSON.stringify(user_id),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        authHeader: token
       },
     });
     result = await result.json();
+    console.log(result)
     if (result) {
       console.log(result);
       localStorage.removeItem("item");

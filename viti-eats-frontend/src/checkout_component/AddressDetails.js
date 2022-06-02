@@ -6,9 +6,27 @@ function AddressDetails() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
+
+  useEffect(() => {
+    setName(localStorage.getItem("name"));
+    setAddress(localStorage.getItem("address"));
+    setContact(localStorage.getItem("contact"));
+  }, []);
+
+  function saveaddress() {
+    localStorage.setItem("name", name);
+    localStorage.setItem("address", address);
+    localStorage.setItem("contact", contact);
+  }
   return (
     <div className="d-flex flex-column justify-content-between p-3 bg-light border border-secondary rounded mb-1">
       <h6>Address Details</h6>
+
+      <div>
+        <p>{name}</p>
+        <p>{address}</p>
+        <p>{contact}</p>
+      </div>
 
       <Popup
         trigger={
@@ -17,9 +35,6 @@ function AddressDetails() {
             style={{ cursor: "pointer" }}
           >
             Add New Address
-            {name}
-            {address}
-            {contact}
           </p>
         }
         modal
@@ -48,26 +63,33 @@ function AddressDetails() {
                   id="name"
                   className="row rounded bg-light border mb-4 w-100"
                   style={{ boxShadow: "none", outline: "none" }}
-                  onChange={(e) => e.target.name}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required="required"
                 />
                 <label className="form-label row">Complete Address</label>
                 <input
                   type="text"
                   className="row rounded bg-light border mb-4 w-100"
                   style={{ boxShadow: "none", outline: "none" }}
-                  onChange={(e) => e.target.address}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
                 <label className="form-label row">Contact Number</label>
                 <input
                   type="text"
                   className="row rounded bg-light border mb-4 w-100"
                   style={{ boxShadow: "none", outline: "none" }}
-                  onChange={(e) => e.target.contact}
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
                 />
 
-                <button className="mt-2 bg-danger text-white rounded border-0 pl-2 pr-2">
+                {/* <button
+                  className="mt-2 bg-danger text-white rounded border-0 pl-2 pr-2"
+                  onClick={saveaddress}
+                >
                   Add
-                </button>
+                </button> */}
               </form>
             </div>
           </div>

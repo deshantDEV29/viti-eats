@@ -57,7 +57,6 @@ function Restaurant() {
     result = await result.json();
     if (result) {
       console.log(result);
-      localStorage.setItem("user-info", JSON.stringify(result));
       navigate("/admin/restaurant");
       window.location.reload(false);
     } else {

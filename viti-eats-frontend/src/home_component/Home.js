@@ -49,7 +49,7 @@ function Home() {
   });
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid">
         <div className="bg-white m-5 rounded row">
           {!isLoading ? DisplayData : <ReactSpinner />}
         </div>

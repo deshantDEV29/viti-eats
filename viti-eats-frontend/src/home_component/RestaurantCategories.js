@@ -40,7 +40,7 @@ function RestaurantCategories({
                 style={{ fontWeight: "", fontSize: "18px", fontFamily: "" }}
               >
                 <div className="float-left" style={{ fontWeight: "bold" }}>
-                  {name} food id {id}
+                  {name} 
                 </div>
                 <br></br>
                 <br></br>

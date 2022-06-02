@@ -54,7 +54,6 @@ function FoodItem() {
     result = await result.json();
     if (result) {
       console.log(result);
-      localStorage.setItem("user-info", JSON.stringify(result));
       navigate("/admin/fooditem");
       window.location.reload(false);
     } else {
@@ -79,19 +78,13 @@ function FoodItem() {
           <button>Edit</button>
         </td> */}
         <td className="pr-3">
-          <button
-            value={fooditem.id}
-            onClick={deleterow}
-            
-          >
+          <button value={fooditem.id} onClick={deleterow}>
             Delete
           </button>
         </td>
       </tr>
     );
   });
-
-
 
   function imageUploaded() {
     var file = document.querySelector("input[type=file]")["files"][0];

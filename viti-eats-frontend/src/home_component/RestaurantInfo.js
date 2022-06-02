@@ -23,7 +23,7 @@ function RestaurantInfo({ id, name, address, rating, review, email, image }) {
           >
             {name}
           </span>
-          <button type="button" class="btn btn-success float-right">
+          <button type="button" className="btn btn-success float-right">
             6.8
           </button>
         </div>
