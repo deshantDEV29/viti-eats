@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\FoodCategoryController;
 use App\Http\Controllers\Admin\FoodItemController;
 use App\Http\Controllers\API\RestaurantAPIController;
+use App\Http\Controllers\API\CartController;
+
 
 
 /*
@@ -29,6 +31,8 @@ Route::post('getrestaurantfood', [RestaurantAPIController::class, 'getrestaurant
 Route::get('displaylistrestaurant', [RestaurantAPIController::class, 'displaylistrestaurant']);
 Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodcategory']);
 Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);
+Route::post('addtocart', [CartController::class, 'addtocart']);
+Route::post('removefromcart', [CartController::class, 'removefromcart']);
 
 Route::post('addrestaurant', [RestaurantController::class, 'addrestaurant']);
 Route::post('removerestaurant', [RestaurantController::class, 'removerestaurant']);

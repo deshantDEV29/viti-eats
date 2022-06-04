@@ -4,7 +4,6 @@ import "./Home.css";
 import ReactSpinner from "../ReactSpinner";
 import { Link, useNavigate } from "react-router-dom";
 
-
 function Home() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -20,8 +19,6 @@ function Home() {
       console.log(data);
     }
     fetchdata();
-
-
   }, []);
 
   const DisplayData = data.map((restaurant) => {
@@ -43,7 +40,6 @@ function Home() {
             rating={restaurant.rating}
           />
         </div>
-        
       </div>
     );
   });

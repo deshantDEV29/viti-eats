@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import vodafone_logo from "../assets/vodafone_logo.png";
+import vodafone_logo from "../assets/vodafone_logo1.png";
 
 function Mpaisa() {
   return (
@@ -10,7 +10,7 @@ function Mpaisa() {
     >
       <div className="row justify-content-between rounded w-100">
         <div
-          className="column w-50 p-4"
+          className="col-sm w-50 p-4"
           style={{ backgroundColor: " #e60000" }}
         >
           <p className="text-left text-white">TOTAL :</p>
@@ -18,8 +18,8 @@ function Mpaisa() {
             $50
           </p>
         </div>
-        <div className="column w-50 p-4">
-          <img src={vodafone_logo} alt="" className="w-25 float-right" />
+        <div className="col-sm p-4">
+          <img src={vodafone_logo} alt="" className="w-50  float-right" />
         </div>
       </div>
       <div className="row justify-content-between rounded w-100">

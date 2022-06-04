@@ -177,9 +177,11 @@ function Checkout() {
               Self PickUp
             </div>
           </div>
-          <button className="rounded p-3 border-0 mt-1 mb-2 bg-success text-white p-1">
-            PLACE ORDER
-          </button>
+          <Link to="/mpaisa" style={{ color: "red" }}>
+            <button className="rounded p-3 border-0 mt-1 mb-2 bg-success text-white p-1">
+              PLACE ORDER
+            </button>
+          </Link>
         </div>
       </div>
     </div>

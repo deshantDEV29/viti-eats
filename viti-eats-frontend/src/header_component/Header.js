@@ -35,7 +35,7 @@ function Header() {
     let id = userid;
     let user_id = { id };
 
-    console.log(token)
+    console.log(token);
 
     console.log(user_id);
     let result = await fetch("http://localhost:8000/api/logout", {
@@ -43,11 +43,11 @@ function Header() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        authHeader: token
+        authHeader: token,
       },
     });
     result = await result.json();
-    console.log(result)
+    console.log(result);
     if (result) {
       console.log(result);
       localStorage.removeItem("item");
@@ -165,18 +165,26 @@ function Header() {
             </div>
           </Link>
 
-          <Link to="/profile" style={{ textDecoration: "none" }}>
+          {/* <Link to="/profile" style={{ textDecoration: "none" }}>
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">
                 <p>Profile</p>
               </span>
             </div>
-          </Link>
+          </Link> */}
 
           <Link to="/about" style={{ textDecoration: "none" }}>
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">
                 <p>About</p>
+              </span>
+            </div>
+          </Link>
+
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+            <div className="d-flex flex-column mx-4 text-white">
+              <span className="d-flex">
+                <p>{!isLoading ? "Profile" : ""}</p>
               </span>
             </div>
           </Link>
