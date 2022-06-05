@@ -14,6 +14,7 @@ class Order extends Model
         'restaurant_id',
         'address',
         'food_items',
+        'amount',
         'order_status'
        
     ];

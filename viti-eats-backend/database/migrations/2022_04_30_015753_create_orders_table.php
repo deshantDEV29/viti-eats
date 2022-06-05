@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained('restaurants');
             $table->string('address');
             $table->string('food_items');
+            $table->double('amount');
             $table->string('order_status');
             $table->timestamps();
         });
