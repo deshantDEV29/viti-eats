@@ -11,7 +11,10 @@ class Order extends Model
     
     protected $fillable = [
         'user_id',
-        'address'
+        'restaurant_id',
+        'address',
+        'food_items',
+        'order_status'
        
     ];
 }

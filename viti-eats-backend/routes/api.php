@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\FoodCategoryController;
 use App\Http\Controllers\Admin\FoodItemController;
 use App\Http\Controllers\API\RestaurantAPIController;
 use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\OrderController;
 
 
 
@@ -33,6 +34,8 @@ Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodc
 Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);
 Route::post('addtocart', [CartController::class, 'addtocart']);
 Route::post('removefromcart', [CartController::class, 'removefromcart']);
+Route::post('createOrder', [OrderController::class, 'createOrder']);
+Route::post('getOrder', [OrderController::class, 'getOrder']);
 
 Route::post('addrestaurant', [RestaurantController::class, 'addrestaurant']);
 Route::post('removerestaurant', [RestaurantController::class, 'removerestaurant']);
