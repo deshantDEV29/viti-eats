@@ -32,19 +32,50 @@ function Login() {
     console.log("email", result["useremail"]);
     console.log("token", result["token"]);
     if (result["token"]) {
-      console.log("user created");
+
+      localStorage.setItem("userrole", JSON.stringify(result["userrole"]));
+
+      let role = localStorage.getItem("userrole");
+      role = role.replaceAll('"', "");
+      console.log(role);
+
+      if(role==='admin'){
+
+        console.log("user created");
+        localStorage.setItem("adminid", JSON.stringify(result["userid"]));
+        localStorage.setItem("adminname", JSON.stringify(result["username"]));
+        localStorage.setItem("adminemail", JSON.stringify(result["useremail"]));
+        localStorage.setItem("token", JSON.stringify(result["token"]));
+        console.log("username local storage", localStorage.getItem("adminid"));
+        console.log(
+          "username local storage",
+          localStorage.getItem("adminname")
+        );
+        console.log(
+          "useremail local storage",
+          localStorage.getItem("adminemail")
+        );
+        console.log("userrole local storage", localStorage.getItem("userrole"));
+        console.log("token  local storage", localStorage.getItem("token"));
+        navigate("/admin/");
+        window.location.reload(false);
+      }
+      else{
+        console.log("user created");
       localStorage.setItem("userid", JSON.stringify(result["userid"]));
       localStorage.setItem("username", JSON.stringify(result["username"]));
       localStorage.setItem("useremail", JSON.stringify(result["useremail"]));
-      localStorage.setItem("userrole", JSON.stringify(result["userrole"]));
       localStorage.setItem("token", JSON.stringify(result["token"]));
       console.log("username local storage", localStorage.getItem("userid"));
       console.log("username local storage", localStorage.getItem("username"));
       console.log("useremail local storage", localStorage.getItem("useremail"));
       console.log("userrole local storage", localStorage.getItem("userrole"));
       console.log("token  local storage", localStorage.getItem("token"));
-      navigate("/");
-      window.location.reload(false);
+        navigate("/");
+        window.location.reload(false);
+      }
+
+      
     } else {
       setErrorMessage('Login Unuccessful !!')
     }
@@ -87,12 +118,15 @@ function Login() {
             />
           </div>
 
-          <div> 
+          <div>
             <button className="login__btn" onClick={loginUser}>
               Login
             </button>
             {errorMessage && (
-              <div className="text-warning" style={{fontSize:'20px'}}> {errorMessage} </div>
+              <div className="text-warning" style={{ fontSize: "20px" }}>
+                {" "}
+                {errorMessage}{" "}
+              </div>
             )}
           </div>
 
@@ -101,19 +135,14 @@ function Login() {
               <p>Click to Signup</p>
             </div>
           </Link>
-          <Link to="/admin/" style={{ textDecoration: "none" }}>
+          <Link to="/notabuyer/" style={{ textDecoration: "none" }}>
             <div className="signup">
-              <p>Go to Admin Panel</p>
+              <p>Not A Buyer</p>
             </div>
           </Link>
           <Link to="/" style={{ textDecoration: "none" }}>
             <div className="signup">
               <p>Go to Home Page</p>
-            </div>
-          </Link>
-          <Link to="/vendor/" style={{ textDecoration: "none" }}>
-            <div className="signup">
-              <p>Go to Vendor Page</p>
             </div>
           </Link>
         </form>

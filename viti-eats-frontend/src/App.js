@@ -4,6 +4,7 @@ import Header from "./header_component/Header";
 import Profile from "./Profile";
 import Footer from "./footer_component/Footer";
 import Login from "./login_component/Login";
+import NotABuyer from "./login_component/NotABuyer";
 import Signup from "./signup_component/Signup";
 import Home from "./home_component/Home";
 import Menu from "./home_component/Menu";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/menu" element={<MenuPage />}></Route>
             <Route path="/signup" element={<SignupPage />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/notabuyer" element={<NotABuyer />}></Route>
             <Route path="/logout" element={<LoginPage />}></Route>
             <Route path="/orders" element={<OrdersPage />}></Route>
             <Route path="/ordertrack" element={<OrderTrackingPage />}></Route>
@@ -56,6 +58,7 @@ function App() {
 
             <Route path="/vendor/" element={<VendorHomePage />}></Route>
             <Route path="/vendor/order" element={<VendorOrderPage />}></Route>
+            <Route path="/vendor/logout" element={<NotABuyer />}></Route>
           </Routes>
         </div>
       </BrowserRouter>
@@ -284,7 +287,7 @@ function VendorHomePage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="app__left">
+            <div className="">
               <VendorNavigator />
             </div>
             <div className="app__right">
@@ -306,7 +309,7 @@ function VendorOrderPage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="app__left">
+            <div className="">
               <VendorNavigator />
             </div>
             <div className="app__right">

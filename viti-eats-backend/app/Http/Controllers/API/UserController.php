@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\VendorAdmin;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -81,5 +82,108 @@ class UserController extends Controller
        
         
         
+    }
+
+    public function registerAdmin(Request $request){
+        $data = $request->validate([
+            'name' => 'required|string|max:191',
+            'email' => 'required|email|max:191|unique:users,email',
+            'phone' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::create([
+            'name' =>$data['name'],
+            'email' =>$data['email'],
+            'phone' =>$data['phone'],
+            'password' =>Hash::make($data['password']),
+            'role' =>'admin',
+        ]);
+   
+        $token = $user->createToken('fundaProjectToken')->plainTextToken;
+       
+       if($user){
+            $response = [
+            'userid'=>$user['id'],
+            'username'=> $user['name'],
+            'useremail'=>$user['email'],
+            'userrole'=>$user['role'],
+            'token'=>$token, 
+                
+        ];
+        return response( $response, 200);
+       }
+       else{
+            return response(['message'=>'user not created'],401);
+       }
+
+        
+    }
+
+    public function registerVendor(Request $request){
+        $data = $request->validate([
+            'restaurant_id' => 'required|integer',
+            'name' => 'required|string|max:191',
+            'email' => 'required|email|max:191|unique:users,email',
+            'phone' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = VendorAdmin::create([
+            'restaurant_id' =>$data['restaurant_id'],
+            'name' =>$data['name'],
+            'email' =>$data['email'],
+            'phone' =>$data['phone'],
+            'password' =>Hash::make($data['password']),
+            'role' =>'vendor',
+        ]);
+   
+        $token = $user->createToken('fundaProjectToken')->plainTextToken;
+       
+       if($user){
+            $response = [
+            'userid'=>$user['id'],
+            'userrestaurantid'=>$user['restaurant_id'],
+            'username'=> $user['name'],
+            'useremail'=>$user['email'],
+            'userrole'=>$user['role'],
+            'token'=>$token, 
+                
+        ];
+        return response( $response, 200);
+       }
+       else{
+            return response(['message'=>'user not created'],401);
+       }
+
+        
+    }
+
+    public function loginvendor(Request $request){
+        $data = $request->validate([
+            'email' => 'required|email|max:191',
+            'password' => 'required|string',
+        ]);
+
+        $user = VendorAdmin::where('email', $data['email'])->first();
+        $username = VendorAdmin::where('email', $data['email'])->first('name');
+        $email = VendorAdmin::where('email', $data['email'])->first('email');
+
+        if(!$user || !Hash::check($data['password'],$user->password)){
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+            $token = $user->createToken('fundaProjectTokenLogin')->plainTextToken;
+            $response = [
+            'userid'=>$user['id'],
+            'userrestaurantid'=>$user['restaurant_id'],
+            'username'=> $user['name'],
+            'useremail'=>$user['email'],
+            'userrole'=>$user['role'],
+            'token'=>$token, 
+            ];
+
+            return response($response, 200);
+        }
     }
 }

@@ -27,6 +27,10 @@ use App\Http\Controllers\API\OrderController;
 //Authentication Routes
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+//vendor and admin registeration
+Route::post('registerVendor', [UserController::class, 'registerVendor']);
+Route::post('loginvendor', [UserController::class, 'loginvendor']);
+
 //Restaurant Details Routes
 Route::get('displayrestaurant', [RestaurantAPIController::class, 'displayrestaurant']);
 Route::post('getrestaurantdetails', [RestaurantAPIController::class, 'getrestaurantdetails']);

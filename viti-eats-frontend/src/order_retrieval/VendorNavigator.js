@@ -1,42 +1,76 @@
-import React from 'react'
+import React from "react";
 import "./VendorNavigator.css";
-import { Link } from "react-router-dom";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import TaskIcon from "@mui/icons-material/Task";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
 function VendorNavigator() {
+  let name = localStorage.getItem("username");
+  let userid = localStorage.getItem("userid");
+  let token = localStorage.getItem("token");
+  let navigate = useNavigate();
+
+  async function logout(e) {
+    token = token.replaceAll('"', "");
+    e.preventDefault();
+
+    let id = userid;
+    let user_id = { id };
+
+    console.log(token);
+
+    console.log(user_id);
+    let result = await fetch("http://localhost:8000/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        authHeader: token,
+      },
+    });
+    result = await result.json();
+    console.log(result);
+    if (result) {
+      console.log(result);
+      localStorage.removeItem("item");
+      localStorage.removeItem("vendorid");
+      localStorage.removeItem("vendorrestaurantid");
+      localStorage.removeItem("vendorname");
+      localStorage.removeItem("vendoremail");
+      localStorage.removeItem("vendorrole");
+      localStorage.removeItem("token");
+      navigate("/");
+      window.location.reload(false);
+    } else {
+      console.log("Logout Unsucessful");
+    }
+    e.target.reset();
+  }
   return (
     <div className=".col-xs-6 .col-md-4">
-      <Link to="/vendor/" style={{ textDecoration: "none" }}>
-        <div className="navigator__row">
-          <div className="d-flex">
-            <p>
-              <DashboardIcon />
-            </p>
-            <p>Dashboard</p>
-          </div>
-        </div>
-      </Link>
-
-      <Link to="/vendor/order" style={{ textDecoration: "none" }}>
-        <div className="navigator__row">
-          <p>
-            <TaskIcon />
-          </p>
-          <p>Process Order</p>
-        </div>
-      </Link>
-      <Link to="/logout" style={{ textDecoration: "none" }}>
-        <div className="navigator__row">
-          <p>
-            <LogoutIcon />
-          </p>
-          <p>Logout</p>
-        </div>
-      </Link>
+      <div className="area "></div>
+      <nav className="main-menu">
+        <ul>
+          <li>
+            <a href="/vendor/">
+              <i className="fa fa-home fa-2x"></i>
+              <span className="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li className="has-subnav">
+            <a href="/vendor/order">
+              <i className="fa fa-laptop fa-2x"></i>
+              <span className="nav-text">Process Order</span>
+            </a>
+          </li>
+          <li>
+            <a href="/vendor/logout" onClick={logout}>
+              <i className="fa fa-bar-chart-o fa-2x"></i>
+              <span className="nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
 
-export default VendorNavigator
+export default VendorNavigator;

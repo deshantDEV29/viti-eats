@@ -50,6 +50,29 @@
   backdrop-filter: blur(5px);
 }
 
+.notabuyercenter {
+  padding: 20px;
+  padding-top: 100px;
+  flex-basis: 100%;
+  background-color: rgba(0, 0, 0, 0.31);
+  backdrop-filter: blur(5px);
+}
+
+.notabuyercontainer {
+  display: flex;
+  background-image: url("../assets/login_back.jpg");
+  display: flex;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .login__desc {
   color: white;
 }
