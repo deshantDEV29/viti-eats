@@ -30,7 +30,7 @@ function Navigator() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        authHeader: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     result = await result.json();

@@ -27,6 +27,9 @@ use App\Http\Controllers\API\OrderController;
 //Authentication Routes
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+Route::post('getprofile', [UserController::class, 'getprofile']);
+Route::post('setprofileimage', [UserController::class, 'setprofileimage']);
+
 //vendor and admin registeration
 Route::post('registerVendor', [UserController::class, 'registerVendor']);
 Route::post('loginvendor', [UserController::class, 'loginvendor']);

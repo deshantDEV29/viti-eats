@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "./Profile.css";
 import userprofile from "./assets/harshadc.jpg";
 
@@ -99,28 +99,7 @@ function Profile() {
                     ></input>
                   </div>
                 </div>
-                {/* <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1 d-flex" for="inputFirstName"  >First name</label>
-                                <input className='form-control' value={'Harshad'} disabled></input>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1 d-flex" for="inputLastName">Last name</label>
-                                <input className='form-control' value={'Harshad'} disabled></input>
-                            </div>
-                        </div>
-                        <div class="row gx-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small mb-1 d-flex" for="inputFirstName"  >First name</label>
-                                <input className='form-control' value={'Harshad'} disabled></input>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small mb-1 d-flex" for="inputLastName">Last name</label>
-                                <input className='form-control' value={'Harshad'} disabled></input>
-                            </div>
-                        </div> */}
 
-                {/* <!-- Save changes button--> */}
                 <button class="btn btn-primary" type="button">
                   Save changes
                 </button>
@@ -133,4 +112,4 @@ function Profile() {
   );
 }
 
-export default Profile
+export default Profile;

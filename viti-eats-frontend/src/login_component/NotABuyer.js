@@ -97,6 +97,11 @@ function Login() {
               </div>
             )}
           </div>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div className="signup">
+              <p>Go to Home Page</p>
+            </div>
+          </Link>
         </form>
       </div>
     </div>

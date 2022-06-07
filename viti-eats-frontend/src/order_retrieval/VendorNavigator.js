@@ -23,7 +23,7 @@ function VendorNavigator() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        authHeader: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     result = await result.json();
@@ -37,7 +37,7 @@ function VendorNavigator() {
       localStorage.removeItem("vendoremail");
       localStorage.removeItem("vendorrole");
       localStorage.removeItem("token");
-      navigate("/");
+      navigate("/notabuyer");
       window.location.reload(false);
     } else {
       console.log("Logout Unsucessful");

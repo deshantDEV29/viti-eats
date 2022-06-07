@@ -43,7 +43,7 @@ function Header() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        authHeader: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     result = await result.json();
@@ -119,6 +119,51 @@ function Header() {
     }
   }
 
+  function IsProfile() {
+    if (isLoading === false) {
+      return (
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <div className="d-flex flex-column mx-4 text-white">
+            <span className="d-flex">
+              <p>{!isLoading ? "Profile" : ""}</p>
+            </span>
+          </div>
+        </Link>
+      );
+    }
+  }
+
+  function IsOrders() {
+    if (isLoading === false) {
+      return (
+        <Link to="/orders" style={{ textDecoration: "none" }}>
+          <div className="d-flex flex-column mx-4 text-white">
+            <span className="d-flex">
+              <p>Orders</p>
+            </span>
+          </div>
+        </Link>
+      );
+    }
+  }
+
+  function IsCart() {
+    if (isLoading === false) {
+      return (
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
+          <div className="d-flex flex-column mx-4 text-white">
+            <span className="d-flex">
+              <p className="pr-1">
+                <ShoppingCartIcon />
+              </p>
+              <p>{basket.length}</p>
+            </span>
+          </div>
+        </Link>
+      );
+    }
+  }
+
   return (
     <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0">
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -149,30 +194,8 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
-          {/* <Link to="/login" style={{ textDecoration: "none" }}>
-            <div className="d-flex flex-column mx-4 text-white">
-              <span className="d-flex">
-                <p>{!isLoading ? username : "Login"}</p>
-              </span>
-            </div>
-          </Link> */}
           <LoginOrName />
-          <Link to="/orders" style={{ textDecoration: "none" }}>
-            <div className="d-flex flex-column mx-4 text-white">
-              <span className="d-flex">
-                <p>Orders</p>
-              </span>
-            </div>
-          </Link>
-
-          {/* <Link to="/profile" style={{ textDecoration: "none" }}>
-            <div className="d-flex flex-column mx-4 text-white">
-              <span className="d-flex">
-                <p>Profile</p>
-              </span>
-            </div>
-          </Link> */}
-
+          <IsOrders />
           <Link to="/about" style={{ textDecoration: "none" }}>
             <div className="d-flex flex-column mx-4 text-white">
               <span className="d-flex">
@@ -180,25 +203,8 @@ function Header() {
               </span>
             </div>
           </Link>
-
-          <Link to="/profile" style={{ textDecoration: "none" }}>
-            <div className="d-flex flex-column mx-4 text-white">
-              <span className="d-flex">
-                <p>{!isLoading ? "Profile" : ""}</p>
-              </span>
-            </div>
-          </Link>
-
-          <Link to="/checkout" style={{ textDecoration: "none" }}>
-            <div className="d-flex flex-column mx-4 text-white">
-              <span className="d-flex">
-                <p className="pr-1">
-                  <ShoppingCartIcon />
-                </p>
-                <p>{basket.length}</p>
-              </span>
-            </div>
-          </Link>
+          <IsProfile />
+          <IsCart />
         </div>
       </nav>
     </div>

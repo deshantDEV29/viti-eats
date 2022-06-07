@@ -46,6 +46,7 @@ class UserController extends Controller
         
     }
 
+
     public function login(Request $request){
         $data = $request->validate([
             'email' => 'required|email|max:191',
@@ -82,6 +83,34 @@ class UserController extends Controller
        
         
         
+    }
+
+    public function getprofile(Request $request){
+
+        $user = User::where('id', $request['id'])->get();
+
+        if($user->isEmpty()){
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+           
+            return response($user, 200);
+        }
+    }
+
+    public function setprofileimage(Request $request){
+
+        $user = User::where('id', $request['id'])->get();
+
+        if($user->isEmpty()){
+
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+            User::where('id', $request['id'])
+                ->update;
+            return response($user, 200);
+        }
     }
 
     public function registerAdmin(Request $request){
