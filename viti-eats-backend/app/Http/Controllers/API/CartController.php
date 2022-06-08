@@ -72,4 +72,23 @@ class CartController extends Controller
         return response( $response, 200);
         }
 
+        public function displaycart(Request $request){
+       
+            $check = DB::table('carts')
+                    ->where('user_id',$request['user_id'])
+                    ->where('food_id',$request['food_id'])
+                    ->get();
+
+             if($check->isEmpty()){
+
+                return response( 'nothing to display', 401);
+
+        }
+            else{
+
+                
+                return response( $check, 200);
+            }
+        }
+
 }

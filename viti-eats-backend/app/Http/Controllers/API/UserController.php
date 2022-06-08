@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function getprofile(Request $request){
 
-        $user = User::where('id', $request['id'])->get();
+        $user = User::where('id', $request['id'])->get(['id','name','email','phone','profile_image']);
 
         if($user->isEmpty()){
             return response(['message'=>'Invalid Credentials'],401);
@@ -108,8 +108,27 @@ class UserController extends Controller
         }
         else{
             User::where('id', $request['id'])
-                ->update;
-            return response($user, 200);
+                ->update(['profile_image' => $request['image']]);
+            return response('profile updated', 200);
+        }
+    }
+
+    public function setprofiledetails(Request $request){
+
+        $user = User::where('id', $request['id'])->get();
+
+        if($user->isEmpty()){
+
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+            User::where('id', $request['id'])
+             ->update([
+                 'name' => $request['name'],
+                 'email' => $request['email'],
+                 'phone' => $request['phone']]);
+    
+            return response('profile updated', 200);
         }
     }
 

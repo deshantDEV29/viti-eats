@@ -1,11 +1,96 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Profile.css";
-import userprofile from "./assets/harshadc.jpg";
 
 function Profile() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
+  const [data, setData] = useState([]);
+
+  let navigate = useNavigate();
+
+  let base64String = "";
+
+  let userid = localStorage.getItem("userid");
+
+
+  useEffect(() => {
+    async function fetchdata() {
+      userid = userid.replaceAll('"', "");
+       let id = userid;
+       let user_id={id};
+       console.log(user_id);
+
+      let result = await fetch("http://localhost:8000/api/getprofile", {
+        method: "POST",
+        body: JSON.stringify(user_id),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      result = await result.json();
+      console.result('result',result);
+      setData(result);
+      console.log(data);
+    }
+    fetchdata();
+  }, []);
+
+  const DisplayData = data.map((userdetails) => {
+    return (
+      <div class="card mb-4">
+        <div class="card-header">Account Details</div>
+        <div class="card-body">
+          <form>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-6">
+                <label class="small mb-1 d-flex" for="inputFirstName">
+                  First name
+                </label>
+                <input
+                  className="form-control"
+                  value={userdetails.name}
+                  disabled
+                ></input>
+              </div>
+              <div class="col-md-6">
+                <label class="small mb-1 d-flex" for="inputLastName">
+                  Email
+                </label>
+                <input
+                  className="form-control"
+                  value={"email@gmail.com"}
+                  disabled
+                ></input>
+              </div>
+            </div>
+            <div class="row gx-3 mb-3">
+              <div class="col-md-6">
+                <label class="small mb-1 d-flex" for="inputLastName">
+                  Phone
+                </label>
+                <input
+                  className="form-control"
+                  value={"8976568"}
+                  disabled
+                ></input>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="button">
+              Edit
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div class="container">
-      {/* <!-- Account page navigation--> */}
       <nav class="nav nav-borders">
         <a
           class="nav-link active ms-0"
@@ -43,70 +128,10 @@ function Profile() {
                   <span class="custom-file-control form-control-file"></span>
                 </label>
               </div>
-              {/* @*@Html.TextBox("UserPhoto", "", new { @class = "form-control2 input-md", type = "file", @required = "required" })*@ */}
-              <button class="btn btn-primary" type="submit">
-                Update Image
-              </button>
             </div>
           </div>
         </div>
-        <div class="col-xl-8">
-          <div class="card mb-4">
-            <div class="card-header">Account Details</div>
-            <div class="card-body">
-              <form>
-                <div class="row gx-3 mb-3">
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputFirstName">
-                      First name
-                    </label>
-                    <input
-                      className="form-control"
-                      value={"Ben"}
-                      disabled
-                    ></input>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputLastName">
-                      Last name
-                    </label>
-                    <input
-                      className="form-control"
-                      value={"Smith"}
-                      disabled
-                    ></input>
-                  </div>
-                </div>
-                <div class="row gx-3 mb-3">
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputFirstName">
-                      Email
-                    </label>
-                    <input
-                      className="form-control"
-                      value={"ben@gmail.com"}
-                      disabled
-                    ></input>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputLastName">
-                      Phone
-                    </label>
-                    <input
-                      className="form-control"
-                      value={"8976568"}
-                      disabled
-                    ></input>
-                  </div>
-                </div>
-
-                <button class="btn btn-primary" type="button">
-                  Save changes
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <div class="col-xl-8">{DisplayData}</div>
       </div>
     </div>
   );

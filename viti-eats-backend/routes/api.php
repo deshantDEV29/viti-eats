@@ -29,6 +29,8 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('getprofile', [UserController::class, 'getprofile']);
 Route::post('setprofileimage', [UserController::class, 'setprofileimage']);
+Route::post('setprofiledetails', [UserController::class, 'setprofiledetails']);
+
 
 //vendor and admin registeration
 Route::post('registerVendor', [UserController::class, 'registerVendor']);
@@ -44,6 +46,8 @@ Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem'
 //Adding to cart and creating Order Route
 Route::post('addtocart', [CartController::class, 'addtocart']);
 Route::post('removefromcart', [CartController::class, 'removefromcart']);
+Route::post('displaycart', [CartController::class, 'displaycart']);
+
 Route::post('getOrder', [OrderController::class, 'getOrder']);
 //Authenticate Payment & Create Order
 Route::post('createMpaisa', [OrderController::class, 'createMpaisa']);
