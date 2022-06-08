@@ -17,7 +17,7 @@ function componentDidMount() {
   }
 function Restaurant() {
   
-  const [name, setName] = useState("");
+  const [restaurantname, setName] = useState("");
   const [shortimage, setShortimage] = useState("");
   const [longimage, setLongimage] = useState("");
   const [isLoading, setLoading] = useState(true);
@@ -70,7 +70,7 @@ function Restaurant() {
     return (
       <tr key={restaurant.id}>
         <td className="pr-3">{restaurant.id}</td>
-        <td className="pr-3">{restaurant.name}</td>
+        <td className="pr-3">{restaurant.restaurantname}</td>
         <td className="pr-3">{restaurant.created_at}</td>
         <td className="pr-3">{restaurant.updated_at}</td>
         {/* <td className="pr-3">
@@ -115,7 +115,7 @@ function Restaurant() {
 
   async function addrestaurantk(e) {
     e.preventDefault();
-    let restaurant = { name, shortimage, longimage };
+    let restaurant = { restaurantname, shortimage, longimage };
     console.log(restaurant);
 
     let result = await fetch("http://localhost:8000/api/addrestaurant", {
@@ -139,15 +139,16 @@ function Restaurant() {
   }
 
   return (
-    
     <div>
       <form>
         <div className="pb-3">
-       <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Restaurant Name :<span className="mx-3"></span></label>
+          <label className="float-left mx-5" style={{ fontFamily: "cursive" }}>
+            Restaurant Name :<span className="mx-3"></span>
+          </label>
           <input
-          style={{width:"400px"}}
+            style={{ width: "400px" }}
             type="text"
-            value={name}
+            value={restaurantname}
             id="name"
             onChange={(e) => setName(e.target.value)}
             className="form-control"
@@ -155,9 +156,11 @@ function Restaurant() {
         </div>
 
         <div className="pb-3 ">
-          <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Select a Short Image:</label>
+          <label className="float-left mx-5" style={{ fontFamily: "cursive" }}>
+            Select a Short Image:
+          </label>
           <input
-           style={{width:"400px"}}
+            style={{ width: "400px" }}
             type="file"
             id="shortimage"
             onChange={shortimageUploaded}
@@ -166,9 +169,11 @@ function Restaurant() {
         </div>
 
         <div className="pb-3 ">
-          <label className="float-left mx-5" style={{fontFamily:"cursive"}}>Select a Long Image: <span className="mx-1"></span></label>
+          <label className="float-left mx-5" style={{ fontFamily: "cursive" }}>
+            Select a Long Image: <span className="mx-1"></span>
+          </label>
           <input
-           style={{width:"400px"}}
+            style={{ width: "400px" }}
             type="file"
             id="longimage"
             onChange={longimageUploaded}
@@ -187,7 +192,6 @@ function Restaurant() {
       </form>
       <h1 className="pb-3">Restaurant Details </h1>
       <div className="row justify-content-center">
-        
         <table className="text-center" class="display">
           <thead>
             <tr>

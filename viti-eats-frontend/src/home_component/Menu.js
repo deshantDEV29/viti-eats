@@ -57,15 +57,15 @@ function Menu() {
     return (
       <RestaurantInfo
         id={restaurant_details.id}
-        name={restaurant_details.name}
+        name={restaurant_details.restaurantname}
         image={restaurant_details.longimage}
       />
     );
   });
 
-  const DisplayfoodData = fooddata.map((fooditem) => {
-    return <Category Id={fooditem.id} Category_Name={fooditem.name} />;
-  });
+  // const DisplayfoodData = fooddata.map((fooditem) => {
+  //   return <Category Id={fooditem.id} Category_Name={fooditem.name} />;
+  // });
 
   function groupBy(data, key) {
     return data.reduce(function (acc, item) {

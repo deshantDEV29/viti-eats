@@ -15,7 +15,7 @@ class RestaurantController extends Controller
        
         $restaurant = Restaurant::create([
             
-            'name' =>$request['name'],
+            'restaurantname' =>$request['restaurantname'],
             'shortimage' =>$request['shortimage'],
             'longimage' =>$request['longimage'],
         ]);

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('restaurantname');
             $table->string('shortimage');
             $table->string('longimage');
             $table->timestamps();

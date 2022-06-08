@@ -110,7 +110,7 @@ function FoodItem() {
   const DisplayRestaurant = restaurant_list.map((restaurant) => {
     return (
       <option className="select__option" value={restaurant.id}>
-        {restaurant.name}
+        {restaurant.restaurantname}
       </option>
     );
   });

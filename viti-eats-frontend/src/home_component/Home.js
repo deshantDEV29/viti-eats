@@ -16,7 +16,7 @@ function Home() {
       setData(result);
       setLoading(false);
       console.log(result);
-      console.log(data);
+      console.log('data',data);
     }
     fetchdata();
   }, []);
@@ -35,7 +35,7 @@ function Home() {
         >
           <Restaurant
             id={restaurant.id}
-            restaurant_name={restaurant.name}
+            restaurant_name={restaurant.restaurantname}
             image={restaurant.shortimage}
             rating={restaurant.rating}
           />

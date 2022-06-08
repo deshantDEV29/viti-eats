@@ -1,15 +1,37 @@
-import React from 'react'
+import React from "react";
 import { useStateValue } from "../StateProvider";
+import { useNavigate } from "react-router-dom";
 
-function CheckoutProduct({ id, name, price, image }) {
+function CheckoutProduct({ id, name, quantity, price, image }) {
   const [{}, dispatch] = useStateValue();
+  let navigate = useNavigate();
+  image = "data:image/png;base64," + image;
 
-  const removeFromBasket = () => {
-    dispatch({
-      type: "REMOVE_FROM_BASKET",
-      id: id,
+  async function removeFromBasket(e) {
+    e.preventDefault();
+    let cart_id = id;
+
+    let restaurantCategories = { cart_id };
+    console.log(restaurantCategories);
+
+    let result = await fetch("http://localhost:8000/api/removefromcart", {
+      method: "POST",
+      body: JSON.stringify(restaurantCategories),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
     });
-  };
+    result = await result.json();
+    if (result) {
+      console.log(result);
+      navigate("/checkout");
+      window.location.reload(false);
+    } else {
+      console.log("product remove unsuccessful");
+    }
+    e.target.reset();
+  }
   return (
     <div>
       <div className="d-flex mt-2 mb-2">
@@ -17,6 +39,7 @@ function CheckoutProduct({ id, name, price, image }) {
 
         <div className="pl-2">
           <p style={{ fontsize: "x-large" }}>{name}</p>
+          <p>{quantity}</p>
           <p className="checkoutProduct__price">
             <small>$</small>
             <strong>{price}</strong>
@@ -34,4 +57,4 @@ function CheckoutProduct({ id, name, price, image }) {
   );
 }
 
-export default CheckoutProduct
+export default CheckoutProduct;

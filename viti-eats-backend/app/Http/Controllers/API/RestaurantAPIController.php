@@ -13,7 +13,7 @@ class RestaurantAPIController extends Controller
 {
      public function displayrestaurant(){
 
-        $restaurantList = Restaurant::all('id','name','shortimage');
+        $restaurantList = Restaurant::all('id','restaurantname','shortimage');
 
         // foreach($restaurantList as $restaurant) {
         //     $restaurant->shortimage = base64_encode( $restaurant->shortimage);
@@ -24,7 +24,7 @@ class RestaurantAPIController extends Controller
 
     public function getrestaurantdetails(Request $request){
 
-         $response =  Restaurant::where('id', $request['id'])->get(['id','name','longimage']);
+         $response =  Restaurant::where('id', $request['id'])->get(['id','restaurantname','longimage']);
         
         return response($response, 200);
     }
@@ -45,7 +45,7 @@ class RestaurantAPIController extends Controller
 
      public function displaylistrestaurant(){
 
-        $restaurantList = Restaurant::all('id','name','created_at','updated_at');
+        $restaurantList = Restaurant::all('id','restaurantname','created_at','updated_at');
 
         // foreach($restaurantList as $restaurant) {
         //     $restaurant->shortimage = base64_encode( $restaurant->shortimage);
