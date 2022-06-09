@@ -53,6 +53,8 @@ Route::post('getOrder', [OrderController::class, 'getOrder']);
 Route::post('createMpaisa', [OrderController::class, 'createMpaisa']);
 Route::post('authenticatePayment', [OrderController::class, 'authenticatePayment']);
 Route::post('createOrder', [OrderController::class, 'createOrder']);
+Route::post('deleteCart', [OrderController::class, 'deleteCart']);
+
 //Vendor Routes
 Route::post('processOrder', [OrderController::class, 'processOrder']);
 Route::post('orderDelivered', [OrderController::class, 'orderDelivered']);

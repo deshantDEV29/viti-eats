@@ -93,8 +93,9 @@ class UserController extends Controller
             return response(['message'=>'Invalid Credentials'],401);
         }
         else{
+            $response = $user;
            
-            return response($user, 200);
+            return response($response, 200);
         }
     }
 
@@ -109,7 +110,9 @@ class UserController extends Controller
         else{
             User::where('id', $request['id'])
                 ->update(['profile_image' => $request['image']]);
-            return response('profile updated', 200);
+
+            $response=['profile updated'];
+            return response($response, 200);
         }
     }
 

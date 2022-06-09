@@ -30,6 +30,7 @@ class FoodItemController extends Controller
     public function remove_fooditem(Request $request){
         
         FoodItem::where('id',$request['id'])->delete();
+
        
         $response = [
             'Food Item Removed Successfully'        

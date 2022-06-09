@@ -64,8 +64,13 @@ class CartController extends Controller
                 ->get();
 
          if($check->isEmpty()){
+              $response = [
+              
+                'nothing to delete',
+        
+            ];
 
-                return response( 'nothing to delete', 401);
+                return response( $response, 401);
 
         }
             else{
@@ -73,8 +78,14 @@ class CartController extends Controller
                 ->where('id',$request['cart_id'])
                 // ->where('food_id',$request['food_id'])
                 ->delete();
+
+                $response = [
+              
+                'successful',
+        
+            ];
                 
-                return response( 'successful', 200);
+                return response( $response, 200);
             }
         }
 

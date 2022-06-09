@@ -23,6 +23,7 @@ function CheckoutProduct({ id, name, quantity, price, image }) {
       },
     });
     result = await result.json();
+    console.log(result)
     if (result) {
       console.log(result);
       navigate("/checkout");

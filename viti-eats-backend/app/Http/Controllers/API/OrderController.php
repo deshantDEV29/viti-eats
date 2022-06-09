@@ -20,8 +20,25 @@ class OrderController extends Controller
             'order_status' =>'processing',
         ]);
 
+        
+
         $response = [
-                'Order Placed Successfully',
+                'SuccessfullyOrdered',
+                     
+            ];
+
+            return response( $response, 200);
+     }
+
+      public function deleteCart(Request $request){
+          
+
+           $carts_to_delete = $request['cart_id'];
+          DB::table('carts')->whereIn('id', $carts_to_delete)->delete(); 
+        
+
+        $response = [
+                'Successfullydeleted',
                      
             ];
 
@@ -127,7 +144,7 @@ class OrderController extends Controller
                
                
                $response = [
-                'Wrong Credentials',
+                'failure',
                      
             ];
             return response( $response, 200);
@@ -135,7 +152,7 @@ class OrderController extends Controller
           else{
 
                $response = [
-                'Account Verified',
+                'success'=>'successful',
                      
             ];
 
