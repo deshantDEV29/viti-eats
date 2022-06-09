@@ -71,7 +71,7 @@ function Profile() {
       },
     });
     result = await result.json();
-    console.log(result)
+    console.log(result);
     if (result) {
       console.log(result);
       navigate("/profile");
@@ -82,9 +82,41 @@ function Profile() {
     e.target.reset();
   }
 
+  async function updateprofile(e) {
+    e.preventDefault();
+    let updateprofile = {
+      id,
+      name,
+      email,
+      phone,
+    };
+    console.log(updateprofile);
+
+    let result = await fetch("http://localhost:8000/api/setprofiledetails", {
+      method: "POST",
+      body: JSON.stringify(updateprofile),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    console.log(result);
+    if (result) {
+      console.log(result);
+       navigate("/profile");
+       window.location.reload(false);
+    } else {
+      console.log("profile update unsuccessful");
+    }
+    e.target.reset();
+  }
+
   const DisplayData = data.map((userdetails) => {
     let image = "data:image/png;base64," + userdetails.profile_image;
-    console.log(image)
+    console.log(image);
+    
+
     return (
       <div class="row">
         <div class="col-xl-4">
@@ -208,9 +240,77 @@ function Profile() {
                   </div>
                 </div>
 
-                <button class="btn btn-primary" type="button">
-                  Edit
-                </button>
+                <Popup
+                  trigger={
+                    <p
+                      className="btn btn-primary"
+                      type="submit"
+                      style={{ cursor: "pointer" }}
+                    >
+                      Edit
+                    </p>
+                  }
+                  modal
+                  nested
+                >
+                  {(close) => (
+                    <div className="p-2">
+                      <div
+                        className="d-flex justify-content-between mb-4 "
+                        style={{
+                          borderBottom: "1px solid",
+                          borderColor: "grey",
+                        }}
+                      >
+                        <h5>Details</h5>
+                        <a
+                          className="close"
+                          onClick={close}
+                          style={{ cursor: "pointer" }}
+                        >
+                          &times;
+                        </a>
+                      </div>
+                      <div>
+                        <form className="container">
+                          <label className="form-label row">Name</label>
+                          <input
+                            type="text"
+                            className="row rounded bg-light border mb-4 w-100"
+                            style={{ boxShadow: "none", outline: "none" }}
+                            value={userdetails.name}
+                            onChange={(e) => setName(e.target.value)}
+                          />
+                          <label className="form-label row">Email</label>
+                          <input
+                            type="text"
+                            className="row rounded bg-light border mb-4 w-100"
+                            style={{ boxShadow: "none", outline: "none" }}
+                            defaultValue={userdetails.email}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                          <label className="form-label row">Phone</label>
+                          <input
+                            type="text"
+                            className="row rounded bg-light border mb-4 w-100"
+                            style={{ boxShadow: "none", outline: "none" }}
+                            defaultValue={userdetails.phone}
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                          />
+
+                          <button
+                            className="mt-2 bg-danger text-white rounded border-0 pl-2 pr-2"
+                            onClick={updateprofile}
+                          >
+                            Update
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  )}
+                </Popup>
               </form>
             </div>
           </div>
