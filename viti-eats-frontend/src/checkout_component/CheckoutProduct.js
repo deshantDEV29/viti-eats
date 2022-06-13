@@ -40,17 +40,17 @@ function CheckoutProduct({ id, name, quantity, price, image }) {
 
         <div className="pl-2">
           <p style={{ fontsize: "x-large" }}>{name}</p>
-          <p>{quantity}</p>
+          <p>Quantity: {quantity}</p>
           <p className="checkoutProduct__price">
             <small>$</small>
-            <strong>{price}</strong>
+            <strong>Unit Price:{price}</strong>
           </p>
 
           <button
-            className="rounded border-0 bg-danger text-white p-1"
+            className="rounded border-0 bg-danger text-white pr-2 pl-2"
             onClick={removeFromBasket}
           >
-            Remove from Basket
+            Remove
           </button>
         </div>
       </div>

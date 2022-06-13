@@ -2,6 +2,8 @@ import React from "react";
 import { useStateValue } from "../StateProvider";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 function RestaurantCategories({
   id,
@@ -47,9 +49,7 @@ function RestaurantCategories({
     result = await result.json();
     if (result) {
       console.log(result);
-      // localStorage.setItem("user-info", JSON.stringify(result));
-      // navigate("/checkout");
-      // window.location.reload(false);
+      window.location.reload(true);
     } else {
       console.log("restaurant add unsuccessful");
     }
@@ -64,9 +64,7 @@ function RestaurantCategories({
           // onClick={}
           style={{ cursor: "pointer" }}
         >
-          <a href="/Login" className="btn btn-danger">
-            Login
-          </a>
+          <a className=""></a>
         </div>
       );
     } else {
@@ -110,7 +108,7 @@ function RestaurantCategories({
                   >
                     {long_description}
                   </span>
-                  
+
                   <span
                     className="float-right"
                     style={{ fontSize: "14px", fontWeight: "lighter" }}
@@ -138,7 +136,6 @@ function RestaurantCategories({
             </div>
           </div>
         </div>
-
       </div>
       <div style={{ height: "20px" }}></div>
     </div>

@@ -23,6 +23,8 @@ import VendorNavigator from "./order_retrieval/VendorNavigator";
 import ProcessOrder from "./order_retrieval/ProcessOrder";
 import VendorHome from "./order_retrieval/VendorHome";
 import VendorHeader from "./order_retrieval/VendorHeader";
+import DeliveryBoy from "./order_retrieval/DeliveryBoy";
+import SuccessfulOrder from "./checkout_component/SuccessfulOrder";
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/mpaisa" element={<Mpaisa />}></Route>
+            <Route path="/paymentsuccessful" element={<SuccessfulOrder />}></Route>
+
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
             <Route
               path="/admin/restaurant"
@@ -55,9 +59,12 @@ function App() {
               path="/admin/fooditem"
               element={<AdminFoodItemPage />}
             ></Route>
-
             <Route path="/vendor/" element={<VendorHomePage />}></Route>
             <Route path="/vendor/order" element={<VendorOrderPage />}></Route>
+            <Route
+              path="/vendor/deliveryboy"
+              element={<VendorDeliveryBoy />}
+            ></Route>
             <Route path="/vendor/logout" element={<NotABuyer />}></Route>
           </Routes>
         </div>
@@ -202,10 +209,10 @@ function AdminDasboardPage() {
       </div>
       <div className="appadmin_center">
         <div className="admincontainer">
-          <div className="app__left">
+          <div className="vendor_left">
             <Navigator />
           </div>
-          <div className="app__right">
+          <div className="vendor_right">
             <Dashboard />
           </div>
         </div>
@@ -222,10 +229,10 @@ function AdminRestaurantPage() {
       </div>
       <div className="appadmin_center">
         <div className="admincontainer">
-          <div className="app__left">
+          <div className="vendor_left">
             <Navigator />
           </div>
-          <div className="app__right">
+          <div className="vendor_right">
             <Restaurant />
           </div>
         </div>
@@ -243,10 +250,10 @@ function AdminFoodCategoryPage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="app__left">
+            <div className="vendor_left">
               <Navigator />
             </div>
-            <div className="app__right">
+            <div className="vendor_right">
               <FoodCategory />
             </div>
           </div>
@@ -265,10 +272,10 @@ function AdminFoodItemPage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="app__left">
+            <div className="vendor_left">
               <Navigator />
             </div>
-            <div className="app__right">
+            <div className="vendor_right">
               <FoodItem />
             </div>
           </div>
@@ -287,10 +294,10 @@ function VendorHomePage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="">
+            <div className="vendor_left">
               <VendorNavigator />
             </div>
-            <div className="app__right">
+            <div className="vendor_right">
               <VendorHome />
             </div>
           </div>
@@ -299,6 +306,30 @@ function VendorHomePage() {
     </div>
   );
 }
+
+function VendorDeliveryBoy() {
+  return (
+    <div>
+      <div className="app__container">
+        <div className="app__top">
+          <VendorHeader />
+        </div>
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="vendor_left">
+              <VendorNavigator />
+            </div>
+            <div className="vendor_right">
+              <DeliveryBoy />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+;
 
 function VendorOrderPage() {
   return (
@@ -309,10 +340,10 @@ function VendorOrderPage() {
         </div>
         <div className="appadmin_center">
           <div className="admincontainer">
-            <div className="">
+            <div className="vendor_left">
               <VendorNavigator />
             </div>
-            <div className="app__right">
+            <div className="vendor_right">
               <ProcessOrder />
             </div>
           </div>

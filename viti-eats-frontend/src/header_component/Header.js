@@ -18,7 +18,7 @@ function Header() {
   let userid = localStorage.getItem("userid");
   let token = localStorage.getItem("token");
 
-  console.log(isLoading);
+  //console.log(isLoading);
 
   useEffect(() => {
     if (name) {
@@ -78,7 +78,7 @@ function Header() {
     } else {
       name = name.replaceAll('"', "");
       let username = "Welcome " + name;
-      console.log(username);
+      //console.log(username);
       return (
         <Popup
           trigger={

@@ -13,7 +13,7 @@ function AddressDetails() {
     localStorage.setItem("address", address);
   }
   return (
-    <div className="d-flex flex-column justify-content-between p-3 bg-light border border-secondary rounded mb-1">
+    <div className=" d-flex flex-column justify-content-between p-3  bg-light rounded mb-1 ml-2 mr-2 shadow" >
       <h6>Address Details</h6>
 
       <div>
@@ -57,7 +57,6 @@ function AddressDetails() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                 />
-                <label className="form-label row">Contact Number</label>
 
                 <button
                   className="mt-2 bg-danger text-white rounded border-0 pl-2 pr-2"

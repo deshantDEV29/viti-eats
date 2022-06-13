@@ -54,6 +54,9 @@ function Footer() {
           </Link>
         </div>
       </div>
+      <div>
+        <p className='text-white'>© 2020 Copyright: Viti Eats</p>
+      </div>
     </div>
   );
 }

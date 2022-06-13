@@ -78,7 +78,11 @@ function FoodItem() {
           <button>Edit</button>
         </td> */}
         <td className="pr-3">
-          <button value={fooditem.id} onClick={deleterow}>
+          <button
+            value={fooditem.id}
+            onClick={deleterow}
+            className="bg-danger text-white rounded border-0 p-1"
+          >
             Delete
           </button>
         </td>
@@ -154,9 +158,9 @@ function FoodItem() {
           <input
             type="text"
             value={name}
-            id="name"
+            id="Meal"
             onChange={(e) => setName(e.target.value)}
-            placeholder="Food Item"
+            placeholder="Meal"
             className="text-center bg-light border-0.1 rounded"
             required="required"
           />
@@ -191,11 +195,11 @@ function FoodItem() {
             onChange={(e) => setFoodcategory_id(e.target.value)}
             className="w-50 h-25 rounded border-0 bg-light"
             style={{ zindex: "100" }}
-            placeholder="Select "
+            
             required="required"
           >
             <option value="" disabled selected>
-              Select the Food Category
+              Select Food Category
             </option>
             {DisplayFoodCategory}
           </select>
@@ -210,7 +214,7 @@ function FoodItem() {
             required="required"
           >
             <option value="" disabled selected>
-              Select the Restaurant
+              Select Restaurant
             </option>
             {DisplayRestaurant}
           </select>
@@ -234,13 +238,13 @@ function FoodItem() {
         <div className="pb-3">
           <button
             onClick={add_food_item}
-            className="bg-secondary text-white rounded border-0"
+            className="bg-success pl-3 pr-3 text-white rounded border-0"
           >
-            Add
+            Add Meal
           </button>
         </div>
       </form>
-      <h1 className="pb-3">Food Item Details </h1>
+      <h1 className="pb-3">Meal Details </h1>
       <div className="row justify-content-center">
         <table className="text-center">
           <thead>

@@ -72,6 +72,35 @@ class OrderController extends Controller
         }
      }
 
+     public function getVendorsOrder(Request $request){
+            $order = DB::table('orders')
+                ->join('users', 'orders.user_id','=', 'users.id')
+                ->where('restaurant_id',$request['vendor_id'])
+                ->select('orders.id','users.name','orders.order_status','orders.amount','orders.address','orders.food_items')
+                ->get();
+
+          if($order->isEmpty()){
+
+             $response = [
+              
+                'No Orders Available',
+        
+            ];
+
+            
+
+            return response( $response, 200);
+
+        }
+        else{
+             return response( $order, 200);
+            
+
+             
+
+        }
+     }
+
      public function processOrder(Request $request ){
           $check =DB::table('orders')
                ->where('id',$request['id'])
@@ -90,7 +119,10 @@ class OrderController extends Controller
 
                DB::table('orders')
                ->where('id',$request['id'])
-               ->update(['order_status' => 'Order Sent']);
+               ->update([
+                    'order_status' => 'Order Sent',
+                    'deliveryboy_id' => $request['deliveryboy_id']
+               ]);
 
                $response = [
                 'Order Sent Successful',

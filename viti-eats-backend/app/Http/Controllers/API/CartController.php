@@ -100,7 +100,7 @@ class CartController extends Controller
 
              if($check->isEmpty()){
 
-                return response( 'nothing to display', 401);
+                return response( 'nothing to display', 400);
 
         }
             else{
@@ -109,5 +109,7 @@ class CartController extends Controller
                 return response( $check, 200);
             }
         }
+
+        
 
 }

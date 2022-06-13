@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import login_back from '../assets/login_back.jpg'
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -83,8 +84,16 @@ function Login() {
   }
 
   return (
-    <div className="login">
-      <div className="login__left">
+    <div
+      className="pt-5 bg-image"
+      style={{
+        backgroundImage: `url(${login_back}`,
+        height: "100vh",
+        backgroundcolor: "#000000",
+        // opacity:'.7'
+      }}
+    >
+      <div className="">
         <img src={logo} alt=""></img>
         <h2>Welcome to Viti Eats</h2>
         <h4>Deliver Food Instantly</h4>
@@ -92,7 +101,7 @@ function Login() {
           <p>2022.Viti Eats Inc.</p>
         </div>
       </div>
-      <div className="login__right">
+      <div className="">
         <form>
           <div>
             <p className="login__desc">

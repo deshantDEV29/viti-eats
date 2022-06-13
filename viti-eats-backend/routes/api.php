@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\FoodItemController;
 use App\Http\Controllers\API\RestaurantAPIController;
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
-
+use App\Http\Controllers\API\DeliveryBoyController;
 
 
 /*
@@ -56,8 +56,13 @@ Route::post('createOrder', [OrderController::class, 'createOrder']);
 Route::post('deleteCart', [OrderController::class, 'deleteCart']);
 
 //Vendor Routes
+Route::post('getVendorsOrder', [OrderController::class, 'getVendorsOrder']);
 Route::post('processOrder', [OrderController::class, 'processOrder']);
 Route::post('orderDelivered', [OrderController::class, 'orderDelivered']);
+Route::post('registerDeliveryBoy', [DeliveryBoyController::class, 'registerDeliveryBoy']);
+Route::post('getdeliveryboyDetails', [DeliveryBoyController::class, 'getdeliveryboyDetails']);
+Route::post('getdeliveryboyname', [DeliveryBoyController::class, 'getdeliveryboyname']);
+
 //Admin Routes
 Route::post('addrestaurant', [RestaurantController::class, 'addrestaurant']);
 Route::post('removerestaurant', [RestaurantController::class, 'removerestaurant']);

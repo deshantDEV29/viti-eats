@@ -26,7 +26,7 @@ function Home() {
       navigate("/menu", { state: { id: restaurant.id } });
     };
     return (
-      <div className="d-sm-flex justify-content-center p-2 col">
+      <div className="d-sm-flex justify-content-center p-2 col-sm col-md">
         <div
           className="rounded-lg"
           onClick={() => {

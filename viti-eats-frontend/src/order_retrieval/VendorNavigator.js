@@ -45,30 +45,38 @@ function VendorNavigator() {
     e.target.reset();
   }
   return (
-    <div className=".col-xs-6 .col-md-4">
-      <div className="area "></div>
-      <nav className="main-menu">
-        <ul>
-          <li>
-            <a href="/vendor/">
-              <i className="fa fa-home fa-2x"></i>
-              <span className="nav-text">Dashboard</span>
-            </a>
-          </li>
-          <li className="has-subnav">
+    <div className="">
+      <div className=".col-xs-6 .col-md-4">
+        <div className="area "></div>
+        <nav className="main-menu pt-5">
+          <ul>
+            <li>
+              <a href="/vendor/">
+                <i className="fa fa-home fa-2x"></i>
+                <span className="nav-text">Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="/vendor/deliveryboy">
+                <i className="fa fa-laptop fa-2x"></i>
+                <span className="nav-text">Delivery Boy</span>
+              </a>
+            </li>
+            {/* <li className="has-subnav">
             <a href="/vendor/order">
               <i className="fa fa-laptop fa-2x"></i>
               <span className="nav-text">Process Order</span>
             </a>
-          </li>
-          <li>
-            <a href="/vendor/logout" onClick={logout}>
-              <i className="fa fa-bar-chart-o fa-2x"></i>
-              <span className="nav-text">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+          </li> */}
+            <li>
+              <a href="/vendor/logout" onClick={logout}>
+                <i className="fa fa-bar-chart-o fa-2x"></i>
+                <span className="nav-text">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 }

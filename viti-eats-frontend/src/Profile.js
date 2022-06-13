@@ -47,9 +47,7 @@ function Profile() {
 
     reader.onload = function () {
       base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-      console.log(base64String);
       setImage(base64String);
-      console.log(image);
     };
     reader.readAsDataURL(file);
   }
@@ -90,7 +88,6 @@ function Profile() {
       email,
       phone,
     };
-    console.log(updateprofile);
 
     let result = await fetch("http://localhost:8000/api/setprofiledetails", {
       method: "POST",
@@ -101,11 +98,9 @@ function Profile() {
       },
     });
     result = await result.json();
-    console.log(result);
     if (result) {
-      console.log(result);
-       navigate("/profile");
-       window.location.reload(false);
+      navigate("/profile");
+      window.location.reload(false);
     } else {
       console.log("profile update unsuccessful");
     }
@@ -114,38 +109,23 @@ function Profile() {
 
   const DisplayData = data.map((userdetails) => {
     let image = "data:image/png;base64," + userdetails.profile_image;
-    console.log(image);
-    
 
     return (
-      <div class="row">
-        <div class="col-xl-4">
-          <div class="card mb-4 mb-xl-0">
-            <div class="card-header">Profile Picture</div>
-            <div class="card-body text-center">
-              <img src={image}></img>
+      <div className="row">
+        <div className="col-xl-4">
+          <div className="card mb-4 mb-xl-0">
+            <div className="card-header">Profile Picture</div>
+            <div className="card-body text-center">
+              <img
+                key={userdetails.profile_image}
+                src={"data:image/png;base64," + userdetails.profile_image}
+              ></img>
 
-              <div class="small font-italic text-muted mb-4">
+              <div className="small font-italic text-muted mb-4">
                 {/* JPG or PNG no larger than 5 MB */}
               </div>
 
-              <div class="container">
-                {/* <label class="custom-file" for="customInput">
-                  <p class="btn btn-primary" type="submit">
-                    Upload new image
-                  </p>
-
-                  <input
-                    type="file"
-                    for="UserPhoto"
-                    name="UserPhoto"
-                    class="custom-file-input"
-                    id="customInput"
-                    aria-describedby="fileHelp"
-                    onChange={imageUploaded}
-                  ></input>
-                  <span class="custom-file-control form-control-file"></span>
-                </label> */}
+              <div className="container">
                 <Popup
                   trigger={
                     <p className="btn btn-primary" type="submit">
@@ -200,38 +180,34 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div class="col-xl-8">
-          <div class="card mb-4">
-            <div class="card-header">Account Details</div>
-            <div class="card-body">
+        <div className="col-xl-8">
+          <div className="card mb-4">
+            <div className="card-header">Account Details</div>
+            <div className="card-body">
               <form>
-                <div class="row gx-3 mb-3">
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputFirstName">
-                      First name
-                    </label>
+                <div className="row gx-3 mb-3">
+                  <div className="col-md-6">
+                    <label className="small mb-1 d-flex">First name</label>
                     <input
                       className="form-control"
+                      key={userdetails.name}
                       value={userdetails.name}
                       disabled
                     ></input>
                   </div>
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputLastName">
-                      Email
-                    </label>
+                  <div className="col-md-6">
+                    <label className="small mb-1 d-flex">Email</label>
                     <input
                       className="form-control"
+                      key={userdetails.email}
                       value={userdetails.email}
                       disabled
                     ></input>
                   </div>
                 </div>
-                <div class="row gx-3 mb-3">
-                  <div class="col-md-6">
-                    <label class="small mb-1 d-flex" for="inputLastName">
-                      Phone
-                    </label>
+                <div className="row gx-3 mb-3">
+                  <div className="col-md-6">
+                    <label className="small mb-1 d-flex">Phone</label>
                     <input
                       className="form-control"
                       value={userdetails.phone}
@@ -320,10 +296,10 @@ function Profile() {
   });
 
   return (
-    <div class="container">
-      <nav class="nav nav-borders">
+    <div className="container">
+      <nav className="nav nav-borders">
         <a
-          class="nav-link active ms-0"
+          className="nav-link active ms-0"
           href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
           target="__blank"
         >

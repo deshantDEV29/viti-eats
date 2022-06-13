@@ -54,7 +54,7 @@ function Navigator() {
   return (
     <div className=".col-xs-6 .col-md-4">
       <div class="area"></div>
-      <nav class="main-menu">
+      <nav class="main-menu pt-5">
         <ul>
           <li>
             <a href="/admin/">

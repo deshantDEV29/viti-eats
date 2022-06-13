@@ -77,9 +77,12 @@ function Restaurant() {
           <button>Edit</button>
         </td> */}
         <td className="pr-3">
-          <button value={restaurant.id} onClick={deleterow}>
+          <button value={restaurant.id} onClick={deleterow} className='bg-danger text-white rounded border-0 p-1'>
             Delete
           </button>
+        </td>
+        <td>
+          
         </td>
       </tr>
     );
@@ -184,9 +187,9 @@ function Restaurant() {
         <div className="pb-3">
           <button
             onClick={addrestaurantk}
-            className="bg-secondary text-white rounded border-0"
+            className="bg-success pl-3 pr-3 text-white rounded border-0"
           >
-            Add
+            Add Restaurant
           </button>
         </div>
       </form>
