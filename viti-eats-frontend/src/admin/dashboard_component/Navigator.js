@@ -53,37 +53,37 @@ function Navigator() {
   }
   return (
     <div className=".col-xs-6 .col-md-4">
-      <div class="area"></div>
-      <nav class="main-menu pt-5">
+      <div className="area"></div>
+      <nav className="main-menu pt-5">
         <ul>
           <li>
             <a href="/admin/">
-              <i class="fa fa-home fa-2x"></i>
-              <span class="nav-text">Dashboard</span>
+              <i className="fa fa-home fa-2x"></i>
+              <span className="nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="has-subnav">
+          <li className="has-subnav">
             <a href="/admin/restaurant">
-              <i class="fa fa-laptop fa-2x"></i>
-              <span class="nav-text">Restaurant</span>
+              <i className="fa fa-laptop fa-2x"></i>
+              <span className="nav-text">Restaurant</span>
             </a>
           </li>
-          <li class="has-subnav">
+          <li className="has-subnav">
             <a href="/admin/foodcategory">
-              <i class="fa fa-list fa-2x"></i>
-              <span class="nav-text">Food Category</span>
+              <i className="fa fa-list fa-2x"></i>
+              <span className="nav-text">Food Category</span>
             </a>
           </li>
-          <li class="has-subnav">
+          <li className="has-subnav">
             <a href="/admin/fooditem">
-              <i class="fa fa-folder-open fa-2x"></i>
-              <span class="nav-text">Food Item</span>
+              <i className="fa fa-folder-open fa-2x"></i>
+              <span className="nav-text">Food Item</span>
             </a>
           </li>
-          <li class="has-subnav">
+          <li className="has-subnav">
             <a href="/admin/fooditem" onClick={logout}>
-              <i class="fa fa-bar-chart-o fa-2x"></i>
-              <span class="nav-text">Logout</span>
+              <i className="fa fa-bar-chart-o fa-2x"></i>
+              <span className="nav-text">Logout</span>
             </a>
           </li>
           {/* <li class="has-subnav">

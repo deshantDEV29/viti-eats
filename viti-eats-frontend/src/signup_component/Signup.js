@@ -53,16 +53,85 @@ function Signup() {
   }
 
   return (
-    <div className="signup__div">
-      <div className="signup__left">
-        <img className="image" src={logo} alt=""></img>
-        <h2>Welcome to Viti Eats</h2>
-        <h4>Deliver Food Instantly</h4>
+    // <div className="signup__div">
+    //   <div className="signup__left">
+    //     <img className="image" src={logo} alt=""></img>
+    //     <h2>Welcome to Viti Eats</h2>
+    //     <h4>Deliver Food Instantly</h4>
+    //     <div>
+    //       <p>2022.Viti Eats Inc.</p>
+    //     </div>
+    //   </div>
+    //   <div className="signup__right">
+    //     <form>
+    //       <div>
+    //         <p className="signup__desc">
+    //           Signup to explore our services and the tools we offer
+    //         </p>
+    //       </div>
+    //       <div>
+    //         <input
+    //           type="text"
+    //           placeholder="Name"
+    //           className="usersignup"
+    //           value={name}
+    //           onChange={(e) => setName(e.target.value)}
+    //         />
+    //       </div>
+    //       <div>
+    //         <input
+    //           type="text"
+    //           placeholder="Email"
+    //           className="usersignup"
+    //           value={email}
+    //           onChange={(e) => setEmail(e.target.value)}
+    //         />
+    //       </div>
+    //       <div>
+    //         <input
+    //           type="text"
+    //           placeholder="Phone"
+    //           className="usersignup"
+    //           value={phone}
+    //           onChange={(e) => setPhone(e.target.value)}
+    //         />
+    //       </div>
+    //       <div className="input__container">
+    //         <input
+    //           type="password"
+    //           placeholder="Password"
+    //           className="usersignup"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //         />
+    //       </div>
+    //       {/* <Link to="/" style={{ textDecoration: "none" }}>
+    //         <div>
+    //           <button className="signup__btn">Signup</button>
+    //         </div>
+    //       </Link> */}
+    //       <div>
+    //         <button className="signup__btn" onClick={createUser}>
+    //           Signup
+    //         </button>
+    //       </div>
+    //       {/* <Link to="/login" style={{ textDecoration: "none" }}>
+    //         <div className="login__link">
+    //           <p>Click to Login</p>
+    //         </div>
+    //       </Link> */}
+    //     </form>
+    //   </div>
+    // </div>
+    ///////////////////////////////
+    <div className="notabuyercontainer">
+      <div className="notabuyercenter">
+        <img src={logo} alt=""></img>
+        <h2 className="text-white">Welcome to Viti Eats</h2>
+        <h2 className="text-white">Vendor Portal</h2>
         <div>
-          <p>2022.Viti Eats Inc.</p>
+          <p className="text-white">2022.Viti Eats Inc.</p>
         </div>
-      </div>
-      <div className="signup__right">
         <form>
           <div>
             <p className="signup__desc">

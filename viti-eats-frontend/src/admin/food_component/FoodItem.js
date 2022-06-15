@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactSpinner from "../ReactSpinner";
 
 function FoodItem() {
   const [name, setName] = useState("");
@@ -12,6 +13,7 @@ function FoodItem() {
   const [restaurant_list, setRestaurant_list] = useState([]);
   const [category_list, setCategory_list] = useState([]);
   const [id, setId] = useState("");
+  const [isLoading, setLoading] = useState(true);
   let navigate = useNavigate();
 
   let base64String = "";
@@ -32,6 +34,8 @@ function FoodItem() {
       setCategory_list(result2);
       console.log("category_list");
       console.log(category_list);
+      setLoading(false);
+      console.log('text',isLoading)
     }
     fetchdata();
   }, []);
@@ -153,112 +157,117 @@ function FoodItem() {
 
   return (
     <div>
-      <form>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={name}
-            id="Meal"
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Meal"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={long_description}
-            id="name"
-            onChange={(e) => setLong_description(e.target.value)}
-            placeholder="Description"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
+      {!isLoading ? (
+        <>
+          <form>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={name}
+                id="Meal"
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Meal"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={long_description}
+                id="name"
+                onChange={(e) => setLong_description(e.target.value)}
+                placeholder="Description"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
 
-        <div className="pb-3 ">
-          <label className="form-label">Select Image for Food Item</label>
-          <input
-            type="file"
-            id="shortimage"
-            onChange={imageUploaded}
-            className="form-control w-50 m-auto p-1 border-0"
-            required="required"
-          />
-        </div>
+            <div className="pb-3 ">
+              <label className="form-label">Select Image for Food Item</label>
+              <input
+                type="file"
+                id="shortimage"
+                onChange={imageUploaded}
+                className="form-control w-50 m-auto p-1 border-0"
+                required="required"
+              />
+            </div>
 
-        <div className="pb-3 ">
-          <select
-            type="text"
-            value={foodcategory_id}
-            onChange={(e) => setFoodcategory_id(e.target.value)}
-            className="w-50 h-25 rounded border-0 bg-light"
-            style={{ zindex: "100" }}
-            
-            required="required"
-          >
-            <option value="" disabled selected>
-              Select Food Category
-            </option>
-            {DisplayFoodCategory}
-          </select>
-        </div>
-        <div className="pb-3 ">
-          <select
-            type="text"
-            value={restaurants_id}
-            onChange={(e) => setRestaurants_id(e.target.value)}
-            className="w-50 h-25 rounded border-0 bg-light"
-            style={{ zindex: "100" }}
-            required="required"
-          >
-            <option value="" disabled selected>
-              Select Restaurant
-            </option>
-            {DisplayRestaurant}
-          </select>
-        </div>
+            <div className="pb-3 ">
+              <select
+                type="text"
+                value={foodcategory_id}
+                onChange={(e) => setFoodcategory_id(e.target.value)}
+                className="w-50 h-25 rounded border-0 bg-light"
+                style={{ zindex: "100" }}
+                required="required"
+              >
+                <option value="" disabled selected>
+                  Select Food Category
+                </option>
+                {DisplayFoodCategory}
+              </select>
+            </div>
+            <div className="pb-3 ">
+              <select
+                type="text"
+                value={restaurants_id}
+                onChange={(e) => setRestaurants_id(e.target.value)}
+                className="w-50 h-25 rounded border-0 bg-light"
+                style={{ zindex: "100" }}
+                required="required"
+              >
+                <option value="" disabled selected>
+                  Select Restaurant
+                </option>
+                {DisplayRestaurant}
+              </select>
+            </div>
 
-        <div className="pb-3">
-          <input
-            type="number"
-            min="0"
-            max="50"
-            step="1"
-            name="Broker_Fees"
-            id="broker_fees"
-            required="required"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="text-center bg-light border-0.1 rounded"
-          ></input>
-        </div>
+            <div className="pb-3">
+              <input
+                type="number"
+                min="0"
+                max="50"
+                step="1"
+                name="Broker_Fees"
+                id="broker_fees"
+                required="required"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="text-center bg-light border-0.1 rounded"
+              ></input>
+            </div>
 
-        <div className="pb-3">
-          <button
-            onClick={add_food_item}
-            className="bg-success pl-3 pr-3 text-white rounded border-0"
-          >
-            Add Meal
-          </button>
-        </div>
-      </form>
-      <h1 className="pb-3">Meal Details </h1>
-      <div className="row justify-content-center">
-        <table className="text-center">
-          <thead>
-            <tr>
-              <th className="pr-3">ID</th>
-              <th className="pr-3">Food Item</th>
-              <th className="pr-3">Description</th>
-              <th className="pr-3">Price</th>
-              <th className="pr-3">Date Created</th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table>
-      </div>
+            <div className="pb-3">
+              <button
+                onClick={add_food_item}
+                className="bg-success pl-3 pr-3 text-white rounded border-0"
+              >
+                Add Meal
+              </button>
+            </div>
+          </form>
+          <h1 className="pb-3">Meal Details </h1>
+          <div className="row justify-content-center">
+            <table className="text-center">
+              <thead>
+                <tr>
+                  <th className="pr-3">ID</th>
+                  <th className="pr-3">Food Item</th>
+                  <th className="pr-3">Description</th>
+                  <th className="pr-3">Price</th>
+                  <th className="pr-3">Date Created</th>
+                </tr>
+              </thead>
+              <tbody>{DisplayData}</tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <ReactSpinner />
+      )}
     </div>
   );
 }

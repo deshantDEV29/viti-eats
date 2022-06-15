@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactSpinnerround from "../ReactSpinner";
 
 function FoodCategory() {
   const [category_description, setCategorydescription] = useState("");
   const [data, setData] = useState([]);
   let navigate = useNavigate();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchdata() {
       let result = await fetch("http://localhost:8000/api/displayfoodcategory");
       result = await result.json();
       setData(result);
+      setLoading(false);
     }
     fetchdata();
   }, []);
@@ -94,43 +97,49 @@ function FoodCategory() {
 
   return (
     <div>
-      <form>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={category_description}
-            id="name"
-            onChange={(e) => setCategorydescription(e.target.value)}
-            placeholder="Category Description"
-            className="text-center bg-light border-0.1 rounded"
-          />
-        </div>
+      {!isLoading ? (
+        <>
+          <form>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={category_description}
+                id="name"
+                onChange={(e) => setCategorydescription(e.target.value)}
+                placeholder="Category Description"
+                className="text-center bg-light border-0.1 rounded"
+              />
+            </div>
 
-        <div className="pb-3">
-          <button
-            onClick={addrestaurantk}
-            className="bg-success pl-3 pr-3 text-white rounded border-0"
-          >
-            Add Category
-          </button>
-        </div>
-      </form>
-      <h1 className="pb-3">Category Details </h1>
-      <div className="row justify-content-center">
-        <table className="text-center">
-          <thead>
-            <tr>
-              <th className="pr-3">ID</th>
-              <th className="pr-3">Category</th>
-              <th className="pr-3">Date Created</th>
-              <th className="pr-3">Date Updated</th>
-              <th className="pr-3"></th>
-              <th className="pr-3"></th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table>
-      </div>
+            <div className="pb-3">
+              <button
+                onClick={addrestaurantk}
+                className="bg-success pl-3 pr-3 text-white rounded border-0"
+              >
+                Add Category
+              </button>
+            </div>
+          </form>
+          <h1 className="pb-3">Category Details </h1>
+          <div className="row justify-content-center">
+            <table className="text-center">
+              <thead>
+                <tr>
+                  <th className="pr-3">ID</th>
+                  <th className="pr-3">Category</th>
+                  <th className="pr-3">Date Created</th>
+                  <th className="pr-3">Date Updated</th>
+                  <th className="pr-3"></th>
+                  <th className="pr-3"></th>
+                </tr>
+              </thead>
+              <tbody>{DisplayData}</tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <ReactSpinnerround />
+      )}
     </div>
   );
 }

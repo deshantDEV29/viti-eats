@@ -12,6 +12,7 @@ function Checkout() {
   const [isEmpty, setIsEmpty] = useState(true);
   const [isLoading, setLoading] = useState(true);
   const [cartdata, setCartData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   let navigate = useNavigate();
   let user_id = localStorage.getItem("userid");
 
@@ -88,16 +89,22 @@ function Checkout() {
     let orderDetails = { user_id, restaurant_id, address, food_items, amount };
     let cartid = { cart_id };
     const toComponentmpaisa = () => {
-      navigate("/mpaisa", { state: { id: cartid, orderDetails, amount } });
+      if(address===''){
+        console.log('test')
+         setErrorMessage("Authentication Unsuccessful!!");
+      }else{
+         navigate("/mpaisa", { state: { id: cartid, orderDetails, amount } });
+      }
+     
       // console.log(orderDetails);
       // console.log(cart_id);
     };
 
     console.log("is empty before print", isEmpty);
     return (
-      <div className="container ">
-        <div className="row border m-1 shadow mb-3">
-          <div className="col-8 m-2 p-3 ">
+      <div className="container-fluid ">
+        <div className="row border m-1 shadow border-0 mb-3">
+          <div className="col-sm-8 col-8 m-2 p-3 d-sm-flex justify-content-center col-md ">
             <div key={key}>
               <h3>{key}</h3>
               {groupedfooddata[key].map((item) => (
@@ -111,7 +118,7 @@ function Checkout() {
               ))}
             </div>
           </div>
-          <div className="col-4 m-1 w-25">
+          <div className="col-sm-4 m-1">
             <div className="d-flex flex-column justify-content-between p-3 bg-light border border-secondary rounded mb-1 mt-5">
               <CurrencyFormat
                 renderText={(value) => (
@@ -137,6 +144,11 @@ function Checkout() {
             >
               Place Order
             </button>
+            {errorMessage && (
+              <div class="alert alert-danger mt-2 d-flex justify-content-center mr-5 ml-5">
+                <strong>Error!! </strong> Please Enter Your Address
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -171,11 +183,13 @@ function Checkout() {
     <div className="container">
       <div className="row "></div>
       <div className="row">
-        <h2 className="pb-2">Your Shopping Basket</h2>
         {/* <CheckifEmpty/> */}
         {!isLoading ? (
           <div>
-            <AddressDetails className='w-100'/>
+            <h2 className="pb-2">Your Shopping Basket</h2>
+            <div className="m-4">
+              <AddressDetails />
+            </div>
             <CheckifEmpty />
           </div>
         ) : (

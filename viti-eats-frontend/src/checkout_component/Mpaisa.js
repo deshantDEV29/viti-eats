@@ -62,18 +62,18 @@ function Mpaisa() {
       result2 = await result2.json();
       console.log("cart delete", result2);
 
-      // if (result1["SuccessfullyOrdered"]) {
-      //   console.log(result1);
-      //   console.log(result2);
+      if (result1["SuccessfullyOrdered"]) {
+        console.log(result1);
+        console.log(result2);
 
-      //   navigate("/checkout");
-      //   window.location.reload(false);
-      // } else {
-      //   console.log("order add unsuccessful");
-      // }
+        navigate("/checkout");
+        window.location.reload(false);
+      } else {
+        console.log("order add unsuccessful");
+      }
 
       navigate("/checkout");
-      window.location.reload(false);
+     window.location.reload(false);
     } else {
       console.log("authentication unsuccessful");
       setErrorMessage("Authentication Unsuccessful!!");

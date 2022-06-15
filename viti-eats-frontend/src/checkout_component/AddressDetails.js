@@ -13,7 +13,7 @@ function AddressDetails() {
     localStorage.setItem("address", address);
   }
   return (
-    <div className=" d-flex flex-column justify-content-between p-3  bg-light rounded mb-1 ml-2 mr-2 shadow" >
+    <div className=" p-3  bg-light rounded mb-1 ml-2 mr-2 shadow" >
       <h6>Address Details</h6>
 
       <div>

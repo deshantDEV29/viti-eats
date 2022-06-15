@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import login_back from '../assets/login_back.jpg'
+import login_back from "../assets/login_back.jpg";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,15 +33,13 @@ function Login() {
     console.log("email", result["useremail"]);
     console.log("token", result["token"]);
     if (result["token"]) {
-
       localStorage.setItem("userrole", JSON.stringify(result["userrole"]));
 
       let role = localStorage.getItem("userrole");
       role = role.replaceAll('"', "");
       console.log(role);
 
-      if(role==='admin'){
-
+      if (role === "admin") {
         console.log("user created");
         localStorage.setItem("adminid", JSON.stringify(result["userid"]));
         localStorage.setItem("adminname", JSON.stringify(result["username"]));
@@ -60,48 +58,111 @@ function Login() {
         console.log("token  local storage", localStorage.getItem("token"));
         navigate("/admin/");
         window.location.reload(false);
-      }
-      else{
+      } else {
         console.log("user created");
-      localStorage.setItem("userid", JSON.stringify(result["userid"]));
-      localStorage.setItem("username", JSON.stringify(result["username"]));
-      localStorage.setItem("useremail", JSON.stringify(result["useremail"]));
-      localStorage.setItem("token", JSON.stringify(result["token"]));
-      console.log("username local storage", localStorage.getItem("userid"));
-      console.log("username local storage", localStorage.getItem("username"));
-      console.log("useremail local storage", localStorage.getItem("useremail"));
-      console.log("userrole local storage", localStorage.getItem("userrole"));
-      console.log("token  local storage", localStorage.getItem("token"));
+        localStorage.setItem("userid", JSON.stringify(result["userid"]));
+        localStorage.setItem("username", JSON.stringify(result["username"]));
+        localStorage.setItem("useremail", JSON.stringify(result["useremail"]));
+        localStorage.setItem("token", JSON.stringify(result["token"]));
+        console.log("username local storage", localStorage.getItem("userid"));
+        console.log("username local storage", localStorage.getItem("username"));
+        console.log(
+          "useremail local storage",
+          localStorage.getItem("useremail")
+        );
+        console.log("userrole local storage", localStorage.getItem("userrole"));
+        console.log("token  local storage", localStorage.getItem("token"));
         navigate("/");
         window.location.reload(false);
       }
-
-      
     } else {
-      setErrorMessage('Login Unuccessful !!')
+      setErrorMessage("Login Unuccessful !!");
     }
     e.target.reset();
   }
 
   return (
-    <div
-      className="pt-5 bg-image"
-      style={{
-        backgroundImage: `url(${login_back}`,
-        height: "100vh",
-        backgroundcolor: "#000000",
-        // opacity:'.7'
-      }}
-    >
-      <div className="">
+    // <div
+    //   className="pt-5 bg-image "
+    //   style={{
+    //     backgroundImage: `url(${login_back}`,
+    //     height: "100vh",
+    //     backgroundcolor: "#000000",
+    //     // opacity:'.7'
+    //   }}
+    // >
+    //   <div className="">
+    //     <img src={logo} alt=""></img>
+    //     <h2>Welcome to Viti Eats</h2>
+    //     <h4>Deliver Food Instantly</h4>
+    //     <div>
+    //       <p>2022.Viti Eats Inc.</p>
+    //     </div>
+    //   </div>
+    //   <div className="">
+    //     <form>
+    //       <div>
+    //         <p className="login__desc">
+    //           Login to your account to explore our services
+    //         </p>
+    //       </div>
+    //       <div className="input__container">
+    //         <input
+    //           type="text"
+    //           placeholder="Email"
+    //           className="userinput"
+    //           value={email}
+    //           onChange={(e) => setEmail(e.target.value)}
+    //         />
+    //       </div>
+    //       <div className="input__container">
+    //         <input
+    //           type="password"
+    //           placeholder="Password"
+    //           className="userinput"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //         />
+    //       </div>
+
+    //       <div>
+    //         <button className="login__btn" onClick={loginUser}>
+    //           Login
+    //         </button>
+    //         {errorMessage && (
+    //           <div className="text-warning" style={{ fontSize: "20px" }}>
+    //             {" "}
+    //             {errorMessage}{" "}
+    //           </div>
+    //         )}
+    //       </div>
+
+    //       <Link to="/signup" style={{ textDecoration: "none" }}>
+    //         <div className="signup">
+    //           <p>Click to Signup</p>
+    //         </div>
+    //       </Link>
+    //       <Link to="/notabuyer/" style={{ textDecoration: "none" }}>
+    //         <div className="signup">
+    //           <p>Not A Buyer</p>
+    //         </div>
+    //       </Link>
+    //       <Link to="/" style={{ textDecoration: "none" }}>
+    //         <div className="signup">
+    //           <p>Go to Home Page</p>
+    //         </div>
+    //       </Link>
+    //     </form>
+    //   </div>
+    // </div>
+    <div className="notabuyercontainer">
+      <div className="notabuyercenter">
         <img src={logo} alt=""></img>
-        <h2>Welcome to Viti Eats</h2>
-        <h4>Deliver Food Instantly</h4>
+        <h2 className="text-white">Welcome to Viti Eats</h2>
+        <h2 className="text-white"></h2>
         <div>
-          <p>2022.Viti Eats Inc.</p>
+          <p className="text-white">2022.Viti Eats Inc.</p>
         </div>
-      </div>
-      <div className="">
         <form>
           <div>
             <p className="login__desc">

@@ -52,15 +52,7 @@ class OrderController extends Controller
 
           if($order->isEmpty()){
 
-             $response = [
-              
-                'No Orders Available',
-        
-            ];
-
-            
-
-            return response( $response, 200);
+            return response( 'No Orders Available', 400);
 
         }
         else{

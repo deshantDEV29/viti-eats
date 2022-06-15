@@ -41,7 +41,7 @@ class FoodItemController extends Controller
 
     public function getrestaurant(){
 
-        $fooditemList = Restaurant::all('id','name');
+        $fooditemList = Restaurant::all('id','restaurantname');
 
         
         return response($fooditemList, 200);

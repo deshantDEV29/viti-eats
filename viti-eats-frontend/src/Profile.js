@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import ReactSpinner from "./ReactSpinner";
+
 
 function Profile() {
   const [name, setName] = useState("");
@@ -77,6 +79,7 @@ function Profile() {
     } else {
       console.log("profile pic add unsuccessful");
     }
+    
     e.target.reset();
   }
 
@@ -297,17 +300,23 @@ function Profile() {
 
   return (
     <div className="container">
-      <nav className="nav nav-borders">
-        <a
-          className="nav-link active ms-0"
-          href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
-          target="__blank"
-        >
-          Profile
-        </a>
-      </nav>
+      {!isLoading ? (
+        <div>
+          <nav className="nav nav-borders">
+            <a
+              className="nav-link active ms-0"
+              href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
+              target="__blank"
+            >
+              Profile
+            </a>
+          </nav>
 
-      {DisplayData}
+          {DisplayData}
+        </div>
+      ) : (
+        <ReactSpinner />
+      )}
     </div>
   );
 }

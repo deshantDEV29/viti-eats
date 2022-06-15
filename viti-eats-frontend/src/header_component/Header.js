@@ -165,7 +165,7 @@ function Header() {
   }
 
   return (
-    <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0">
+    <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0 shadow">
       <Link to="/" style={{ textDecoration: "none" }}>
         <div>
           <img

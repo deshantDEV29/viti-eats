@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\FoodCategoryController;
 use App\Http\Controllers\Admin\FoodItemController;
+use App\Http\Controllers\Admin\DashboardContoller;
 use App\Http\Controllers\API\RestaurantAPIController;
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
@@ -72,6 +73,11 @@ Route::post('add_fooditem', [FoodItemController::class, 'add_fooditem']);
 Route::post('remove_fooditem', [FoodItemController::class, 'remove_fooditem']);
 Route::get('getrestaurant', [FoodItemController::class, 'getrestaurant']);
 Route::get('getfoodcategory', [FoodItemController::class, 'getfoodcategory']);
+Route::get('totalvendors', [DashboardContoller::class, 'totalvendors']);
+Route::get('totalusers', [DashboardContoller::class, 'totalusers']);
+Route::get('totalcommisison', [DashboardContoller::class, 'totalcommisison']);
+Route::get('displaycommisison', [DashboardContoller::class, 'displaycommisison']);
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [UserController::class, 'logout']);
