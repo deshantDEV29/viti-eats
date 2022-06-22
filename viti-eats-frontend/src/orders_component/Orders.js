@@ -6,7 +6,14 @@ import ReactSpinner from "../ReactSpinner";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
-
+import "jquery/dist/jquery.min.js";
+import "datatables.net-dt/js/dataTables.dataTables";
+import "datatables.net-dt/css/jquery.dataTables.min.css";
+import "datatables.net-buttons/js/dataTables.buttons.js";
+import "datatables.net-buttons/js/buttons.colVis.js";
+import "datatables.net-buttons/js/buttons.flash.js";
+import "datatables.net-buttons/js/buttons.html5.js";
+import "datatables.net-buttons/js/buttons.print.js";
 import "datatables.net-dt/js/dataTables.dataTables";
 import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
@@ -31,27 +38,97 @@ function Order() {
     setAddress(localStorage.getItem("address"));
     async function fetchdata() {
       let userid = { user_id };
-      try {
-        let result = await fetch("http://localhost:8000/api/getOrder", {
-          method: "POST",
-          body: JSON.stringify(userid),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
+      if (user_id !== null) {
+        try {
+          let result = await fetch("http://localhost:8000/api/getOrder", {
+            method: "POST",
+            body: JSON.stringify(userid),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          });
 
-        result = await result.json();
-        setOrderData(result);
-        setIsEmpty(false);
-        console.log("test");
+          result = await result.json();
+          setOrderData(result);
+          setIsEmpty(false);
+          console.log("test");
 
-        console.log(result);
-        setLoading(false);
-      } catch (error) {
-        setIsEmpty(true);
-        setLoading(false);
-        console.log(error);
+          console.log(result);
+          setLoading(false);
+        } catch (error) {
+          setIsEmpty(true);
+          setLoading(false);
+          console.log(error);
+        }
+
+        if (!$.fn.DataTable.isDataTable("#myTable")) {
+          $(document).ready(function () {
+            setTimeout(function () {
+              $("#table").DataTable({
+                pagingType: "full_numbers",
+                pageLength: 20,
+                processing: true,
+                dom: "Bfrtip",
+                select: {
+                  style: "single",
+                },
+
+                buttons: [
+                  {
+                    extend: "pageLength",
+                    className: "btn btn-secondary bg-secondary",
+                  },
+                  {
+                    extend: "copy",
+                    className: "btn btn-secondary bg-secondary",
+                  },
+                  {
+                    extend: "csv",
+                    className: "btn btn-secondary bg-secondary",
+                  },
+                  {
+                    extend: "print",
+                    customize: function (win) {
+                      $(win.document.body).css("font-size", "10pt");
+                      $(win.document.body)
+                        .find("table")
+                        .addClass("compact")
+                        .css("font-size", "inherit");
+                    },
+                    className: "btn btn-secondary bg-secondary",
+                  },
+                ],
+
+                fnRowCallback: function (
+                  nRow,
+                  aData,
+                  iDisplayIndex,
+                  iDisplayIndexFull
+                ) {
+                  var index = iDisplayIndexFull + 1;
+                  $("td:first", nRow).html(index);
+                  return nRow;
+                },
+
+                lengthMenu: [
+                  [10, 20, 30, 50, -1],
+                  [10, 20, 30, 50, "All"],
+                ],
+                columnDefs: [
+                  {
+                    targets: 0,
+                    render: function (data, type, row, meta) {
+                      return type === "export" ? meta.row + 1 : data;
+                    },
+                  },
+                ],
+              });
+            }, 1000);
+          });
+        }
+      } else {
+        navigate("/error");
       }
       console.log("is empty", isEmpty);
     }
@@ -67,6 +144,7 @@ function Order() {
     }
     return (
       <tr>
+        <td className="pr-3">{orders.id}</td>
         <td className="pr-3">{orders.id}</td>
         <td className="pr-3">{orders.amount}</td>
         <td className="pr-3">{orders.address}</td>
@@ -94,24 +172,25 @@ function Order() {
         <div>
           <h1>Orders</h1>
 
-          <div className="container">
-            <table
-              id="dtBasicExample"
-              className="table table-striped table-bordered"
-              cellSpacing="0"
-              width="100%"
-            >
-              <thead>
-                <tr>
-                  <th className="">Order ID</th>
-                  <th className="">Amount</th>
-                  <th className="">Address</th>
-                  <th className="">Status</th>
-                  <th className=""></th>
-                </tr>
-              </thead>
-              <tbody>{DisplayData}</tbody>
-            </table>
+          <div className="container-fluid py-4">
+            <div className="table-responsive p-0 pb-2">
+              <table
+                id="table"
+                className="table align-items-center justify-content-center mb-0"
+              >
+                <thead>
+                  <tr>
+                    <th className="">Id</th>
+                    <th className="">Order no.</th>
+                    <th className="">Amount</th>
+                    <th className="">Address</th>
+                    <th className="">Status</th>
+                    <th className=""></th>
+                  </tr>
+                </thead>
+                <tbody>{DisplayData}</tbody>
+              </table>
+            </div>
           </div>
         </div>
       );
@@ -127,10 +206,11 @@ function Order() {
               backgroundColor: "#ccffff",
             }}
           >
-            <div className="column p-4">
-              <h4>Oops Nothing</h4>
-              <h4>to</h4>
-              <h4>See Here !!!!</h4>
+            <h1>Orders Page</h1>
+            <div className="column p-4" style={{ color: "orange" }}>
+              <h5>Oops Nothing</h5>
+              <h5>to</h5>
+              <h5>show Here !!!!</h5>
               <Link to="/" style={{ color: "red" }}>
                 <button className="btn btn-primary mt-5 text-white text-center rounded-pill">
                   Continue Shopping

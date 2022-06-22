@@ -15,27 +15,31 @@ function FoodItem() {
   const [id, setId] = useState("");
   const [isLoading, setLoading] = useState(true);
   let navigate = useNavigate();
-
+  let admin_id = localStorage.getItem("adminid");
   let base64String = "";
 
   useEffect(() => {
     async function fetchdata() {
-      let result = await fetch("http://localhost:8000/api/displayfooditem");
-      result = await result.json();
-      setData(result);
+      if (admin_id !== null) {
+        let result = await fetch("http://localhost:8000/api/displayfooditem");
+        result = await result.json();
+        setData(result);
 
-      let result1 = await fetch("http://localhost:8000/api/getrestaurant");
-      result1 = await result1.json();
-      setRestaurant_list(result1);
+        let result1 = await fetch("http://localhost:8000/api/getrestaurant");
+        result1 = await result1.json();
+        setRestaurant_list(result1);
 
-      let result2 = await fetch("http://localhost:8000/api/getfoodcategory");
-      result2 = await result2.json();
-      console.log(result2);
-      setCategory_list(result2);
-      console.log("category_list");
-      console.log(category_list);
-      setLoading(false);
-      console.log('text',isLoading)
+        let result2 = await fetch("http://localhost:8000/api/getfoodcategory");
+        result2 = await result2.json();
+        console.log(result2);
+        setCategory_list(result2);
+        console.log("category_list");
+        console.log(category_list);
+        setLoading(false);
+        console.log("text", isLoading);
+      } else {
+        navigate("/error");
+      }
     }
     fetchdata();
   }, []);

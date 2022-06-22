@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactSpinner from "./ReactSpinner";
 
 function DeliveryBoy() {
   const [deliveryboy_name, setdeliveryboyName] = useState("");
@@ -15,23 +16,26 @@ function DeliveryBoy() {
     async function fetchdata() {
       let vendorid = { vendor_id };
       console.log("vendor id", vendor_id);
-      let result = await fetch(
-        "http://localhost:8000/api/getdeliveryboyDetails",
-        {
-          method: "POST",
-          body: JSON.stringify(vendorid),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      if (vendor_id !== null) {
+        let result = await fetch(
+          "http://localhost:8000/api/getdeliveryboyDetails",
+          {
+            method: "POST",
+            body: JSON.stringify(vendorid),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        );
 
-      result = await result.json();
-      console.log("result", result);
-      setData(result);
-
-      setLoading(false);
+        result = await result.json();
+        console.log("result", result);
+        setData(result);
+        setLoading(false);
+      } else {
+        navigate("/error");
+      }
     }
     fetchdata();
   }, []);
@@ -56,7 +60,7 @@ function DeliveryBoy() {
           <a
             value={fooditem.id}
             className="btn btn-primary mt-5 text-white text-center"
-            role='button'
+            role="button"
           >
             Edit
           </a>
@@ -100,77 +104,83 @@ function DeliveryBoy() {
 
   return (
     <div>
-      <form>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={deliveryboy_name}
-            id="name"
-            onChange={(e) => setdeliveryboyName(e.target.value)}
-            placeholder="Delivery Boy Name"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={email}
-            id="name"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={phone}
-            id="name"
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="Phone"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
-        <div className="pb-3">
-          <input
-            type="text"
-            value={password}
-            id="name"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="text-center bg-light border-0.1 rounded"
-            required="required"
-          />
-        </div>
+      {!isLoading ? (
+        <>
+          <form>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={deliveryboy_name}
+                id="name"
+                onChange={(e) => setdeliveryboyName(e.target.value)}
+                placeholder="Delivery Boy Name"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={email}
+                id="name"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={phone}
+                id="name"
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
+            <div className="pb-3">
+              <input
+                type="text"
+                value={password}
+                id="name"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="text-center bg-light border-0.1 rounded"
+                required="required"
+              />
+            </div>
 
-        <div className="pb-3">
-          <a
-            className="btn btn-primary mt-5 text-white"
-            onClick={registerDeliveryBoy}
-          >
-            Add Delivery Boy
-          </a>
-        </div>
-      </form>
-      <div className="row justify-content-center">
-        <table className="text-center">
-          <thead>
-            <tr>
-              <th className="pr-3">ID</th>
-              <th className="pr-3">Delivery Boy Name</th>
-              <th className="pr-3">Email</th>
-              <th className="pr-3">Phone</th>
-              <th className="pr-3">Password</th>
-              <th className="pr-3">Date Created</th>
-              <th className="pr-3"></th>
-            </tr>
-          </thead>
-          <tbody>{DisplayData}</tbody>
-        </table>
-      </div>
+            <div className="pb-3">
+              <a
+                className="btn btn-primary mt-5 text-white"
+                onClick={registerDeliveryBoy}
+              >
+                Add Delivery Boy
+              </a>
+            </div>
+          </form>
+          <div className="row justify-content-center">
+            <table className="text-center">
+              <thead>
+                <tr>
+                  <th className="pr-3">ID</th>
+                  <th className="pr-3">Delivery Boy Name</th>
+                  <th className="pr-3">Email</th>
+                  <th className="pr-3">Phone</th>
+                  <th className="pr-3">Password</th>
+                  <th className="pr-3">Date Created</th>
+                  <th className="pr-3"></th>
+                </tr>
+              </thead>
+              <tbody>{DisplayData}</tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <ReactSpinner />
+      )}
     </div>
   );
 }

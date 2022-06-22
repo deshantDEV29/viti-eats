@@ -156,7 +156,7 @@ function Header() {
               <p className="pr-1">
                 <ShoppingCartIcon />
               </p>
-              <p>{basket.length}</p>
+              {/* <p>{basket.length}</p> */}
             </span>
           </div>
         </Link>

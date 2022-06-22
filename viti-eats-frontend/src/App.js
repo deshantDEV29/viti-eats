@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./header_component/Header";
 import Profile from "./Profile";
+import Error from "./Error";
 import Footer from "./footer_component/Footer";
 import Login from "./login_component/Login";
 import NotABuyer from "./login_component/NotABuyer";
@@ -44,8 +45,11 @@ function App() {
             <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/mpaisa" element={<Mpaisa />}></Route>
-            <Route path="/paymentsuccessful" element={<SuccessfulOrder />}></Route>
-
+            <Route
+              path="/error"
+              element={<Error />}
+            ></Route>
+            <Route path="/logout" element={<LoginPage />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
             <Route
               path="/admin/restaurant"
@@ -329,8 +333,6 @@ function VendorDeliveryBoy() {
   );
 }
 
-;
-
 function VendorOrderPage() {
   return (
     <div>
@@ -352,7 +354,5 @@ function VendorOrderPage() {
     </div>
   );
 }
-
-
 
 export default App;

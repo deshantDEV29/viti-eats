@@ -18,7 +18,8 @@ function Checkout() {
 
   useEffect(() => {
     setAddress(localStorage.getItem("address"));
-
+    console.log('address')
+    console.log(address)
     async function fetchdata() {
       let userid = { user_id };
 
@@ -89,11 +90,11 @@ function Checkout() {
     let orderDetails = { user_id, restaurant_id, address, food_items, amount };
     let cartid = { cart_id };
     const toComponentmpaisa = () => {
-      if(address===''){
-        console.log('test')
-         setErrorMessage("Authentication Unsuccessful!!");
-      }else{
-         navigate("/mpaisa", { state: { id: cartid, orderDetails, amount } });
+      if (address === ''|| address ===null) {
+        console.log("test");
+        setErrorMessage("Authentication Unsuccessful!!");
+      } else {
+        navigate("/mpaisa", { state: { id: cartid, orderDetails, amount } });
       }
      
       // console.log(orderDetails);

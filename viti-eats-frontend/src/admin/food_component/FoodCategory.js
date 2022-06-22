@@ -7,13 +7,19 @@ function FoodCategory() {
   const [data, setData] = useState([]);
   let navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
-
+  let admin_id = localStorage.getItem("adminid");
   useEffect(() => {
     async function fetchdata() {
-      let result = await fetch("http://localhost:8000/api/displayfoodcategory");
-      result = await result.json();
-      setData(result);
-      setLoading(false);
+      if (admin_id !== null) {
+        let result = await fetch(
+          "http://localhost:8000/api/displayfoodcategory"
+        );
+        result = await result.json();
+        setData(result);
+        setLoading(false);
+      } else {
+        navigate("/error");
+      }
     }
     fetchdata();
   }, []);

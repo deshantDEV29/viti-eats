@@ -22,18 +22,22 @@ function Restaurant() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   let navigate = useNavigate();
-
+  let admin_id = localStorage.getItem("adminid");
   let base64String = "";
   let base64String2 = "";
 
   useEffect(() => {
     async function fetchdata() {
-      let result = await fetch(
-        "http://localhost:8000/api/displaylistrestaurant"
-      );
-      result = await result.json();
-      setData(result);
-      setLoading(false);
+      if (admin_id !== null) {
+        let result = await fetch(
+          "http://localhost:8000/api/displaylistrestaurant"
+        );
+        result = await result.json();
+        setData(result);
+        setLoading(false);
+      } else {
+        navigate("/error");
+      }
     }
     fetchdata();
   }, []);

@@ -49,9 +49,9 @@ function RestaurantCategories({
     result = await result.json();
     if (result) {
       console.log(result);
-      window.location.reload(true);
+      //window.location.reload(true);
     } else {
-      console.log("restaurant add unsuccessful");
+      console.log(" add unsuccessful");
     }
     e.target.reset();
   }

@@ -74,3 +74,8 @@
     #customFile .custom-file-control:lang(en)::before {
         content: "Click me";
     }
+
+    .errorbody{
+        
+        padding-top: 100px;
+    }

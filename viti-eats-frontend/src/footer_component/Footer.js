@@ -35,7 +35,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer__row2">
-        <div className="footer__nav">
+        {/* <div className="footer__nav">
           <Link to="/" style={{ textDecoration: "none" }}>
             <div className="footer_option">
               <span className="footer_optionLineOne">Home</span>
@@ -52,10 +52,10 @@ function Footer() {
               <span className="footer_optionLineOne">About</span>
             </div>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div>
-        <p className='text-white'>© 2020 Copyright: Viti Eats</p>
+        <p className='text-white'>© 2022 Copyright: Viti Eats</p>
       </div>
     </div>
   );

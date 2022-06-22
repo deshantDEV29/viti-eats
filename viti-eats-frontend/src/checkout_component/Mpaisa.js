@@ -66,7 +66,7 @@ function Mpaisa() {
         console.log(result1);
         console.log(result2);
 
-        navigate("/checkout");
+        navigate("/orders");
         window.location.reload(false);
       } else {
         console.log("order add unsuccessful");
@@ -134,6 +134,8 @@ function Mpaisa() {
                       <input
                         type="text"
                         id="name"
+                        maxLength={7}
+                        minLength={7}
                         className="text-center border-0 rounded p-2 "
                         required="required"
                         style={{ backgroundColor: "#D3D3D3" }}
@@ -154,6 +156,8 @@ function Mpaisa() {
                         required="required"
                         style={{ backgroundColor: "#D3D3D3" }}
                         value={pin}
+                        maxLength={4}
+                        minLength={4}
                         onChange={(e) => setPin(e.target.value)}
                       />
                     </td>

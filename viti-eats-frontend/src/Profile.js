@@ -111,7 +111,6 @@ function Profile() {
   }
 
   const DisplayData = data.map((userdetails) => {
-    let image = "data:image/png;base64," + userdetails.profile_image;
 
     return (
       <div className="row">

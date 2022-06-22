@@ -8,7 +8,7 @@ function RestaurantInfo({ id, name, address, rating, review, email, image }) {
         <img
           className="rounded img-fluid"
           src={image}
-          style={{ height: "100%", width: "200%" }}
+          style={{ height: "100%", width: "200%",  }}
           alt=""
         />
         <div style={{ height: "5px" }}></div>
