@@ -176,13 +176,18 @@ function Header() {
           ></img>
         </div>
       </Link>
-      <div className="d-flex align-items-center rounded w-100">
+      <div className="d-flex align-items-center rounded w-100 bg-white rounded">
         <input
-          className="h-1 p-1 border-0 w-100 rounded"
+          className="h-1 p-1 border-0 w-100 rounded text-center"
           type="text"
-          placeholder="Search &#128269;"
+          placeholder="Search Food Item"
           style={{ textAlign: "right" }}
         ></input>
+        <Link to="/search" style={{ textDecoration: "none" }}>
+          <div>
+            <SearchIcon />
+          </div>
+        </Link>
       </div>
       <nav className="d-flex justify-content-end w-100 navbar navbar-expand-sm navbar-dark">
         <button

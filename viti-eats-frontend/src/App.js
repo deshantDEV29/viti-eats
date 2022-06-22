@@ -26,6 +26,8 @@ import VendorHome from "./order_retrieval/VendorHome";
 import VendorHeader from "./order_retrieval/VendorHeader";
 import DeliveryBoy from "./order_retrieval/DeliveryBoy";
 import SuccessfulOrder from "./checkout_component/SuccessfulOrder";
+import SearchResult from "./header_component/SearchResult";
+
 
 function App() {
   return (
@@ -45,10 +47,9 @@ function App() {
             <Route path="/profile" element={<ProfilePage />}></Route>
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/mpaisa" element={<Mpaisa />}></Route>
-            <Route
-              path="/error"
-              element={<Error />}
-            ></Route>
+            <Route path="/search" element={<SearchResultPage />}></Route>
+
+            <Route path="/error" element={<Error />}></Route>
             <Route path="/logout" element={<LoginPage />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
             <Route
@@ -101,6 +102,22 @@ function MenuPage() {
       </div>
       <div className="app__center">
         <Menu />
+      </div>
+      <div className="app__bottom">
+        <Footer />
+      </div>
+    </div>
+  );
+}
+
+function SearchResultPage(){
+  return (
+    <div className="app__container">
+      <div className="app__top">
+        <Header />
+      </div>
+      <div className="app__center">
+        <SearchResult />
       </div>
       <div className="app__bottom">
         <Footer />
