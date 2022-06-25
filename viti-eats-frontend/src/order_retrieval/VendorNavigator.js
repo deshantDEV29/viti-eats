@@ -56,18 +56,19 @@ function VendorNavigator() {
                 <span className="nav-text">Dashboard</span>
               </a>
             </li>
+            <li className="has-subnav">
+              <a href="/vendor/ordersent">
+                <i className="fa fa-file fa-2x"></i>
+                <span className="nav-text">Order Sent</span>
+              </a>
+            </li>
             <li>
               <a href="/vendor/deliveryboy">
                 <i className="fa fa-laptop fa-2x"></i>
                 <span className="nav-text">Delivery Boy</span>
               </a>
             </li>
-            {/* <li className="has-subnav">
-            <a href="/vendor/order">
-              <i className="fa fa-laptop fa-2x"></i>
-              <span className="nav-text">Process Order</span>
-            </a>
-          </li> */}
+
             <li>
               <a href="/vendor/logout" onClick={logout}>
                 <i className="fa fa-bar-chart-o fa-2x"></i>

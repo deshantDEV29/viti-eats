@@ -49,22 +49,30 @@ function Restaurant() {
     let restaurant_id = { id };
 
     console.log(restaurant_id);
-    let result = await fetch("http://localhost:8000/api/removerestaurant", {
-      method: "POST",
-      body: JSON.stringify(restaurant_id),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    result = await result.json();
-    if (result) {
-      console.log(result);
-      navigate("/admin/restaurant");
-      window.location.reload(false);
-    } else {
-      console.log("restaurant add unsuccessful");
+    try{
+      let result = await fetch("http://localhost:8000/api/removerestaurant", {
+        method: "POST",
+        body: JSON.stringify(restaurant_id),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      result = await result.json();
+
+      if (result) {
+        console.log(result);
+
+        navigate("/admin/restaurant");
+        window.location.reload(false);
+      } else {
+        console.log("restaurant delete unsuccessful");
+       
+      }
+    }catch{
+       alert("Restaurant Delete Unsuccessful");
     }
+
     e.target.reset();
   }
 
@@ -135,9 +143,11 @@ function Restaurant() {
     result = await result.json();
     if (result) {
       console.log(result);
+
       localStorage.setItem("user-info", JSON.stringify(result));
       navigate("/admin/restaurant");
       window.location.reload(false);
+      alert("Restaurant Added Successfully");
     } else {
       console.log("restaurant add unsuccessful");
     }

@@ -32,7 +32,7 @@ function RestaurantInfo({ id, name, address, rating, review, email, image }) {
         </span>{" "}
         <span className="float-right">{60} Reviews</span>
         <br></br>
-        <p>Email: marketing@mcdonalds.com.fj</p>
+        {/* <p>Email: marketing@mcdonalds.com.fj</p> */}
       </div>
     </div>
   );

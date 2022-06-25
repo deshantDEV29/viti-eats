@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactSpinner from "./ReactSpinner";
 import CurrencyFormat from "react-currency-format";
-function VendorHome() {
+
+function OrderSent() {
   const [data, setData] = useState([]);
   const [total_sales, setTotal_sales] = useState("");
   const [total_product, setTotal_product] = useState("");
@@ -14,7 +15,7 @@ function VendorHome() {
       let vendorid = { vendor_id };
       console.log("vendor id", vendor_id);
       if (vendor_id !== null) {
-        let result = await fetch("http://localhost:8000/api/getVendorsOrder", {
+        let result = await fetch("http://localhost:8000/api/getOrderSent", {
           method: "POST",
           body: JSON.stringify(vendorid),
           headers: {
@@ -28,30 +29,6 @@ function VendorHome() {
         setData(result);
         console.log("cart", data);
 
-        let result1 = await fetch("http://localhost:8000/api/totalproduct", {
-          method: "POST",
-          body: JSON.stringify(vendorid),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-
-        result1 = await result1.json();
-        setTotal_product(result1);
-
-        let result2 = await fetch("http://localhost:8000/api/totalsales", {
-          method: "POST",
-          body: JSON.stringify(vendorid),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-
-        result2 = await result2.json();
-        setTotal_sales(result2);
-
         setLoading(false);
       } else {
         navigate("/error");
@@ -62,13 +39,14 @@ function VendorHome() {
 
   const DisplayData = data.map((orders) => {
     const toComponentVendorOrders = () => {
-      navigate("/vendor/order", {
+      navigate("/vendor/orderdetails", {
         state: {
           id: orders.id,
           name: orders.name,
           address: orders.address,
           items: orders.food_items,
           amount: orders.amount,
+          deliveryboy_name: orders.deliveryboy_name,
         },
       });
     };
@@ -83,13 +61,12 @@ function VendorHome() {
           <button
             class="btn btn-primary text-white"
             role="button"
-            disabled={orders.order_status === "Order Sent"}
             value={orders.id}
             onClick={() => {
               toComponentVendorOrders();
             }}
           >
-            Process
+            View Details
           </button>
         </td>
       </tr>
@@ -99,39 +76,7 @@ function VendorHome() {
     <div>
       {!isLoading ? (
         <>
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body bg-primary">
-                  <h5 class="card-title">Total Product</h5>
-                  <h5 class="card-title">{total_product}</h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card">
-                <div class="card-body bg-info">
-                  <h5 class="card-title">Total Sales</h5>
-                  <h5 class="card-title">
-                    <CurrencyFormat
-                      renderText={(value) => (
-                        <>
-                          <p>
-                            <strong>{value}</strong>
-                          </p>
-                        </>
-                      )}
-                      decimalScale={2}
-                      value={total_sales}
-                      displayType={"text"}
-                      thousandSeperator={true}
-                      prefix={"$"}
-                    />
-                  </h5>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="row"></div>
           <div class="col-sm-9 mt-5">
             <table class="table">
               <thead>
@@ -156,4 +101,4 @@ function VendorHome() {
   );
 }
 
-export default VendorHome;
+export default OrderSent;

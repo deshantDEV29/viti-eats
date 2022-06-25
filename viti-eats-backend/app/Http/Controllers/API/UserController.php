@@ -116,7 +116,7 @@ class UserController extends Controller
         }
     }
 
-    public function setprofiledetails(Request $request){
+    public function updatename(Request $request){
 
         $user = User::where('id', $request['id'])->get();
 
@@ -128,10 +128,45 @@ class UserController extends Controller
             User::where('id', $request['id'])
              ->update([
                  'name' => $request['name'],
+                 ]);
+    
+            return response(['profile updated'], 200);
+        }
+    }
+
+    public function updateemail(Request $request){
+
+        $user = User::where('id', $request['id'])->get();
+
+        if($user->isEmpty()){
+
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+            User::where('id', $request['id'])
+             ->update([
+                
                  'email' => $request['email'],
+                 ]);
+    
+            return response(['profile updated'], 200);
+        }
+    }
+
+    public function updatephone(Request $request){
+
+        $user = User::where('id', $request['id'])->get();
+
+        if($user->isEmpty()){
+
+            return response(['message'=>'Invalid Credentials'],401);
+        }
+        else{
+            User::where('id', $request['id'])
+             ->update([
                  'phone' => $request['phone']]);
     
-            return response('profile updated', 200);
+            return response(['profile updated'], 200);
         }
     }
 

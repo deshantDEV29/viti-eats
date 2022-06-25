@@ -35,6 +35,28 @@ class DashboardContoller extends Controller
         return response($response, 200);
     }
 
+    public function totalproduct(Request $request){
+
+         $totalproduct = DB::table('food_items')
+                ->where('restaurants_id',$request['vendor_id'])
+                ->select('food_items.id')
+                ->get();
+        $response = $totalproduct->count();
+        
+        return response($response, 200);
+    }
+
+    public function totalsales(Request $request){
+
+        $totalsales = DB::table('orders')
+                ->where('restaurant_id',$request['vendor_id'])
+                ->sum(DB::raw('amount'));
+        $response = $totalsales;
+        
+        return response($response, 200);
+    }
+
+
     public function displaycommisison(){
 
         $response = DB::table('orders')

@@ -147,7 +147,7 @@ function Checkout() {
             </button>
             {errorMessage && (
               <div class="alert alert-danger mt-2 d-flex justify-content-center mr-5 ml-5">
-                <strong>Error!! </strong> Please Enter Your Address
+                <strong>Error !! </strong> Please Enter Your Address
               </div>
             )}
           </div>

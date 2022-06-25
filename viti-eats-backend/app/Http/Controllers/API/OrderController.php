@@ -47,7 +47,9 @@ class OrderController extends Controller
 
      public function getOrder(Request $request){
             $order = DB::table('orders')
+                ->join('restaurants', 'orders.restaurant_id','=', 'restaurants.id')
                 ->where('user_id',$request['user_id'])
+                ->orderBy('orders.id','desc')
                 ->get();
 
           if($order->isEmpty()){
@@ -68,7 +70,9 @@ class OrderController extends Controller
             $order = DB::table('orders')
                 ->join('users', 'orders.user_id','=', 'users.id')
                 ->where('restaurant_id',$request['vendor_id'])
+                ->where('orders.order_status','processing')
                 ->select('orders.id','users.name','orders.order_status','orders.amount','orders.address','orders.food_items')
+                 ->orderBy('orders.id','desc')
                 ->get();
 
           if($order->isEmpty()){
@@ -87,9 +91,35 @@ class OrderController extends Controller
         else{
              return response( $order, 200);
             
+        }
+     }
 
-             
+      public function getOrderSent(Request $request){
+            $order = DB::table('orders')
+                ->join('users', 'orders.user_id','=', 'users.id')
+                ->join('deliveryboys', 'orders.deliveryboy_id','=', 'deliveryboys.id')
+                ->where('orders.restaurant_id',$request['vendor_id'])
+                ->where('orders.order_status','Order Sent')
+                ->select('orders.id','users.name','orders.order_status','orders.amount','orders.address','orders.food_items','deliveryboys.deliveryboy_name')
+                ->orderBy('orders.order_status','desc')
+                ->get();
 
+          if($order->isEmpty()){
+
+             $response = [
+              
+                'No Orders Available',
+        
+            ];
+
+            
+
+            return response( $response, 200);
+
+        }
+        else{
+             return response( $order, 200);
+            
         }
      }
 

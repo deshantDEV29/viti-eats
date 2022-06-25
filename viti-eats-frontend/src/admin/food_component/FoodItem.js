@@ -153,6 +153,7 @@ function FoodItem() {
       localStorage.setItem("user-info", JSON.stringify(result));
       navigate("/admin/fooditem");
       window.location.reload(false);
+       alert("Food Item  Added Successfully");
     } else {
       console.log("Food Item add unsuccessful");
     }
@@ -230,6 +231,7 @@ function FoodItem() {
             </div>
 
             <div className="pb-3">
+              <label className="form-label pr-3">Price</label>
               <input
                 type="number"
                 min="0"

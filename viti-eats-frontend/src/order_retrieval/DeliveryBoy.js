@@ -62,7 +62,7 @@ function DeliveryBoy() {
             className="btn btn-primary mt-5 text-white text-center"
             role="button"
           >
-            Edit
+            Delete
           </a>
         </td>
       </tr>

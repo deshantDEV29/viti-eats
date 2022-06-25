@@ -73,4 +73,15 @@ class RestaurantAPIController extends Controller
         return response($fooditemList, 200);
     }
 
+      public function searchfooditem(Request $search){
+
+        $searchresult = DB::table('food_items')
+                        ->where('name','like',"%{$search['search']}%")
+                        ->orderBy('id','asc')
+                        ->get();
+
+        
+        return response($searchresult, 200);
+    }
+
 }

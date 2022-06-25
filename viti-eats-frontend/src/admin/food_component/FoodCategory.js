@@ -95,6 +95,7 @@ function FoodCategory() {
       console.log(result);
       navigate("/admin/foodcategory");
       window.location.reload(false);
+       alert("Category Added Successfully");
     } else {
       console.log("Category add unsuccessful");
     }

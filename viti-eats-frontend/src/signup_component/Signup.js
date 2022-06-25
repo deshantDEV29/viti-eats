@@ -161,6 +161,7 @@ function Signup() {
               type="text"
               placeholder="Phone"
               className="usersignup"
+              maxLength={7}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />

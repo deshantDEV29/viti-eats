@@ -19,7 +19,72 @@ import "datatables.net-dt/css/jquery.dataTables.min.css";
 import $ from "jquery";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+if (!$.fn.DataTable.isDataTable("#myTable")) {
+  $(document).ready(function () {
+    setTimeout(function () {
+      $("#table").DataTable({
+        // pagingType: "full_numbers",
+        pageLength: 5,
+        // order: [[0, "desc"]],
+        // processing: true,
+        dom: "Bfrtip",
+        select: {
+          style: "single",
+        },
 
+        buttons: [
+          {
+            extend: "pageLength",
+            className: "btn btn-secondary bg-secondary",
+          },
+          {
+            extend: "copy",
+            className: "btn btn-secondary bg-secondary",
+          },
+          {
+            extend: "csv",
+            className: "btn btn-secondary bg-secondary",
+          },
+          {
+            extend: "print",
+            customize: function (win) {
+              $(win.document.body).css("font-size", "10pt");
+              $(win.document.body)
+                .find("table")
+                .addClass("compact")
+                .css("font-size", "inherit");
+            },
+            className: "btn btn-secondary bg-secondary",
+          },
+        ],
+
+        // fnRowCallback: function (
+        //   nRow,
+        //   aData,
+        //   iDisplayIndex,
+        //   iDisplayIndexFull
+        // ) {
+        //   var index = iDisplayIndexFull + 1;
+        //   $("td:first", nRow).html(index);
+        //   return nRow;
+        // },
+
+        // lengthMenu: [
+        //   [10, 20, 30, 50, -1],
+        //   [10, 20, 30, 50, "All"],
+        // ],
+        // columnDefs: [
+        //   {
+        //     targets: 0,
+        //     render: function (data, type, row, meta) {
+        //       return type === "export" ? meta.row + 1 : data;
+        //     },
+        //   },
+        // ],
+      });
+    }, 1000);
+  });
+}
 function Order() {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -61,72 +126,6 @@ function Order() {
           setLoading(false);
           console.log(error);
         }
-
-        if (!$.fn.DataTable.isDataTable("#myTable")) {
-          $(document).ready(function () {
-            setTimeout(function () {
-              $("#table").DataTable({
-                pagingType: "full_numbers",
-                pageLength: 20,
-                processing: true,
-                dom: "Bfrtip",
-                select: {
-                  style: "single",
-                },
-
-                buttons: [
-                  {
-                    extend: "pageLength",
-                    className: "btn btn-secondary bg-secondary",
-                  },
-                  {
-                    extend: "copy",
-                    className: "btn btn-secondary bg-secondary",
-                  },
-                  {
-                    extend: "csv",
-                    className: "btn btn-secondary bg-secondary",
-                  },
-                  {
-                    extend: "print",
-                    customize: function (win) {
-                      $(win.document.body).css("font-size", "10pt");
-                      $(win.document.body)
-                        .find("table")
-                        .addClass("compact")
-                        .css("font-size", "inherit");
-                    },
-                    className: "btn btn-secondary bg-secondary",
-                  },
-                ],
-
-                fnRowCallback: function (
-                  nRow,
-                  aData,
-                  iDisplayIndex,
-                  iDisplayIndexFull
-                ) {
-                  var index = iDisplayIndexFull + 1;
-                  $("td:first", nRow).html(index);
-                  return nRow;
-                },
-
-                lengthMenu: [
-                  [10, 20, 30, 50, -1],
-                  [10, 20, 30, 50, "All"],
-                ],
-                columnDefs: [
-                  {
-                    targets: 0,
-                    render: function (data, type, row, meta) {
-                      return type === "export" ? meta.row + 1 : data;
-                    },
-                  },
-                ],
-              });
-            }, 1000);
-          });
-        }
       } else {
         navigate("/error");
       }
@@ -145,8 +144,8 @@ function Order() {
     return (
       <tr>
         <td className="pr-3">{orders.id}</td>
-        <td className="pr-3">{orders.id}</td>
-        <td className="pr-3">{orders.amount}</td>
+        <td className="pr-3">{orders.restaurantname}</td>
+        <td className="pr-3">${orders.amount}</td>
         <td className="pr-3">{orders.address}</td>
         <td className="pr-3">{orders.order_status}</td>
 
@@ -170,26 +169,32 @@ function Order() {
       console.log("is empty before print", isEmpty);
       return (
         <div>
-          <h1>Orders</h1>
-
-          <div className="container-fluid py-4">
-            <div className="table-responsive p-0 pb-2">
-              <table
-                id="table"
-                className="table align-items-center justify-content-center mb-0"
-              >
-                <thead>
-                  <tr>
-                    <th className="">Id</th>
-                    <th className="">Order no.</th>
-                    <th className="">Amount</th>
-                    <th className="">Address</th>
-                    <th className="">Status</th>
-                    <th className=""></th>
-                  </tr>
-                </thead>
-                <tbody>{DisplayData}</tbody>
-              </table>
+          <div className=" py-5">
+            <div className="row py-5">
+              <div className="col-lg-10 mx-auto">
+                <div className="card rounded shadow border-0">
+                  <div className="card-body p-5 bg-white rounded">
+                    <div className="table-responsive">
+                      <table
+                        id="table"
+                        className="table table-striped table-bordered"
+                      >
+                        <thead>
+                          <tr>
+                            <th>Order No</th>
+                            <th>Vendor Name</th>
+                            <th>Amount</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Track</th>
+                          </tr>
+                        </thead>
+                        <tbody>{DisplayData}</tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

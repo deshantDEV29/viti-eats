@@ -8,10 +8,13 @@ import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useNavigate } from "react-router-dom";
+import { withAlert } from "react-alert";
 
 function Header() {
   const [{ basket }] = useStateValue();
   const [isLoading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   let navigate = useNavigate();
 
   let name = localStorage.getItem("username");
@@ -66,6 +69,7 @@ function Header() {
 
   function LoginOrName() {
     if (isLoading !== false) {
+      
       return (
         <Link to="/login" style={{ textDecoration: "none" }}>
           <div className="d-flex flex-column mx-4 text-white">
@@ -164,6 +168,13 @@ function Header() {
     }
   }
 
+  const toComponentMenu = () => {
+    if (search === null || search === "") {
+    } else {
+      navigate("/search", { state: { search: search } });
+    }
+  };
+
   return (
     <div className="h-2 d-flex align-items-center bg-danger position-sticky top-0 shadow">
       <Link to="/" style={{ textDecoration: "none" }}>
@@ -181,13 +192,14 @@ function Header() {
           className="h-1 p-1 border-0 w-100 rounded text-center"
           type="text"
           placeholder="Search Food Item"
+          value={search}
           style={{ textAlign: "right" }}
+          onChange={(e) => setSearch(e.target.value)}
         ></input>
-        <Link to="/search" style={{ textDecoration: "none" }}>
-          <div>
-            <SearchIcon />
-          </div>
-        </Link>
+
+        <div onClick={toComponentMenu}>
+          <SearchIcon />
+        </div>
       </div>
       <nav className="d-flex justify-content-end w-100 navbar navbar-expand-sm navbar-dark">
         <button

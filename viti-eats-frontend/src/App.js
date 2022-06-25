@@ -23,6 +23,8 @@ import FoodItem from "./admin/food_component/FoodItem";
 import VendorNavigator from "./order_retrieval/VendorNavigator";
 import ProcessOrder from "./order_retrieval/ProcessOrder";
 import VendorHome from "./order_retrieval/VendorHome";
+import OrderSent from "./order_retrieval/OrderSent";
+import OrderDetails from "./order_retrieval/OrderDetails";
 import VendorHeader from "./order_retrieval/VendorHeader";
 import DeliveryBoy from "./order_retrieval/DeliveryBoy";
 import SuccessfulOrder from "./checkout_component/SuccessfulOrder";
@@ -48,7 +50,6 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />}></Route>
             <Route path="/mpaisa" element={<Mpaisa />}></Route>
             <Route path="/search" element={<SearchResultPage />}></Route>
-
             <Route path="/error" element={<Error />}></Route>
             <Route path="/logout" element={<LoginPage />}></Route>
             <Route path="/admin/" element={<AdminDasboardPage />}></Route>
@@ -65,7 +66,13 @@ function App() {
               element={<AdminFoodItemPage />}
             ></Route>
             <Route path="/vendor/" element={<VendorHomePage />}></Route>
+            <Route
+              path="/vendor/ordersent"
+              element={<VendorOrderSentPage />}
+            ></Route>
+
             <Route path="/vendor/order" element={<VendorOrderPage />}></Route>
+            <Route path="/vendor/orderdetails" element={<VendorOrderDetailsPage />}></Route>
             <Route
               path="/vendor/deliveryboy"
               element={<VendorDeliveryBoy />}
@@ -164,7 +171,14 @@ function OrdersPage() {
       <div className="app__top">
         <Header />
       </div>
-      <div className="app__center">
+      <div
+        style={{
+          minheight: "100vh",
+          backgroundColor: "#FFE53B",
+          backgroundImage: "linear-gradient(147deg, #FFE53B 0%, #FF2525 100%)",
+        }}
+        className="app__center"
+      >
         <Orders />
       </div>
       <div className="app__bottom">
@@ -328,6 +342,28 @@ function VendorHomePage() {
   );
 }
 
+function VendorOrderSentPage() {
+  return (
+    <div>
+      <div className="app__container">
+        <div className="app__top">
+          <VendorHeader />
+        </div>
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="vendor_left">
+              <VendorNavigator />
+            </div>
+            <div className="vendor_right">
+              <OrderSent />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function VendorDeliveryBoy() {
   return (
     <div>
@@ -364,6 +400,28 @@ function VendorOrderPage() {
             </div>
             <div className="vendor_right">
               <ProcessOrder />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VendorOrderDetailsPage() {
+  return (
+    <div>
+      <div className="app__container">
+        <div className="app__top">
+          <VendorHeader />
+        </div>
+        <div className="appadmin_center">
+          <div className="admincontainer">
+            <div className="vendor_left">
+              <VendorNavigator />
+            </div>
+            <div className="vendor_right">
+              <OrderDetails />
             </div>
           </div>
         </div>

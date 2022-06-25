@@ -23,7 +23,7 @@ function CheckoutProduct({ id, name, quantity, price, image }) {
       },
     });
     result = await result.json();
-    console.log(result)
+    console.log(result);
     if (result) {
       console.log(result);
       navigate("/checkout");
@@ -31,6 +31,7 @@ function CheckoutProduct({ id, name, quantity, price, image }) {
     } else {
       console.log("product remove unsuccessful");
     }
+   // alert("Food Item Removed from Cart");
     e.target.reset();
   }
   return (
@@ -42,8 +43,10 @@ function CheckoutProduct({ id, name, quantity, price, image }) {
           <p style={{ fontsize: "x-large" }}>{name}</p>
           <p>Quantity: {quantity}</p>
           <p className="checkoutProduct__price">
-            <small>$</small>
-            <strong>Unit Price:{price}</strong>
+            <p>
+              Unit Price :
+              <strong>${price}</strong>
+            </p>
           </p>
 
           <button

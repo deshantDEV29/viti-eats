@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "reactjs-popup";
+import CurrencyFormat from "react-currency-format";
 import "reactjs-popup/dist/index.css";
 
 function Mpaisa() {
@@ -14,10 +15,9 @@ function Mpaisa() {
   let navigate = useNavigate();
   let id = location.state.id;
   let orderDetails = location.state.orderDetails;
-  let amount = location.state.amount
+  let amount = location.state.amount;
   console.log("cart id", id);
   console.log("order details", orderDetails);
-  
 
   async function placeorder() {
     let authenticate = { phone, pin };
@@ -72,8 +72,8 @@ function Mpaisa() {
         console.log("order add unsuccessful");
       }
 
-      navigate("/checkout");
-     window.location.reload(false);
+      navigate("/orders");
+      window.location.reload(false);
     } else {
       console.log("authentication unsuccessful");
       setErrorMessage("Authentication Unsuccessful!!");
@@ -93,7 +93,18 @@ function Mpaisa() {
           >
             <p className="text-left text-white">TOTAL :</p>
             <p className="text-left text-white" style={{ fontSize: "40px" }}>
-              ${amount}
+              <CurrencyFormat
+                renderText={(value) => (
+                  <>
+                    <p>{value}</p>
+                  </>
+                )}
+                decimalScale={2}
+                value={amount}
+                displayType={"text"}
+                thousandSeperator={true}
+                prefix={"$"}
+              />
             </p>
           </div>
           <div className="col-sm-6 p-4">
@@ -106,7 +117,7 @@ function Mpaisa() {
         </div>
         <div className="row justify-content-between rounded w-100">
           <div className="column w-25 p-4">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link to="/checkout" style={{ textDecoration: "none" }}>
               <button className="rounded text-danger bg-light border p-1">
                 CANCEL
               </button>

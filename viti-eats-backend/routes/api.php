@@ -30,8 +30,9 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::post('getprofile', [UserController::class, 'getprofile']);
 Route::post('setprofileimage', [UserController::class, 'setprofileimage']);
-Route::post('setprofiledetails', [UserController::class, 'setprofiledetails']);
-
+Route::post('updatename', [UserController::class, 'updatename']);
+Route::post('updateemail', [UserController::class, 'updateemail']);
+Route::post('updatephone', [UserController::class, 'updatephone']);
 
 //vendor and admin registeration
 Route::post('registerVendor', [UserController::class, 'registerVendor']);
@@ -44,6 +45,8 @@ Route::post('getrestaurantfood', [RestaurantAPIController::class, 'getrestaurant
 Route::get('displaylistrestaurant', [RestaurantAPIController::class, 'displaylistrestaurant']);
 Route::get('displayfoodcategory', [RestaurantAPIController::class, 'displayfoodcategory']);
 Route::get('displayfooditem', [RestaurantAPIController::class, 'displayfooditem']);
+Route::post('searchfooditem', [RestaurantAPIController::class, 'searchfooditem']);
+
 //Adding to cart and creating Order Route
 Route::post('addtocart', [CartController::class, 'addtocart']);
 Route::post('removefromcart', [CartController::class, 'removefromcart']);
@@ -58,6 +61,7 @@ Route::post('deleteCart', [OrderController::class, 'deleteCart']);
 
 //Vendor Routes
 Route::post('getVendorsOrder', [OrderController::class, 'getVendorsOrder']);
+Route::post('getOrderSent', [OrderController::class, 'getOrderSent']);
 Route::post('processOrder', [OrderController::class, 'processOrder']);
 Route::post('orderDelivered', [OrderController::class, 'orderDelivered']);
 Route::post('registerDeliveryBoy', [DeliveryBoyController::class, 'registerDeliveryBoy']);
@@ -76,6 +80,8 @@ Route::get('getfoodcategory', [FoodItemController::class, 'getfoodcategory']);
 Route::get('totalvendors', [DashboardContoller::class, 'totalvendors']);
 Route::get('totalusers', [DashboardContoller::class, 'totalusers']);
 Route::get('totalcommisison', [DashboardContoller::class, 'totalcommisison']);
+Route::post('totalproduct', [DashboardContoller::class, 'totalproduct']);
+Route::post('totalsales', [DashboardContoller::class, 'totalsales']);
 Route::get('displaycommisison', [DashboardContoller::class, 'displaycommisison']);
 
 
